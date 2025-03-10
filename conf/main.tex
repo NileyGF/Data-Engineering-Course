@@ -1,0 +1,180 @@
+\documentclass[12pt]{book}
+
+% Packages
+\usepackage{amsmath}  % For math equations
+\usepackage{hyperref} % For hyperlinks
+\usepackage{titlesec} % For customizing section titles
+\usepackage{graphicx} % Required for inserting images
+
+\title{Ingeniería de Datos. Conferencias}
+\author{Lic. Niley González}
+\date{2024 - 2025}
+
+% Customize Chapter and Section Titles
+\titleformat{\chapter}[display]
+  {\normalfont\LARGE\bfseries}{\thechapter}{20pt}{}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\maketitle
+
+% Chapter 1: Conference 1
+\chapter{Conferencia 1}
+\normalfont\LARGE \textbf{Introducción a la Ingeniería de Datos. Metodologías para la Ciencia de Datos}
+\normalfont\small\\
+
+¿Cómo definirían ustedes la ciencia de datos?\\
+
+\textit{Pausa para que los estudiantes compartan sus ideas.}\\
+
+Diferentes autores han intentado definir el campo de la ciencia de datos; algunas de las prespectivas son:
+
+\begin{itemize}
+    \item campo multidisciplinario que combina áreas como la informática, las matemáticas y la estadística. Su objetivo principal es utilizar métodos y técnicas científicas para extraer conocimiento y valor de grandes volúmenes de datos, estructurados o no estructurados. (2019)
+    \item campo interdisciplinario que integra disciplinas como las ciencias de la computación, el aprendizaje automático, las matemáticas y las estadísticas. (2021)
+    \item tema multidisciplinario cuyo propósito es descubrir conocimiento para apoyar la toma de decisiones en diversos contextos empresariales.(2020)
+\end{itemize}
+En general, hay un consenso en que la ciencia de datos es un campo multidisciplinario o interdisciplinario que se nutre de áreas como la informática, la estadística y las ciencias de la computación. Su enfoque principal es el estudio de los datos, con el propósito de extraer conocimiento y valor a partir de ellos.\\
+
+Ahora, ¿qué entienden ustedes por una metodología?\\
+
+\textit{Pausa para que los estudiantes compartan sus ideas.}\\
+
+Una metodología puede entenderse como una \textbf{estrategia, guía o conjunto de pautas} que nos ayudan a desarrollar un proceso o actividad de manera estructurada. A diferencia de las herramientas o tecnologías específicas, las metodologías no están ligadas a un software o hardware en particular. En cambio, proporcionan un \textbf{marco de trabajo} que nos indica cómo proceder de manera sistemática para alcanzar nuestros objetivos.
+
+¿Por qué es importante esto?\\
+En el contexto de la ciencia de datos, las metodologías ayudan a abordar problemas complejos de manera organizada, intentando que cada paso del proceso esté bien definido y alineado con los objetivos del proyecto. 
+
+\section{Metodologías en Ciencia de Datos}
+\label{sec:metodologias}
+
+A continuación se presentan varias metodologías de la Ciencia de Datos, analizando críticamente su estructura, enfoque y aplicabilidad en diferentes contextos. El objetivo es comprender cómo cada metodología se adapta -o no- a distintos escenarios organizacionales, técnicos y de complejidad. A través de este análisis, descubriremos por qué ninguna metodología puede aplicarse universalmente a todas las circunstancias, y cómo su implementación rígida y sin adaptación puede llevar a resultados subóptimos.
+
+\subsection{KDD (Knowledge Discovery in Databases)}
+Definido como un proceso interactivo e iterativo de 5 fases para descubrir conocimiento por sus creadores en 1996:
+\begin{itemize}
+    \item \textbf{Selección}: Los datos cambian de acuerdo con los objetivos del proceso. Se establece un grupo de datos con el que proceder.
+    \item \textbf{Procesamiento/Limpieza}: En la fase de data cleaning se examina la calidad de los datos y se manejan situaciones como     datos con parámetros faltantes/nulos, datos duplicados, etc.
+    \item \textbf{Transformación/Reducción}: Convertir datos pre-procesados en utilizables, identificando características importantes según los objetivos del proceso.
+    \item \textbf{Minería de Datos}: Búsqueda de patrones de interés mediante técnicas como clasificación, regresión, clustering, correlaciones, etc.
+    \item \textbf{Interpretación/Evaluación}: Fase final, de consolidación del conocimiento encontrado en los datos. Se preparan los resultados para documentación y toma de decisiones. Los datos se han transformado en visualizaciones para facilitar la evaluación del resultado depurado.
+\end{itemize}
+\subsection{CRISP-DM (Cross-Industry Standard Process for Data Mining)}
+Publicada en 1999 con el objetivo de estandarizar los procesos de minería de datos en diversos sectores, se ha consolidado como la metodología más utilizada en proyectos de minería de datos, análisis y ciencia de datos:
+\begin{itemize}
+    \item \textbf{Comprensión Empresarial}: se centra en entender los objetivos del proyecto, para luego ser evaluados y descubrir si     los datos son aptos para cumplir con los objetivos y producir un plan de proyecto.
+    \item \textbf{Comprensión de Datos}: Recopilación, descripción y exploración de los datos iniciales.
+    \item \textbf{Preparación de Datos}: 5 tareas: selección de datos, limpieza de datos, construcción de datos, integración de datos y ajuste del formato.
+    \item \textbf{Modelado}: Construcción y evaluación de varios modelos con diferentes técnicas algorítmicas. Se determina que algoritmos probar (por ejemplo, regresión, red neuronal); se realiza un     diseño de experimentos; construir el modelo y evaluar el modelo.
+    \item \textbf{Evaluación}: Se evalúa y revisa la creación de modelos respecto a los objetivos comerciales. Para ello se evaluan los resultados, se revisan los procesos y se determinan los próximos pasos.
+    \item \textbf{Implementación}: Despliegue, seguimiento, mantenimiento y revisión final de los resultados obtenidos.
+\end{itemize}
+CRISP-DM presenta un proceso iterativo estructurado, definido y documentado. Es una metodología empleada como referencia por otras metodologías.
+\subsection{RAMSYS (Rapid collaborative data Mining System)}
+Desarrollada por Steve Moyle en 2002. Es una metodología que apoya proyectos de minería de datos, por ello amplía el método CRISP-DM.\\
+Define su metodología en tres roles:
+\begin{itemize}
+    \item \textbf{Modeladores}: encargados de probar la viabilidad de las hipótesis y generar nuevos conocimientos.
+    \item \textbf{Data Master}: responsable de mantener la versión actual de la base de datos, las transformaciones y la información sobre los datos, como metadatos e información sobre la calidad de los datos.
+    \item \textbf{Comité de Dirección}: responsable de establecer los desafíos del proyecto, definir criterios, recibir y seleccionar las presentaciones.
+    %\item Enfatiza colaboración e intercambio de conocimiento
+    %\item Permite experimentación con diversas técnicas de resolución de problemas
+\end{itemize}
+
+\subsection{CATALYST (P3TQ)}
+Conocida como P3TQ por sus siglas en inglés product, place, price, time and quantity, que existen en la cadena de valor organizacional. Está formada por dos partes o sub-metodologías. La primera denominada modelado de negocio o MII, y la segunda llamada minería de datos o MIII. \\
+\begin{itemize}
+    \item \textbf{Metodología para el Modelado del Negocio (MII)}:
+    
+    Brinda una guía de pasos para reconocer un problema y las necesidades reales de la empresa. Con ella se busca modelar el problema/oportunidad que aborda el proyecto.\\
+    El proceso incluye: exploración de datos en búsqueda de patrones de interés, identificación de problemas/oportunidades, prospección de capacidades de minería de datos y el desarrollo de estrategias organizacionales.
+    \item \textbf{Metodología para la Minería de Datos (MIII)}: se divide en los siguientes pasos:\\
+    - Preparación y exploración de datos para encontrar relaciones útiles.\\
+    - Selección de herramientas y modelos para analizar el problema.\\
+    - Refinamiento iterativo del modelo. Verificar los resultados, matrices, gráficos u observaciones según sea el método exploratorio o predictivo.\\
+    - Implementación del modelo  incluyendo una revisión de la retroalimentación con los usuarios.
+\end{itemize}
+
+\subsection{SEMMA (Sample, Explore, Modify, Model, Assess)}
+Propuesta para manejo de grandes volúmenes de datos:
+\begin{itemize}
+    \item \textbf{Muestreo}: Selección de una muestra representativa de datos del problema que está investigando. La forma correcta de obtener una muestra es la selección aleatoria.
+    \item \textbf{Exploración}: Exploración de información útil, con la finalidad de sintetizar el problema y mejorar la eficiencia del modelo.
+    \item \textbf{Modificación}: Manipulación de los datos con base en la investigación realizada para que los datos ingresados al modelo estén definidos y en un formato adecuado.
+    \item \textbf{Modelado}: Modelado de datos, con el propósito de establecer una relación entre las variables explicativas y el objeto de estudio.
+    \item \textbf{Evaluación}: Validación comparativa de los resultados, a través del análisis de los modelos, comparado con otros modelos estadísticos o una nueva muestra poblacional. 
+\end{itemize}
+
+\subsection{TDSP (Team Data Science Process)}
+Metodología de Microsoft de 2017. Es de cierta forma una combinación de Scrum y CRISP-DM. El ciclo de vida de TDSP se compone de cinco etapas principales:
+\begin{itemize}
+    \item \textbf{Comprensión empresarial}: Se definen los objetivos y se identifican las fuentes de datos.
+    \item \textbf{Adquisición y comprensión de datos}: Se incorporan los datos y se determina si se puede responder a la pregunta 
+    planteada (combina efectivamente la Comprensión de los Datos y la Limpieza de los Datos de CRISP-DM).
+    \item \textbf{Modelado}: Ingeniería de características (feature engineering) y entrenamiento de modelos (model training). Combina Modelado y Evaluación de CRISP-DM).
+    \item \textbf{Implementación}: Implementar en un entorno de producción.
+    \item Aceptación del cliente: Validación por parte del cliente de si el sistema satisface las necesidades del negocio (una fase no cubierta explícitamente por CRISP-DM).
+\end{itemize}
+TDSP aborda la debilidad de CRISP-DM en cuanto a la falta de definición del equipo, definiendo seis roles:
+\begin{itemize}
+    \item Arquitecto de soluciones
+    \item Project Manager
+    \item Ingeniero de datos
+    \item Científico de datos
+    \item Desarrollador de aplicaciones
+    \item Líder de proyecto (Project lead)
+\end{itemize}
+
+\section{Conclusiones}
+\label{sec:conclusiones}
+
+A lo largo de esta conferencia, hemos explorado diversas metodologías utilizadas en la Ciencia de Datos. Aunque cada una tiene sus particularidades, todas comparten elementos comunes:
+
+\begin{itemize}
+    \item \textbf{Comprensión del Negocio}: Definir el problema empresarial y se identifican los objetivos del análisis. El equipo de ciencia de datos debe trabajar en estrecha colaboración con los clientes para entender el problema y definir los objetivos.
+    \item \textbf{Comprensión de los Datos}: Identificar y recopilar los datos requerido para el análisis. Exploración de los datos para entender su estructura, calidad y completitud.
+    \item \textbf{Preparación de los Datos}: Limpiar, transformar y preparar los datos para garantizar que estén en el formato y calidad adecuados para el análisis.
+    \item \textbf{Modelado de Datos}: Seleccionar técnicas de modelado adecuadas para analizar los datos e implementar modelos predictivos. Esta etapa también involucra la selección de algoritmos, ajuste de parámetros y validación del modelo.
+    \item \textbf{Evaluación}: Evaluar el rendimiento del modelo y su capacidad para resolver el problema empresarial. Utilizando métricas de evaluación adecuadas y realizando mejoras al modelo si es necesario.
+    \item \textbf{Despliegue}: Desplegar el modelo en un entorno de producción, integrándolo en los procesos de la negocio y asegurando su correcto funcionamiento.
+    \item \textbf{Monitoreo y Mantenimiento}: Supervisar el rendimiento del modelo en producción y realizar ajustes para mantener su efectividad.
+\end{itemize}
+
+\subsection{Reflexiones Finales}
+En resumen, una metodología de Ciencia de Datos es un enfoque estructurado que combina comprensión del negocio, manejo de datos, modelado y evaluación para transformar datos en soluciones efectivas. Sin embargo, es crucial recordar que:
+
+\begin{itemize}
+    \item \textbf{No existe una metodología universal}: Cada proyecto tiene características únicas que pueden requerir adaptaciones o combinaciones de enfoques.
+    \item \textbf{La flexibilidad es clave}: Las metodologías no deben aplicarse de manera rígida, sino como guías que permitan ajustarse a las necesidades específicas del problema.
+    \item \textbf{La colaboración es esencial}: La comunicación entre científicos de datos, ingenieros y stakeholders es fundamental para alinear objetivos y garantizar resultados útiles.
+    \item \textbf{El ciclo nunca termina}: La Ciencia de Datos es un proceso iterativo, donde el monitoreo y la mejora continua son parte integral del éxito.
+\end{itemize}
+
+% Chapter 2: Conference 2
+\chapter{Conferencia 2}
+\normalfont\LARGE \textbf{El ecosistema de la ingeniería de datos.}
+\normalfont\small\\
+
+En la conferencia anterior vimos metodologías generales del proceso completo de ciencia de datos. Pero en que consiste el trabajo de un ingeniero de datos?
+
+
+% la ingeniería de datos como proceso integral que abarca la recolección, almacenamiento, procesamiento, y disponibilidad de datos.
+
+% Very often, data scientists struggled with basic problems that their background and training did not address—data collection, data cleansing, data access, data transformation, and data infrastructure. These are problems that data engineering aims to solve. 
+
+% We suggest that aspiring data engineers set up accounts with cloud services such as AWS, Azure, Google Cloud Platform, Snowflake, Databricks, etc. Note that many of these platforms have free tier options,but readers should keep a close eye on costs and work with small quantities of data and single node clusters as they study.
+
+% Data engineering is the development, implementation, and maintenance of systems and processes that take in raw data and produce high-quality, consistent information that supports downstream use cases, such as analysis and machine learning. Data engineering is the intersection of security, data management, DataOps, data architecture, orchestration, and software engineering. A data engineer manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases, such as analysis or machine learning.
+
+% The data engineering lifecycle also has a notion of undercurrents—critical ideas across the entire lifecycle. These include security, data management, DataOps, data architecture, orchestration, and software engineering.
+
+Bibliografía: 
+
+- El libro "Fundamentals of Data Engineering" va de : the data engineering lifecycle: data generation, storage, ingestion, transformation, and serving. Since the dawn of data, we’ve seen the rise and fall of innumerable specific technologies and vendor products, but the data engineering lifecycle stages have remained essentially unchanged. 
+
+
+\end{document}
