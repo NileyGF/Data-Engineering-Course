@@ -49,6 +49,8 @@ Una metodología puede entenderse como una \textbf{estrategia, guía o conjunto 
 ¿Por qué es importante esto?\\
 En el contexto de la ciencia de datos, las metodologías ayudan a abordar problemas complejos de manera organizada, intentando que cada paso del proceso esté bien definido y alineado con los objetivos del proyecto. 
 
+% https://medium.datadriveninvestor.com/data-science-project-management-methodologies-f6913c6b29eb
+
 \section{Metodologías en Ciencia de Datos}
 \label{sec:metodologias}
 
@@ -63,6 +65,7 @@ Definido como un proceso interactivo e iterativo de 5 fases para descubrir conoc
     \item \textbf{Minería de Datos}: Búsqueda de patrones de interés mediante técnicas como clasificación, regresión, clustering, correlaciones, etc.
     \item \textbf{Interpretación/Evaluación}: Fase final, de consolidación del conocimiento encontrado en los datos. Se preparan los resultados para documentación y toma de decisiones. Los datos se han transformado en visualizaciones para facilitar la evaluación del resultado depurado.
 \end{itemize}
+
 \subsection{CRISP-DM (Cross-Industry Standard Process for Data Mining)}
 Publicada en 1999 con el objetivo de estandarizar los procesos de minería de datos en diversos sectores, se ha consolidado como la metodología más utilizada en proyectos de minería de datos, análisis y ciencia de datos:
 \begin{itemize}
@@ -74,30 +77,6 @@ Publicada en 1999 con el objetivo de estandarizar los procesos de minería de da
     \item \textbf{Implementación}: Despliegue, seguimiento, mantenimiento y revisión final de los resultados obtenidos.
 \end{itemize}
 CRISP-DM presenta un proceso iterativo estructurado, definido y documentado. Es una metodología empleada como referencia por otras metodologías.
-\subsection{RAMSYS (Rapid collaborative data Mining System)}
-Desarrollada por Steve Moyle en 2002. Es una metodología que apoya proyectos de minería de datos, por ello amplía el método CRISP-DM.\\
-Define su metodología en tres roles:
-\begin{itemize}
-    \item \textbf{Modeladores}: encargados de probar la viabilidad de las hipótesis y generar nuevos conocimientos.
-    \item \textbf{Data Master}: responsable de mantener la versión actual de la base de datos, las transformaciones y la información sobre los datos, como metadatos e información sobre la calidad de los datos.
-    \item \textbf{Comité de Dirección}: responsable de establecer los desafíos del proyecto, definir criterios, recibir y seleccionar las presentaciones.
-    %\item Enfatiza colaboración e intercambio de conocimiento
-    %\item Permite experimentación con diversas técnicas de resolución de problemas
-\end{itemize}
-
-\subsection{CATALYST (P3TQ)}
-Conocida como P3TQ por sus siglas en inglés product, place, price, time and quantity, que existen en la cadena de valor organizacional. Está formada por dos partes o sub-metodologías. La primera denominada modelado de negocio o MII, y la segunda llamada minería de datos o MIII. \\
-\begin{itemize}
-    \item \textbf{Metodología para el Modelado del Negocio (MII)}:
-    
-    Brinda una guía de pasos para reconocer un problema y las necesidades reales de la empresa. Con ella se busca modelar el problema/oportunidad que aborda el proyecto.\\
-    El proceso incluye: exploración de datos en búsqueda de patrones de interés, identificación de problemas/oportunidades, prospección de capacidades de minería de datos y el desarrollo de estrategias organizacionales.
-    \item \textbf{Metodología para la Minería de Datos (MIII)}: se divide en los siguientes pasos:\\
-    - Preparación y exploración de datos para encontrar relaciones útiles.\\
-    - Selección de herramientas y modelos para analizar el problema.\\
-    - Refinamiento iterativo del modelo. Verificar los resultados, matrices, gráficos u observaciones según sea el método exploratorio o predictivo.\\
-    - Implementación del modelo  incluyendo una revisión de la retroalimentación con los usuarios.
-\end{itemize}
 
 \subsection{SEMMA (Sample, Explore, Modify, Model, Assess)}
 Propuesta para manejo de grandes volúmenes de datos:
@@ -109,6 +88,31 @@ Propuesta para manejo de grandes volúmenes de datos:
     \item \textbf{Evaluación}: Validación comparativa de los resultados, a través del análisis de los modelos, comparado con otros modelos estadísticos o una nueva muestra poblacional. 
 \end{itemize}
 
+\subsection{RAMSYS (Rapid collaborative data Mining System)}
+Desarrollada por Steve Moyle en 2002. Es una metodología que apoya proyectos de minería de datos, por ello amplía el método CRISP-DM.\\
+Define su metodología en tres roles:
+\begin{itemize}
+    \item \textbf{Modeladores}: encargados de probar la viabilidad de las hipótesis y generar nuevos conocimientos.
+    \item \textbf{Data Master}: responsable de mantener la versión actual de la base de datos, las transformaciones y la información sobre los datos, como metadatos e información sobre la calidad de los datos.
+    \item \textbf{Comité de Dirección}: responsable de establecer los desafíos del proyecto, definir criterios, recibir y seleccionar las presentaciones.
+    %\item Enfatiza colaboración e intercambio de conocimiento
+    %\item Permite experimentación con diversas técnicas de resolución de problemas
+\end{itemize}
+
+% \subsection{CATALYST (P3TQ)}
+% Conocida como P3TQ por sus siglas en inglés product, place, price, time and quantity, que existen en la cadena de valor organizacional. Está formada por dos partes o sub-metodologías. La primera denominada modelado de negocio o MII, y la segunda llamada minería de datos o MIII. \\
+% \begin{itemize}
+%     \item \textbf{Metodología para el Modelado del Negocio (MII)}:
+    
+%     Brinda una guía de pasos para reconocer un problema y las necesidades reales de la empresa. Con ella se busca modelar el problema/oportunidad que aborda el proyecto.\\
+%     El proceso incluye: exploración de datos en búsqueda de patrones de interés, identificación de problemas/oportunidades, prospección de capacidades de minería de datos y el desarrollo de estrategias organizacionales.
+%     \item \textbf{Metodología para la Minería de Datos (MIII)}: se divide en los siguientes pasos:\\
+%     - Preparación y exploración de datos para encontrar relaciones útiles.\\
+%     - Selección de herramientas y modelos para analizar el problema.\\
+%     - Refinamiento iterativo del modelo. Verificar los resultados, matrices, gráficos u observaciones según sea el método exploratorio o predictivo.\\
+%     - Implementación del modelo  incluyendo una revisión de la retroalimentación con los usuarios.
+% \end{itemize}
+
 \subsection{TDSP (Team Data Science Process)}
 Metodología de Microsoft de 2017. Es de cierta forma una combinación de Scrum y CRISP-DM. El ciclo de vida de TDSP se compone de cinco etapas principales:
 \begin{itemize}
@@ -117,7 +121,7 @@ Metodología de Microsoft de 2017. Es de cierta forma una combinación de Scrum 
     planteada (combina efectivamente la Comprensión de los Datos y la Limpieza de los Datos de CRISP-DM).
     \item \textbf{Modelado}: Ingeniería de características (feature engineering) y entrenamiento de modelos (model training). Combina Modelado y Evaluación de CRISP-DM).
     \item \textbf{Implementación}: Implementar en un entorno de producción.
-    \item Aceptación del cliente: Validación por parte del cliente de si el sistema satisface las necesidades del negocio (una fase no cubierta explícitamente por CRISP-DM).
+    \item \textbf{Aceptación del cliente}: Validación por parte del cliente de si el sistema satisface las necesidades del negocio (una fase no cubierta explícitamente por CRISP-DM).
 \end{itemize}
 TDSP aborda la debilidad de CRISP-DM en cuanto a la falta de definición del equipo, definiendo seis roles:
 \begin{itemize}
