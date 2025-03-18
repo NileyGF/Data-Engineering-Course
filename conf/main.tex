@@ -133,8 +133,7 @@ TDSP aborda la debilidad de CRISP-DM en cuanto a la falta de definición del equ
     \item Líder de proyecto (Project lead)
 \end{itemize}
 
-\section{Conclusiones}
-\label{sec:conclusiones}
+\subsection{Conclusiones del tema}
 
 A lo largo de esta conferencia, hemos explorado diversas metodologías utilizadas en la Ciencia de Datos. Aunque cada una tiene sus particularidades, todas comparten elementos comunes:
 
@@ -148,7 +147,6 @@ A lo largo de esta conferencia, hemos explorado diversas metodologías utilizada
     \item \textbf{Monitoreo y Mantenimiento}: Supervisar el rendimiento del modelo en producción y realizar ajustes para mantener su efectividad.
 \end{itemize}
 
-\subsection{Reflexiones Finales}
 En resumen, una metodología de Ciencia de Datos es un enfoque estructurado que combina comprensión del negocio, manejo de datos, modelado y evaluación para transformar datos en soluciones efectivas. Sin embargo, es crucial recordar que:
 
 \begin{itemize}
@@ -158,16 +156,426 @@ En resumen, una metodología de Ciencia de Datos es un enfoque estructurado que 
     \item \textbf{El ciclo nunca termina}: La Ciencia de Datos es un proceso iterativo, donde el monitoreo y la mejora continua son parte integral del éxito.
 \end{itemize}
 
+Para concluir vamos a definir en que consiste el trabajo de un ingeniero de datos. 
+
+En el libro \textit{Fundamentals of Data Engineering} de \textit{Joe Reis and Matt Housley} se define el término como:
+
+La Ingeniería de Datos consiste en el desarrollo, interpretación y mantenimiento de sistemas y procesos que toman datos crudos y producen información consistente de alta calidad que soporta downstream casos de uso como analíticas y machine learning.
+
+Un ingeniero de datos maneja el ciclo de vida de la ingeniería de datos que abarca el proceso que comienza en obtener los datos de las fuentes y termina sirviéndolos, después de procesados para los casos de uso.
+
+\textbf{En este curso estaremos viendo la ingeniería de datos como proceso integral que abarca la recolección, almacenamiento, procesamiento, y disponibilidad de datos.}\\
+
+\section{Breve historia de la evolución de la ingeniería de datos}
+\textbf{Los comienzos: 1980 a 2000} de \textemp{Data Warehouse} a la Web.\\
+El nacimiento de la ingeniería de datos tiene sus raíces en data warehousing\footnote{Centralized repository that aggregates data from various sources to support data analysis, data mining and artificial intelligence}.\\
+Que data desde la década de 1970 y toma forma en los 80s cuando se crea el término data warehouse. Luego surge el Structured Query Language (SQL).
+Mientras crecían los nacientes sistemas de datos, los negocios necesitaban dedicar herramientas a reportar y a business intelligence (BI). 
+Surgiendo roles como BI ingeniero\footnote{A business intelligence engineer designs, implements, and maintains systems used to collect and analyze business intelligence data.}, desarrolladores ETL\footnote{Responsible for designing, building, managing, and maintaining ETL (Extract, Transform, Load) processes.} e ingenieros de data warehouse.
+Precursores de lo que se considera actualmente los ingenieros de datos. También se popularizó el internet a mediados de los 90s, surgiendo una ola de compañías centradas en la web.
+
+\textbf{Los inicios de los 2000}: El nacimiento de la ingeniería de datos contemporánea.\\
+Las grandes compañías sobrevivientes como Yahoo, Google y Amazon crecerían hasta convertirse en gigantes tecnológicos. 
+La necesidad de sistemas escalables, con alta disponibilidad, confiables y cost-effective llevó a innovaciones en sistemas distribuidos y almacenamiento, marcando el inicio de la era del 'big data'. La combinación del surgimiento de nuevos algoritmos y metodologías como: 'Google File System', 'MapReduce', Apache Hadoop, Amazon Elastic Compute Cloud y su apertura como servicio al público a través de Amazon Web Services (AWS) creó una nueva era en el manejo y tratamiento de datos.
+Nacía la era de ingeniero de big data.\\
+Mientras AWS se volvió muy rentable otras compañías lanzaros sus propios ecosistemas en la nube: Google Cloud, Microsoft Azure, DigitalOcean. La nube es discutiblemente una de las innovaciones más significativas del siglo 21; iniciando una revolución en la forma en que el software y las aplicaciones de datos se desarrollan y despliegan
+
+\textbf{Finales de los 2000 y la década de 2010}: The Big Data Engineering Era\\
+Surgen herramientas open source que democratizan el acceso a tecnologías de big data; que ya no estarían limitadas solo a las grandes compañías. \\
+También comienza la transformación de procesamiento en batch a streaming a partir de eventos. \\
+Ocurre una explosión de herramientas de manejo de datos. Y los ingenieros de bog data debían ser proficientes en desarrollo de software y configuración de infraestructuras de bajo nivel. \\
+Big data engineers se centraban en manejar sistemas de datos de gran escala, pero la complejidad y el costo de mantener  estas nuevas herramientas impulsaron a optar por simplificaciones. \\
+El término "big data" perdió su brillo mientras se volvían más accesibles las herramientas para procesarlos; los ingenieros de big data engineers pasan a ser simplemente ingenieros de datos.
+
+\textbf{2020s}: Ingeniería por el ciclo de vida de los datos.\\
+El rol de los ingenieros de datos se encuentra en rápida evolución. La tendencia está siendo centrarse en herramientas descentralizadas, modulares y abstractas. 
+Las tendencias populares a principios de la década de 2020 incluyen el modern data stack (MDS), que representa una colección de productos "listos para usar", tanto de código abierto como de terceros, ensamblados para facilitar el trabajo de los analistas. Al mismo tiempo, las fuentes de datos y los formatos de datos están creciendo tanto en variedad como en tamaño. La ingeniería de datos es, cada vez más, una disciplina de interconexión, que conecta varias tecnologías como si fueran piezas de LEGO, para servir a los objetivos empresariales finales. 
+
+\section{Relación entre la Ingeniería de Datos y la Ciencia de Datos}
+La ingeniería de datos se sitúa upstream de la ciencia de datos, lo que significa que los ingenieros de datos proporcionan las entradas utilizadas por los científicos de datos.\\
+Para muchos lo más interesante de la ciencia de datos es construir y optimizar modelos de Machine Learning; la realidad es que se estima que entre el 70\% y el 80\% del tiempo se dedica a recopilar, limpiar y procesar datos.\\
+Además; usualmente los científicos de datos no están entrenados para diseñar sistemas de datos de grado de producción, y terminan haciendo este trabajo improvisadamente porque carecen del soporte y los recursos de un ingeniero de datos.\\
+En un mundo ideal, los científicos de datos deberían dedicar más del 90\% de su tiempo al análisis, la experimentación y el ML. Esto se logra cuando los ingenieros de datos se centran en construir una base sólida para que los científicos de datos tengan éxito.
+
+\section{Habilidades del Ingeniero de Datos}
+El conjunto de habilidades de un ingeniero de datos debe abarcar las ideas subyacentes de la ingeniería de datos: seguridad, gestión de datos, DataOps, arquitectura de datos e ingeniería de software. Se requiere un entendimeinto de como evaluar herramientas de datos y como estas encajan en el ciclo de vida de la ingeniería de datos. 
+
+Un ingeniero de datos maneja una gran cantidad de piezas móviles complejas y debe optimizar constantemente a lo largo de los ejes de costo, agilidad, escalabilidad, simplicidad, reutilización e interoperabilidad. También se espera que el ingeniero de datos cree arquitecturas de datos ágiles que evolucionen a medida que surjan nuevas tendencias.
+
+Por definición, un ingeniero de datos debe comprender tanto los datos como la tecnología. Con respecto a los datos, esto implica conocer varias de las mejores prácticas en torno a la gestión de datos. En el extremo tecnológico, un ingeniero de datos debe estar al tanto de varias opciones de herramientas, su interrelación y sus trade-offs.
+
 % Chapter 2: Conference 2
 \chapter{Conferencia 2}
-\normalfont\LARGE \textbf{El ecosistema de la ingeniería de datos.}
+\normalfont\LARGE \textbf{El ecosistema de la ingeniería de datos. El ciclo de vida de la ingeniería de datos.}
 \normalfont\small\\
 
-En la conferencia anterior vimos metodologías generales del proceso completo de ciencia de datos. Pero en que consiste el trabajo de un ingeniero de datos?
+% ETL stands for Extract, Transform, and Load and is a traditionally accepted way for organizations to combine data from multiple systems into a single database, data store, data warehouse, or data lake.
+
+\section{El Ciclo de Vida de la Ingeniería de Datos (Data Engineering Lifecycle)}
+El ciclo de vida de la ingeniería de datos o Data Engineering Lifecycle.
+
+Estudiaremos este ciclo de forma agnóstica a un tipo de software o hardware específico.
+La idea es alejarnos de las tecnologías y centrarnos en los datos y el propósito que deben servir.
+
+El ciclo de vida de la ingeniería de datos comprende las siguientes etapas que transforman datos crudos en un producto final con valor listo para ser consumido por los analistas, científicos de datos, ingenieros de ML y otros:
+
+\begin{itemize}
+    \item Generación
+    \item Almacenamiento
+    \item Ingesta
+    \item Transformación
+    \item Serving
+\end{itemize}
+Además de las etapas, el ciclo tiene una noción de ideas subyacentes, críticas a o largo de todo el ciclo de vida. Estas incluyen seguridad, manejo de datos, DataOps, arquitectura de datos, orquestación e ingeniería de software.
+% \TODO image
+El almacenamiento ocurre a lo largo de todo el ciclo a medida que los datos fluyen desde el inicio hasta el final.\\
+En general, las etapas intermedias (almacenamiento, ingesta, transformación) pueden mezclarse un poco. Varias etapas del ciclo de vida pueden repetirse, ocurrir fuera de orden, superponerse o entrelazarse.
+
+El ciclo de vida de la ingeniería de datos es un subconjunto de todo el ciclo de vida de los datos.
+
+Un ingeniero de datos tiene varios objetivos de alto nivel a lo largo del ciclo de vida de los datos: producir un Return on Investment(ROI) y reducir los costos, reducir el riesgo y maximizar el valor y la utilidad de los datos.
+
+\subsection{Generación}
+Un \textit{sistema de origen} es el origen de los datos utilizados en el ciclo de vida de la ingeniería de datos. Por ejemplo, un sistema de origen podría ser un dispositivo IoT, una cola de mensajes de aplicación o una base de datos transaccional.
+
+A data engineer consumes data from a source system but doesn’t typically own or control the source system itself. The data engineer needs to have a working understanding of the way source systems work, the way they generate data, the frequency and velocity of the data, and the variety of data they generate. 
+
+Engineers also need to keep an open line of communication with source system owners on changes that could break pipelines and analytics.
+
+The following is a starting set of evaluation questions of source systems that data engineers must consider:\\
+
+What are the essential characteristics of the data source? Is it an application? A swarm of IoT devices?\\
+How is data persisted in the source system? Is data persisted long term, or is it temporary and quickly deleted?\\
+At what rate is data generated? How many events per second? How many gigabytes per hour?\\
+What level of consistency can data engineers expect from the output data? If you’re running data-quality checks against the output data, how often do data inconsistencies occur—nulls where they aren’t expected, lousy formatting, etc.?\\
+How often do errors occur?\\
+Will the data contain duplicates?\\
+Will some data values arrive late, possibly much later than other messages produced simultaneously?\\
+What is the schema of the ingested data? Will data engineers need to join across several tables or even several systems to get a complete picture of the data?\\
+If schema changes (say, a new column is added), how is this dealt with and communicated to downstream stakeholders?\\
+How frequently should data be pulled from the source system?\\
+For stateful systems (e.g., a database tracking customer account information), is data provided as periodic snapshots or update events from change data capture (CDC)? What’s the logic for how changes are performed, and how are these tracked in the source database?\\
+Who/what is the data provider that will transmit the data for downstream consumption?\\
+Will reading from a data source impact its performance?\\
+Does the source system have upstream data dependencies? What are the characteristics of these upstream systems?\\
+Are data-quality checks in place to check for late or missing data?\\
+
+Sources produce data consumed by downstream systems, including human generated spreadsheets, IoT sensors, and web and mobile applications. Each source has its unique volume and cadence of data generation.
+
+\subsection{Storage}
+Choosing a storage solution is key to success
+in the rest of the data lifecycle, and it’s also one of the most complicated
+stages of the data lifecycle for a variety of reasons. First, data architectures
+in the cloud often leverage several storage solutions. Second, few data
+storage solutions function purely as storage, with many supporting complex
+transformation queries; even object storage solutions may support powerful
+query capabilities—e.g., Amazon S3 Select. Third, while storage is a stage
+of the data engineering lifecycle, it frequently touches on other stages, such
+as ingestion, transformation, and serving.
+Storage runs across the entire data engineering lifecycle, often occurring in
+multiple places in a data pipeline, with storage systems crossing over with
+source systems, ingestion, transformation, and serving. In many ways, the
+way data is stored impacts how it is used in all of the stages of the data
+engineering lifecycle. For example, cloud data warehouses can store data,
+process data in pipelines, and serve it to analysts. Streaming frameworks
+such as Apache Kafka and Pulsar can function simultaneously as ingestion,
+storage, and query systems for messages, with object storage being a
+standard layer for data transmission.
+
+Here are a few key engineering questions to ask when choosing a storage
+system for a data warehouse, data lakehouse, database, or object storage:
+Is this storage solution compatible with the architecture’s required
+write and read speeds?
+Will storage create a bottleneck for downstream processes?
+Do you understand how this storage technology works? Are you
+utilizing the storage system optimally or committing unnatural acts?
+For instance, are you applying a high rate of random access updates in
+an object storage system? (This is an antipattern with significant
+performance overhead.)
+Will this storage system handle anticipated future scale? You should
+consider all capacity limits on the storage system: total available
+storage, read operation rate, write volume, etc.
+Will downstream users and processes be able to retrieve data in the
+required service-level agreement (SLA)?
+Are you capturing metadata about schema evolution, data flows, data
+lineage, and so forth? Metadata has a significant impact on the utility
+of data. Metadata represents an investment in the future, dramatically
+enhancing discoverability and institutional knowledge to streamline
+future projects and architecture changes.
+Is this a pure storage solution (object storage), or does it support
+complex query patterns (i.e., a cloud data warehouse)?
+Is the storage system schema-agnostic (object storage)? Flexible
+schema (Cassandra)? Enforced schema (a cloud data warehouse)?
+How are you tracking master data, golden records data quality, and
+data lineage for data governance? (We have more to say on these in
+“Data Management”.)
+How are you handling regulatory compliance and data sovereignty?
+For example, can you store your data in certain geographical locations
+but not others?
+
+\subsection{Ingestion}
+Usually source systems and ingestion represent the most significant bottlenecks of the data engineering lifecycle.
+The source systems are normally outside your direct control and might randomly become unresponsive or provide data of poor quality. Or, your data ingestion service might mysteriously stop working for many reasons.
+
+When preparing to architect or build a system, here are some primary
+questions about the ingestion stage:
+What are the use cases for the data I’m ingesting? Can I reuse this data
+rather than create multiple versions of the same dataset?
+Are the systems generating and ingesting this data reliably, and is the
+data available when I need it?
+What is the data destination after ingestion?
+How frequently will I need to access the data?
+In what volume will the data typically arrive?
+What format is the data in? Can my downstream storage and
+transformation systems handle this format?
+Is the source data in good shape for immediate downstream use? If so,
+for how long, and what may cause it to be unusable?
+If the data is from a streaming source, does it need to be transformed
+before reaching its destination? Would an in-flight transformation be
+appropriate, where the data is transformed within the stream itself?
+
+\subsubsection{Batch vs. Streaming}
+Virtually all data we deal with is inherently streaming. Data is nearly
+always produced and updated continually at its source. Batch ingestion is
+simply a specialized and convenient way of processing this stream in large
+chunks—for example, handling a full day’s worth of data in a single batch.
+
+Streaming ingestion allows us to provide data to downstream systems—
+whether other applications, databases, or analytics systems—in a
+continuous, real-time fashion.
+
+Batch data is ingested either on a predetermined time interval or as data
+reaches a preset size threshold. Batch ingestion is a one-way door: once
+data is broken into batches, the latency for downstream consumers is
+inherently constrained.
+
+However, the separation of storage and compute in many systems and the
+ubiquity of event-streaming and processing platforms make the continuous
+processing of data streams much more accessible and increasingly popular.
+The choice largely depends on the use case and expectations for data
+timeliness.
+
+The following are some questions to ask yourself when determining whether
+streaming ingestion is an appropriate choice over batch ingestion:
+If I ingest the data in real time, can downstream storage systems
+handle the rate of data flow?
+Do I need millisecond real-time data ingestion? Or would a microbatch
+approach work, accumulating and ingesting data, say, every
+minute?
+What are my use cases for streaming ingestion? What specific benefits
+do I realize by implementing streaming? If I get data in real time, what
+actions can I take on that data that would be an improvement upon
+batch?
+Will my streaming-first approach cost more in terms of time, money,
+maintenance, downtime, and opportunity cost than simply doing
+batch?
+Are my streaming pipeline and system reliable and redundant if
+infrastructure fails?
+What tools are most appropriate for the use case? Should I use a
+managed service (Amazon Kinesis, Google Cloud Pub/Sub, Google
+Cloud Dataflow) or stand up my own instances of Kafka, Flink, Spark,
+Pulsar, etc.? If I do the latter, who will manage it? What are the costs
+and trade-offs?
+If I’m deploying an ML model, what benefits do I have with online
+predictions and possibly continuous training?
+Am I getting data from a live production instance? If so, what’s the
+impact of my ingestion process on this source system?
+\subsubsection{Push vs. Pull}
+In the push model of data ingestion, a source system writes data out to a
+target, whether a database, object store, or filesystem. In the pull model,
+data is retrieved from the source system.
+
+Consider, for example, the extract, transform, load (ETL) process,
+commonly used in batch-oriented ingestion workflows. ETL’s extract (E)
+part clarifies that we're dealing with a pull ingestion model. In traditional
+ETL, the ingestion system queries a current source table snapshot on a fixed
+schedule.
+
+Some versions of batch CDC use the pull pattern
+
+With streaming ingestion, data bypasses a backend database and is pushed
+directly to an endpoint, typically with data buffered by an event-streaming
+platform. This pattern is useful with fleets of IoT sensors emitting sensor
+data. Rather than relying on a database to maintain the current state, we
+simply think of each recorded reading as an event.
+
+This pattern is also growing in popularity in software applications as it simplifies real-time
+processing, allows app developers to tailor their messages for downstream
+analytics, and greatly simplifies the lives of data engineers.
+
+\subsection{Transformation}
+After you’ve ingested and stored data, you need to do something with it.
+The next stage of the data engineering lifecycle is transformation, meaning
+data needs to be changed from its original form into something useful for
+downstream use cases.
+Typically, the transformation stage is where data begins to create value for downstream
+user consumption.
+
+Immediately after ingestion, basic transformations map data into correct
+types (changing ingested string data into numeric and date types, for
+example), putting records into standard formats, and removing bad ones.
+
+Later stages of transformation may transform the data schema and apply
+normalization. Downstream, we can apply large-scale aggregation for
+reporting or featurize data for ML processes.
+
+Key consideration:\\
+What’s the cost and return on investment (ROI) of the transformation? What is the associated business value?
+Is the transformation as simple and self-isolated as possible?
+What business rules do the transformations support?
+
+You can transform data in batch or while streaming in flight.
+
+Batch transformations are overwhelmingly popular, but given the growing popularity of streamprocessing
+solutions and the general increase in the amount of streaming
+data, we expect the popularity of streaming transformations to continue
+growing, perhaps entirely replacing batch processing in certain domains
+soon.
+
+Transformation is often entangled in other phases
+of the lifecycle. Typically, data is transformed in source systems or in flight
+during ingestion. For example, a source system may add an event
+timestamp to a record before forwarding it to an ingestion process. Or a
+record within a streaming pipeline may be “enriched” with additional fields
+and calculations before it’s sent to a data warehouse
+
+\textbf{Business logic}\\
+Business logic is a major driver of data transformation, often in data
+modeling. Data translates business logic into reusable elements.
+
+Data featurization for ML is another data transformation process.
+Featurization intends to extract and enhance data features useful for training
+ML models. Featurization can be a dark art, combining domain expertise (to
+identify which features might be important for prediction) with extensive
+experience in data science.
+
+The main point is that once data
+scientists determine how to featurize data, featurization processes can be
+automated by data engineers in the transformation stage of a data pipeline.
+
+items: Data preparation, data wrangling, and cleaning; queries, data modeling
+
+\subsection{Serving}
+Now that the data has been ingested, stored, and transformed into coherent and useful
+structures, it’s time to get value from your data. “Getting value” from data
+means different things to different users.
+
+\subsubsection{Analytics}
+Analytics is the core of most data endeavors. Once your data is stored and
+transformed, you’re ready to generate reports or dashboards and do ad hoc
+analysis on the data. Whereas the bulk of analytics used to encompass BI, it
+now includes other facets such as operational analytics and embedded
+analytics.
+
+Firstly, Business Intelligence (BI) harnesses collected data to understand a business's past and present performance. This involves applying specific business logic to raw data to generate reports and dashboards. Remember the importance of the data engineering lifecycle. We often apply business logic during the transformation stage, however there's a growing trend to use a logic-on-read approach. Here, data is stored in a clean, relatively raw form and business logic is applied when querying. Furthermore, as companies mature in their data practices, they tend to move towards self-service analytics, which democratizes data access, enabling business users to derive insights independently. However, achieving successful self-service analytics is challenging, often hindered by poor data quality, organizational silos, and a lack of necessary data skills.
+
+Secondly, Operational Analytics focuses on real-time insights into business operations, driving immediate action. Think of live inventory views or real-time dashboards monitoring website or application health. Unlike BI, operational analytics emphasizes the present, focusing less on historical trends, with data often consumed directly from source systems or streaming data pipelines.
+
+Thirdly, Embedded Analytics, or customer-facing analytics, is the practice of integrating analytical capabilities directly into a software product or platform. While seemingly similar to BI, embedded analytics presents unique challenges. Serving analytics to a large customer base necessitates significantly higher request rates, demanding scalable and robust analytics systems. Most critically, access control becomes paramount. Each customer must see only their data, and any data leakage between tenants is a serious breach of trust with potentially catastrophic consequences. Therefore, implementing robust tenant- or data-level security throughout your storage and data serving architecture is a non-negotiable aspect of embedded analytics. Pay attention to this, because it´s a common mistake that will be heavily penalized during professional practice.
+
+\subsubsection{Machine Learning}
 
 
-% la ingeniería de datos como proceso integral que abarca la recolección, almacenamiento, procesamiento, y disponibilidad de datos.
+The following are some considerations for the serving data phase specific to
+ML:
+Is the data of sufficient quality to perform reliable feature engineering?
+Quality requirements and assessments are developed in close
+collaboration with teams consuming the data.
+Is the data discoverable? Can data scientists and ML engineers easily
+find valuable data?
+Where are the technical and organizational boundaries between data
+engineering and ML engineering? This organizational question has
+significant architectural implications.
+Does the dataset properly represent ground truth? Is it unfairly biased?
 
+\subsubsection{Reverse ETL}
+Reverse ETL takes processed data from the output side of the data engineering lifecycle and feeds it back into source systems. Reverse ETL allows us to take analytics, scored models, etc., and feed these back into production systems or SaaS platforms.
+
+
+\subsection{Major Undercurrents Across the Data Engineering Lifecycle}
+
+\subsubsection{Security}
+Security must be top of mind for data engineers. Data engineers must understand both data and access security, exercising the principle of least privilege. The principle of least privilege means giving a user or system access to only the essential data and resources to perform an intended function.
+Data security is also about timing—providing data access to exactly the people and systems that need to access it and only for the duration necessary to perform their work.
+
+\subsubsection{Data Management}
+Data engineers manage the data lifecycle, and data management encompasses the set of best practices that data engineers will use to accomplish this task, both technically and strategically.
+
+Data management has quite a few facets, including the following:\\
+\begin{itemize}
+    \item Data governance, including discoverability and accountability
+    \item Data modeling and design
+    \item Data lineage
+    \item Storage and operations
+    \item Data integration and interoperability
+    \item Data lifecycle management
+    \item Data systems for advanced analytics and ML
+    \item Ethics and privacy
+\end{itemize}
+
+
+\subsubsection{DataOps}
+DataOps maps the best practices of Agile methodology, DevOps, and statistical process control (SPC) to data. Whereas DevOps aims to improve the release and quality of software products, DataOps does the same thing for data products.
+Like DevOps, DataOps borrows much from lean manufacturing and supply chain management, mixing people, processes, and technology to reduce time to value.
+
+DataOps is a collection of technical practices, workflows, cultural norms, and architectural patterns that enable:
+\begin{itemize}
+    \item Rapid innovation and experimentation delivering new insights to     customers with increasing velocity
+    \item Extremely high data quality and very low error rates
+    \item Collaboration across complex arrays of people, technology, and
+    \item environments
+    \item Clear measurement, monitoring, and transparency of results
+\end{itemize}
+
+DataOps has three core technical elements: automation, monitoring and observability, and incident response.
+
+Automation enables reliability and consistency in the DataOps process and allows data engineers to quickly deploy new product features and improvements to existing workflows. DataOps automation has a similar framework and workflow to DevOps, consisting of change management (environment, code, and data version control), continuous integration/continuous deployment (CI/CD), and configuration as code.
+
+Observability, monitoring, logging, alerting, and tracing are all critical to getting ahead of any problems along the data engineering lifecycle. 
+
+Mistakes will inevitably happen. Incident response is about using the automation and observability capabilities mentioned previously to rapidly identify root causes of an incident and resolve it as reliably and quickly as possible.
+
+\subsubsection{Data Architecture}
+A data architecture reflects the current and future state of data systems that support an organization’s long-term data needs and strategy. Because an organization’s data requirements will likely change rapidly, and new tools and practices seem to arrive on a near-daily basis.
+
+This doesn’t imply that a data engineer is a data architect, as these are typically two separate roles. If a data engineer works alongside a data architect, the data engineer should be able to deliver on the data architect’s designs and provide architectural feedback.
+\subsubsection{Orchestration }
+Orchestration is the process of coordinating many jobs to run as quickly and efficiently as possible on a scheduled cadence. An orchestration engine builds in metadata on job dependencies, generally in the form of a directed acyclic graph (DAG). The DAG can be run once or scheduled to run at a fixed interval of daily, weekly, every hour, every five minutes, etc. 
+
+\subsubsection{Software Engineering}
+A few common areas of software engineering that apply to the data engineering lifecycle.
+
+\textbf{Core data processing code} Though it has become more abstract and easier to manage, core data
+processing code still needs to be written, and it appears throughout the data
+engineering lifecycle. Whether in ingestion, transformation, or data serving,
+data engineers need to be highly proficient and productive in frameworks
+and languages such as Spark, SQL, or Beam. It’s also imperative that a data engineer understand proper code-testing
+methodologies, such as unit, regression, integration, end-to-end, and smoke.
+
+\textbf{Development of open source frameworks} 
+
+\textbf{Streaming} Streaming data processing is inherently more complicated than batch, and
+the tools and paradigms are arguably less mature. As streaming data
+becomes more pervasive in every stage of the data engineering lifecycle,
+data engineers face interesting software engineering problems.
+
+\textbf{Infrastructure as code} (IaC) applies software engineering practices to the
+configuration and management of infrastructure. These practices are a vital part of DevOps, allowing version control and
+repeatability of deployments. Naturally, these capabilities are vital
+throughout the data engineering lifecycle, especially as we adopt DataOps
+practices.
+
+\textbf{Pipelines as code} Pipelines as code is the core concept of present-day orchestration systems,
+which touch every stage of the data engineering lifecycle. Data engineers
+use code (typically Python) to declare data tasks and dependencies among
+them. The orchestration engine interprets these instructions to run steps
+using available resources
+
+\textbf{Pipelines as code} In practice, regardless of which high-level tools they adopt, data engineers
+will run into corner cases throughout the data engineering lifecycle that
+require them to solve problems outside the boundaries of their chosen tools
+and to write custom code. They should be proficient in software engineering to understand APIs, pull and transform data, handle
+exceptions, and so forth.
 % Very often, data scientists struggled with basic problems that their background and training did not address—data collection, data cleansing, data access, data transformation, and data infrastructure. These are problems that data engineering aims to solve. 
 
 % We suggest that aspiring data engineers set up accounts with cloud services such as AWS, Azure, Google Cloud Platform, Snowflake, Databricks, etc. Note that many of these platforms have free tier options,but readers should keep a close eye on costs and work with small quantities of data and single node clusters as they study.
@@ -178,7 +586,7 @@ En la conferencia anterior vimos metodologías generales del proceso completo de
 
 Bibliografía: 
 
-- El libro "Fundamentals of Data Engineering" va de : the data engineering lifecycle: data generation, storage, ingestion, transformation, and serving. Since the dawn of data, we’ve seen the rise and fall of innumerable specific technologies and vendor products, but the data engineering lifecycle stages have remained essentially unchanged. 
+- El libro "Fundamentals of Data Engineering" va de : the data engineering lifecycle: data generation, storage, ingestion, transformation, and serving. Since the dawn of data, we've seen the rise and fall of innumerable specific technologies and vendor products, but the data engineering lifecycle stages have remained essentially unchanged. 
 
 
 \end{document}
