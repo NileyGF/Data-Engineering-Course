@@ -156,6 +156,8 @@ En resumen, una metodología de Ciencia de Datos es un enfoque estructurado que 
     \item \textbf{El ciclo nunca termina}: La Ciencia de Datos es un proceso iterativo, donde el monitoreo y la mejora continua son parte integral del éxito.
 \end{itemize}
 
+\section{Ingeniería de Datos}
+
 Para concluir vamos a definir en que consiste el trabajo de un ingeniero de datos. 
 
 En el libro \textit{Fundamentals of Data Engineering} de \textit{Joe Reis and Matt Housley} se define el término como:
@@ -166,7 +168,7 @@ Un ingeniero de datos maneja el ciclo de vida de la ingeniería de datos que aba
 
 \textbf{En este curso estaremos viendo la ingeniería de datos como proceso integral que abarca la recolección, almacenamiento, procesamiento, y disponibilidad de datos.}\\
 
-\section{Breve historia de la evolución de la ingeniería de datos}
+\subsection{Breve historia de la evolución de la ingeniería de datos}
 \textbf{Los comienzos: 1980 a 2000} de \textemp{Data Warehouse} a la Web.\\
 El nacimiento de la ingeniería de datos tiene sus raíces en data warehousing\footnote{Centralized repository that aggregates data from various sources to support data analysis, data mining and artificial intelligence}.\\
 Que data desde la década de 1970 y toma forma en los 80s cuando se crea el término data warehouse. Luego surge el Structured Query Language (SQL).
@@ -191,13 +193,13 @@ El término "big data" perdió su brillo mientras se volvían más accesibles la
 El rol de los ingenieros de datos se encuentra en rápida evolución. La tendencia está siendo centrarse en herramientas descentralizadas, modulares y abstractas. 
 Las tendencias populares a principios de la década de 2020 incluyen el modern data stack (MDS), que representa una colección de productos "listos para usar", tanto de código abierto como de terceros, ensamblados para facilitar el trabajo de los analistas. Al mismo tiempo, las fuentes de datos y los formatos de datos están creciendo tanto en variedad como en tamaño. La ingeniería de datos es, cada vez más, una disciplina de interconexión, que conecta varias tecnologías como si fueran piezas de LEGO, para servir a los objetivos empresariales finales. 
 
-\section{Relación entre la Ingeniería de Datos y la Ciencia de Datos}
+\subsection{Relación entre la Ingeniería de Datos y la Ciencia de Datos}
 La ingeniería de datos se sitúa upstream de la ciencia de datos, lo que significa que los ingenieros de datos proporcionan las entradas utilizadas por los científicos de datos.\\
 Para muchos lo más interesante de la ciencia de datos es construir y optimizar modelos de Machine Learning; la realidad es que se estima que entre el 70\% y el 80\% del tiempo se dedica a recopilar, limpiar y procesar datos.\\
 Además; usualmente los científicos de datos no están entrenados para diseñar sistemas de datos de grado de producción, y terminan haciendo este trabajo improvisadamente porque carecen del soporte y los recursos de un ingeniero de datos.\\
 En un mundo ideal, los científicos de datos deberían dedicar más del 90\% de su tiempo al análisis, la experimentación y el ML. Esto se logra cuando los ingenieros de datos se centran en construir una base sólida para que los científicos de datos tengan éxito.
 
-\section{Habilidades del Ingeniero de Datos}
+\subsection{Habilidades del Ingeniero de Datos}
 El conjunto de habilidades de un ingeniero de datos debe abarcar las ideas subyacentes de la ingeniería de datos: seguridad, gestión de datos, DataOps, arquitectura de datos e ingeniería de software. Se requiere un entendimeinto de como evaluar herramientas de datos y como estas encajan en el ciclo de vida de la ingeniería de datos. 
 
 Un ingeniero de datos maneja una gran cantidad de piezas móviles complejas y debe optimizar constantemente a lo largo de los ejes de costo, agilidad, escalabilidad, simplicidad, reutilización e interoperabilidad. También se espera que el ingeniero de datos cree arquitecturas de datos ágiles que evolucionen a medida que surjan nuevas tendencias.
@@ -206,10 +208,8 @@ Por definición, un ingeniero de datos debe comprender tanto los datos como la t
 
 % Chapter 2: Conference 2
 \chapter{Conferencia 2}
-\normalfont\LARGE \textbf{El ecosistema de la ingeniería de datos. El ciclo de vida de la ingeniería de datos.}
+\normalfont\LARGE \textbf{El ciclo de vida de la ingeniería de datos.}
 \normalfont\small\\
-
-% ETL stands for Extract, Transform, and Load and is a traditionally accepted way for organizations to combine data from multiple systems into a single database, data store, data warehouse, or data lake.
 
 \section{El Ciclo de Vida de la Ingeniería de Datos (Data Engineering Lifecycle)}
 El ciclo de vida de la ingeniería de datos o Data Engineering Lifecycle.
@@ -226,8 +226,8 @@ El ciclo de vida de la ingeniería de datos comprende las siguientes etapas que 
     \item Transformación
     \item Serving
 \end{itemize}
-Además de las etapas, el ciclo tiene una noción de ideas subyacentes, críticas a o largo de todo el ciclo de vida. Estas incluyen seguridad, manejo de datos, DataOps, arquitectura de datos, orquestación e ingeniería de software.
-% \TODO image
+Además de las etapas, el ciclo tiene una noción de ideas subyacentes, críticas a o largo de todo el ciclo de vida. Estas incluyen seguridad, gestión de datos, DataOps, arquitectura de datos, orquestación e ingeniería de software.
+
 El almacenamiento ocurre a lo largo de todo el ciclo a medida que los datos fluyen desde el inicio hasta el final.\\
 En general, las etapas intermedias (almacenamiento, ingesta, transformación) pueden mezclarse un poco. Varias etapas del ciclo de vida pueden repetirse, ocurrir fuera de orden, superponerse o entrelazarse.
 
@@ -238,351 +238,296 @@ Un ingeniero de datos tiene varios objetivos de alto nivel a lo largo del ciclo 
 \subsection{Generación}
 Un \textit{sistema de origen} es el origen de los datos utilizados en el ciclo de vida de la ingeniería de datos. Por ejemplo, un sistema de origen podría ser un dispositivo IoT, una cola de mensajes de aplicación o una base de datos transaccional.
 
-A data engineer consumes data from a source system but doesn’t typically own or control the source system itself. The data engineer needs to have a working understanding of the way source systems work, the way they generate data, the frequency and velocity of the data, and the variety of data they generate. 
+Un ingeniero de datos consume datos de un sistema de origen, pero normalmente no posee ni controla el sistema de origen en sí. El ingeniero de datos necesita tener un entendimiento funcional de cómo funcionan los sistemas de origen, la forma en que generan los datos, la frecuencia y la velocidad de los datos, y la variedad de datos que se generan.\\
+También necesitan mantener una línea de comunicación abierta con los propietarios del sistema de origen sobre los cambios que podrían interrumpir los pipelines y los análisis.
 
-Engineers also need to keep an open line of communication with source system owners on changes that could break pipelines and analytics.
+Las fuentes producen datos consumidos por sistemas posteriores, incluidas hojas de cálculo generadas por humanos, sensores IoT y aplicaciones web y móviles. Cada fuente tiene su volumen y cadencia únicos de generación de datos.
 
-The following is a starting set of evaluation questions of source systems that data engineers must consider:\\
+Ejemplos de sistemas de origen: 
+\begin{itemize}
+    \item Dispositivos IoT
+    \item Terminales de tarjetas de crédito
+    \item Operaciones de la bolsa
+    \item Sensores de telescopios
+    \item Spreadsheets
+\end{itemize}
 
-What are the essential characteristics of the data source? Is it an application? A swarm of IoT devices?\\
-How is data persisted in the source system? Is data persisted long term, or is it temporary and quickly deleted?\\
-At what rate is data generated? How many events per second? How many gigabytes per hour?\\
-What level of consistency can data engineers expect from the output data? If you’re running data-quality checks against the output data, how often do data inconsistencies occur—nulls where they aren’t expected, lousy formatting, etc.?\\
-How often do errors occur?\\
-Will the data contain duplicates?\\
-Will some data values arrive late, possibly much later than other messages produced simultaneously?\\
-What is the schema of the ingested data? Will data engineers need to join across several tables or even several systems to get a complete picture of the data?\\
-If schema changes (say, a new column is added), how is this dealt with and communicated to downstream stakeholders?\\
-How frequently should data be pulled from the source system?\\
-For stateful systems (e.g., a database tracking customer account information), is data provided as periodic snapshots or update events from change data capture (CDC)? What’s the logic for how changes are performed, and how are these tracked in the source database?\\
-Who/what is the data provider that will transmit the data for downstream consumption?\\
-Will reading from a data source impact its performance?\\
-Does the source system have upstream data dependencies? What are the characteristics of these upstream systems?\\
-Are data-quality checks in place to check for late or missing data?\\
+Tipos de sistemas de origen:
+\begin{itemize}
+    \item Archivos y datos no estructurados (Excel, CSV, JSON, XML, TXT). Estos archivos tienen sus peculiaridades y pueden ser estructurados (Excel, CSV), semi-estructurados (JSON, XML, CSV) o no estructurados (TXT, CSV).
+    \item APIs
+    \item Bases de Datos: Pueden ser relacionales(SQL), o no relacionales como: Document stores, Wide-column, Graph databases, 
+    \item Application Databases (online transaction processing (OLTP) system) : Una base de datos de aplicaciones almacena el estado de una aplicación. Un ejemplo típico es una base de datos que almacena los saldos de cuentas bancarias. A medida que se producen transacciones y pagos de los clientes, la aplicación actualiza los saldos de las cuentas bancarias. Normalmente, una base de datos de aplicaciones es un sistema de procesamiento de transacciones en línea (OLTP): una base de datos que lee y escribe registros de datos individuales a una alta velocidad.
+    %\item Change data capture (CDC) La captura de datos modificados (CDC, por sus siglas en inglés) es un método para extraer cada evento de cambio (inserción, actualización, eliminación) que ocurre en una base de datos. La CDC se utiliza con frecuencia para replicar entre bases de datos casi en tiempo real o para crear un flujo de eventos para el procesamiento posterior.
+    \item Fuentes de Datos de Terceros: Debido a que la tecnología se ha integrado en muchas empresas (y agencias gubernamentales), estas buscan ofrecer sus datos a clientes y usuarios. El acceso directo a datos de terceros se realiza comúnmente a través de APIs, mediante el intercambio de datos en una plataforma en la nube o mediante la descarga de datos. 
+    \item Colas de Mensajes y Plataformas de Streaming de Eventos: Las arquitecturas basadas en eventos (event-driven) son cada vez más populares en software. Además, las aplicaciones que integran analítica en tiempo real (data apps) se benefician de las arquitecturas basadas en eventos, ya que los eventos disparan acciones en la aplicación y alimentan el análisis en tiempo real.
+\end{itemize}
 
-Sources produce data consumed by downstream systems, including human generated spreadsheets, IoT sensors, and web and mobile applications. Each source has its unique volume and cadence of data generation.
+Ahora se presentan preguntas para evaluar sistemas de origen que los ingenieros de datos deben considerar:
+\begin{itemize}
+    \item ¿Cuáles son las características esenciales de la fuente de datos? ¿Es una aplicación? ¿Un enjambre de dispositivos IoT?
+    \item ¿Cómo se persisten los datos en el sistema de origen? ¿Los datos se persisten a largo plazo, o son temporales y se eliminan rápidamente?
+    \item ¿A qué velocidad se generan los datos? ¿Cuántos eventos por segundo? ¿Cuántos gigabytes por hora?
+    \item ¿Qué nivel de consistencia pueden esperar los ingenieros de datos de los datos de salida? Si se están ejecutando comprobaciones de calidad de datos contra los datos de salida, ¿con qué frecuencia se producen inconsistencias de datos: valores nulos donde no se esperan, formato deficiente, etc.?
+    \item ¿Con qué frecuencia se producen errores?
+    \item ¿Los datos contendrán duplicados?
+    \item ¿Algunos valores de datos llegarán tarde, posiblemente mucho más tarde que otros mensajes producidos simultáneamente?
+    \item ¿Cuál es el esquema de los datos ingeridos? ¿Los ingenieros de datos necesitarán unir varias tablas o incluso varios sistemas para obtener una imagen completa de los datos?
+    \item Si hay cambios en el esquema (por ejemplo, se agrega una nueva columna), ¿cómo se aborda esto y se comunica a las partes interesadas en el resto del procesamiento?
+    \item ¿Con qué frecuencia se deben extraer los datos del sistema de origen?
+    \item Para los sistemas con estado (por ejemplo, una base de datos que rastrea la información de la cuenta del cliente), ¿se proporcionan los datos como instantáneas periódicas o eventos de actualización de la captura de datos de cambio (change data capture CDC)? ¿Cuál es la lógica de cómo se realizan los cambios y cómo se rastrean estos en la base de datos de origen?
+    \item ¿Quién/qué es el proveedor de datos que transmitirá los datos para el consumo posterior?
+    \item ¿Leer de una fuente de datos afectará su rendimiento?
+    \item ¿El sistema de origen tiene dependencias anteriores? ¿Cuáles son las características de estos sistemas anteriores?
+    \item ¿Existen controles de calidad de datos para verificar datos tardíos o faltantes?
+\end{itemize}
 
-\subsection{Storage}
-Choosing a storage solution is key to success
-in the rest of the data lifecycle, and it’s also one of the most complicated
-stages of the data lifecycle for a variety of reasons. First, data architectures
-in the cloud often leverage several storage solutions. Second, few data
-storage solutions function purely as storage, with many supporting complex
-transformation queries; even object storage solutions may support powerful
-query capabilities—e.g., Amazon S3 Select. Third, while storage is a stage
-of the data engineering lifecycle, it frequently touches on other stages, such
-as ingestion, transformation, and serving.
-Storage runs across the entire data engineering lifecycle, often occurring in
-multiple places in a data pipeline, with storage systems crossing over with
-source systems, ingestion, transformation, and serving. In many ways, the
-way data is stored impacts how it is used in all of the stages of the data
-engineering lifecycle. For example, cloud data warehouses can store data,
-process data in pipelines, and serve it to analysts. Streaming frameworks
-such as Apache Kafka and Pulsar can function simultaneously as ingestion,
-storage, and query systems for messages, with object storage being a
-standard layer for data transmission.
+\subsection{Almacenamiento}
+Whether data is needed seconds, minutes, days, months, or years later, it must persist in storage until systems are ready to consume it for further processing and transmission.
 
-Here are a few key engineering questions to ask when choosing a storage
-system for a data warehouse, data lakehouse, database, or object storage:
-Is this storage solution compatible with the architecture’s required
-write and read speeds?
-Will storage create a bottleneck for downstream processes?
-Do you understand how this storage technology works? Are you
-utilizing the storage system optimally or committing unnatural acts?
-For instance, are you applying a high rate of random access updates in
-an object storage system? (This is an antipattern with significant
-performance overhead.)
-Will this storage system handle anticipated future scale? You should
-consider all capacity limits on the storage system: total available
-storage, read operation rate, write volume, etc.
-Will downstream users and processes be able to retrieve data in the
-required service-level agreement (SLA)?
-Are you capturing metadata about schema evolution, data flows, data
-lineage, and so forth? Metadata has a significant impact on the utility
-of data. Metadata represents an investment in the future, dramatically
-enhancing discoverability and institutional knowledge to streamline
-future projects and architecture changes.
-Is this a pure storage solution (object storage), or does it support
-complex query patterns (i.e., a cloud data warehouse)?
-Is the storage system schema-agnostic (object storage)? Flexible
-schema (Cassandra)? Enforced schema (a cloud data warehouse)?
-How are you tracking master data, golden records data quality, and
-data lineage for data governance? (We have more to say on these in
-“Data Management”.)
-How are you handling regulatory compliance and data sovereignty?
-For example, can you store your data in certain geographical locations
-but not others?
+El proceso de elección de almacenamiento es clave para el éxito en el resto del ciclo de vida de los datos, y también es una de las etapas más complicadas. 
+Primero, las arquitecturas de datos en la nube a menudo se aprovechan de varias alternativas de almacenamiento. 
+Segundo, pocas herramientas de almacenamiento de datos funcionan puramente como almacenamiento, y muchas admiten complejas queries de transformación de datos; incluso el almacenamiento basado en objetos pueden admitir potentes capacidades de consulta, por ejemplo, Amazon S3 Select. 
+Tercero, si bien el almacenamiento es una etapa del ciclo de vida de la ingeniería de datos, con frecuencia toca otras etapas, como la ingesta, la transformación y el serving.
 
-\subsection{Ingestion}
-Usually source systems and ingestion represent the most significant bottlenecks of the data engineering lifecycle.
-The source systems are normally outside your direct control and might randomly become unresponsive or provide data of poor quality. Or, your data ingestion service might mysteriously stop working for many reasons.
+El almacenamiento se extiende a lo largo de todo el ciclo de vida de la ingeniería de datos, y a menudo en múltiples lugares del pipeline de datos. En muchos sentidos, la forma en que se almacenan los datos impacta en cómo se utilizan en todas las etapas del ciclo de vida de la ingeniería de datos. Por ejemplo, los almacenes de datos en la nube pueden almacenar datos, procesar datos en pipelines y servirlos a los analistas. 
 
-When preparing to architect or build a system, here are some primary
-questions about the ingestion stage:
-What are the use cases for the data I’m ingesting? Can I reuse this data
-rather than create multiple versions of the same dataset?
-Are the systems generating and ingesting this data reliably, and is the
-data available when I need it?
-What is the data destination after ingestion?
-How frequently will I need to access the data?
-In what volume will the data typically arrive?
-What format is the data in? Can my downstream storage and
-transformation systems handle this format?
-Is the source data in good shape for immediate downstream use? If so,
-for how long, and what may cause it to be unusable?
-If the data is from a streaming source, does it need to be transformed
-before reaching its destination? Would an in-flight transformation be
-appropriate, where the data is transformed within the stream itself?
+\textbf{Sistemas de Almacenamiento}:
+\begin{itemize}
+    \item Almacenamiento de Archivos (File Storage): Estos sistemas organizan los archivos en una estructura de árbol de directorios.
+    \item Almacenamiento de Objetos (Object Storage): Contiene objetos de todos los tamaños y formas. El término "almacenamiento de objetos" puede ser confuso debido a los múltiples significados de "objeto" en informática. En este contexto, se refiere a una construcción especializada similar a un archivo.  Puede ser cualquier tipo de archivo: TXT, CSV, JSON, imágenes, videos o audio.  Amazon S3, Azure Blob Storage y Google Cloud Storage (GCS) son almacenes de objetos ampliamente utilizados. Además, muchos almacenes de datos en la nube (y un número creciente de bases de datos) utilizan el almacenamiento de objetos como su capa de almacenamiento, y los data lakes en la nube generalmente se basan en almacenes de objetos.
+    \item Sistemas de Almacenamiento Basados en Caché y Memoria: Ofrecen una excelente latencia y velocidades de transferencia. Sin embargo, tradicional son extremadamente vulnerable a la pérdida de datos, ya que un corte de energía, incluso de un segundo, puede borrar los datos. Los sistemas de almacenamiento basados en RAM generalmente se centran en aplicaciones de almacenamiento en caché, presentando datos para un acceso rápido y un alto ancho de banda. Estos sistemas de caché ultrarrápidos son útiles cuando los ingenieros de datos necesitan servir datos con una latencia de recuperación ultrarrápida.
+\end{itemize}
 
-\subsubsection{Batch vs. Streaming}
-Virtually all data we deal with is inherently streaming. Data is nearly
-always produced and updated continually at its source. Batch ingestion is
-simply a specialized and convenient way of processing this stream in large
-chunks—for example, handling a full day’s worth of data in a single batch.
+\textbf{Abstracciones de Almacenamiento}:
+\begin{itemize}
+    \item Almacén de Datos (Data Warehouse): El término "almacén de datos" se refiere a plataformas tecnológicas (por ejemplo, Google BigQuery y Teradata), una arquitectura para la centralización de datos y un patrón organizativo dentro de una empresa.
+    \item Lago de Datos (Data Lake): Originalmente concebido como un almacén masivo donde los datos se conservaban en forma bruta y sin procesar.
+    \item Casa del Lago de Datos (Data Lakehouse): Una arquitectura que combina aspectos del almacén de datos y el lago de datos.  Tal como se concibe generalmente, la "lakehouse" almacena datos en el almacenamiento de objetos al igual que un lago. Sin embargo, la "lakehouse" agrega a esta disposición características diseñadas para optimizar la gestión de datos y crear una experiencia de ingeniería similar a la de un almacén de datos. Esto significa un soporte robusto para tablas y esquemas y características para gestionar actualizaciones y eliminaciones incrementales.  Las "lakehouses" típicamente también soportan el historial de la tabla y la reversión (rollback); esto se logra conservando versiones antiguas de archivos y metadatos.
+    \item Plataformas de Datos (Data Platforms): Algo nuevo.
+\end{itemize}
 
-Streaming ingestion allows us to provide data to downstream systems—
-whether other applications, databases, or analytics systems—in a
-continuous, real-time fashion.
+Estas son algunas preguntas claves al elegir un sistema de almacenamiento para data warehouse, un data lakehouse, una base de datos o un almacenamiento de objetos(object storage):
 
-Batch data is ingested either on a predetermined time interval or as data
-reaches a preset size threshold. Batch ingestion is a one-way door: once
-data is broken into batches, the latency for downstream consumers is
-inherently constrained.
+\begin{itemize}
+    \item ¿Es este sistema de almacenamiento compatible con las velocidades de lectura y escritura requeridas por la arquitectura?
+    \item ¿El almacenamiento creará un cuello de botella para los procesos posteriores?
+    \item ¿Entienden cómo funciona esta tecnología de almacenamiento? ¿Está utilizando el sistema de almacenamiento de manera óptima o cometiendo actos antinaturales? % Por ejemplo, ¿está aplicando una alta tasa de actualizaciones de acceso aleatorio en un sistema de almacenamiento de objetos? (Este es un antipatrón con una importante sobrecarga de rendimiento).
+    \item ¿Este sistema de almacenamiento manejará la prevista escala futura? Debe considerar todos los límites de capacidad en el sistema de almacenamiento: almacenamiento total disponible, tasa de operación de lectura, volumen de escritura, etc.
+    \item ¿Los usuarios y procesos posteriores podrán recuperar datos en el service-level agreement (SLA) requerido?
+    \item ¿Se está capturando metadatos sobre la evolución del esquema, los flujos de datos, el linaje de datos, etc.? Los metadatos tienen un impacto significativo en la utilidad de los datos. Los metadatos representan una inversión en el futuro, mejorando drásticamente la detectabilidad y el conocimiento institucional para agilizar futuros proyectos y cambios de arquitectura.
+    \item ¿Es esta una solución de almacenamiento pura (almacenamiento de objetos) o admite patrones de consulta complejos (por ejemplo, un data warehouse en la nube)?
+    \item ¿El sistema de almacenamiento es independiente del esquema (almacenamiento de objetos)? ¿Esquema flexible (Cassandra)? ¿Esquema forzado (un data warehouse en la nube)?
+    \item ¿Cómo está rastreando los datos maestros, la calidad de los datos de registros dorados y el linaje de datos para la gobernanza de datos?
+    \item ¿Cómo está manejando el cumplimiento normativo y la gobernanza de los datos? Por ejemplo, ¿puede almacenar sus datos en ciertas ubicaciones geográficas pero no en otras?
+\end{itemize}
 
-However, the separation of storage and compute in many systems and the
-ubiquity of event-streaming and processing platforms make the continuous
-processing of data streams much more accessible and increasingly popular.
-The choice largely depends on the use case and expectations for data
-timeliness.
+\subsection{Ingesta}
+Usualmente, los sistemas de origen y la ingesta representan los cuellos de botella más significativos en el ciclo de vida de la ingeniería de datos. Los sistemas de origen están normalmente fuera de su control directo y podrían dejar de responder aleatoriamente o proveer datos de baja calidad. O, su servicio de ingesta de datos podría misteriosamente dejar de funcionar por muchas razones.
 
-The following are some questions to ask yourself when determining whether
-streaming ingestion is an appropriate choice over batch ingestion:
-If I ingest the data in real time, can downstream storage systems
-handle the rate of data flow?
-Do I need millisecond real-time data ingestion? Or would a microbatch
-approach work, accumulating and ingesting data, say, every
-minute?
-What are my use cases for streaming ingestion? What specific benefits
-do I realize by implementing streaming? If I get data in real time, what
-actions can I take on that data that would be an improvement upon
-batch?
-Will my streaming-first approach cost more in terms of time, money,
-maintenance, downtime, and opportunity cost than simply doing
-batch?
-Are my streaming pipeline and system reliable and redundant if
-infrastructure fails?
-What tools are most appropriate for the use case? Should I use a
-managed service (Amazon Kinesis, Google Cloud Pub/Sub, Google
-Cloud Dataflow) or stand up my own instances of Kafka, Flink, Spark,
-Pulsar, etc.? If I do the latter, who will manage it? What are the costs
-and trade-offs?
-If I’m deploying an ML model, what benefits do I have with online
-predictions and possibly continuous training?
-Am I getting data from a live production instance? If so, what’s the
-impact of my ingestion process on this source system?
+Al prepararse para diseñar o construir un sistema, aquí hay algunas preguntas primarias sobre la etapa de ingesta:
+\begin{itemize}
+    \item ¿Cuáles son los casos de uso para los datos que estoy ingiriendo? ¿Puedo reutilizar estos datos en lugar de crear múltiples versiones del mismo conjunto de datos?
+    \item ¿Los sistemas que generan e ingieren estos datos son fiables, y los datos están disponibles cuando los necesito?
+    \item ¿Cuál es el destino de los datos después de la ingesta?
+    \item ¿Con qué frecuencia necesitaré acceder a los datos?
+    \item ¿En qué volumen llegarán típicamente los datos?
+    \item ¿En qué formato están los datos? ¿Pueden mis sistemas de almacenamiento y transformación posteriores manejar este formato?
+    \item ¿Están los datos iniciales en buen estado para su inmediato uso posterior? Si es así, ¿por cuánto tiempo, y qué podría causar que se vuelvan inutilizables?
+    \item Si los datos provienen de una fuente de \textit{streaming}, ¿necesitan ser transformados antes de llegar a su destino? ¿Sería apropiada una transformación dentro del propio \textit{stream}?
+\end{itemize}
+
+\subsubsection{Lotes (\textit{Batch}) vs. \textit{Streaming}}
+Virtualmente todos los datos con los que tratamos son inherentemente \textit{streaming}. Los datos son casi siempre producidos y actualizados continuamente en su origen. La ingesta por lotes es simplemente una forma especializada y conveniente de procesar este *stream* en grandes trozos—por ejemplo, manejar el valor de un día completo de datos en un solo lote.
+
+La ingesta de \textit{streaming} nos permite proveer datos a los sistemas posteriores—ya sean otras aplicaciones, bases de datos, o sistemas de analítica—de una forma continua y en tiempo real.
+
+La elección depende en gran medida del caso de uso y las expectativas de puntualidad de los datos.
+
+Las siguientes son algunas preguntas que debe hacerse al determinar si la ingesta de \textit{streaming} es una opción apropiada sobre la ingesta por lotes:
+\begin{itemize}
+    \item Si se ingieren los datos en tiempo real, ¿pueden los sistemas de almacenamiento posteriores manejar la tasa de flujo de datos?
+    \item Es necesaria una ingesta de datos en tiempo real de mili-segundos? ¿O funcionaría un enfoque de micro-lotes, acumulando e ingiriendo datos, por ejemplo, cada minuto?
+    \item ¿Cuáles son mis casos de uso para la ingesta de \textit{streaming}? ¿Qué beneficios específicos obtengo al implementar \textit{streaming}? Si obtengo datos en tiempo real, ¿qué acciones puedo tomar sobre esos datos que serían una mejora con respecto al lote?
+    \item ¿Mi enfoque de priorizar \textit{streaming} costará más en términos de tiempo, dinero, mantenimiento, tiempo de inactividad y costo de oportunidad que simplemente hacer lotes?
+    \item ¿Son mi \textit{pipeline} y sistema de \textit{streaming} confiables y redundantes si falla la infraestructura?
+    \item ¿Qué herramientas son las más apropiadas para el caso de uso? ¿Debería usar un servicio gestionado (Amazon Kinesis, Google Cloud Pub/Sub, Google Cloud Dataflow) o levantar mis propias instancias de Kafka, Flink, Spark, Pulsar, etc.? Si hago lo último, ¿quién lo administrará? ¿Cuáles son los costos y las ventajas y desventajas?
+    \item Si estoy implementando un modelo de ML, ¿qué beneficios tengo con las predicciones en línea y posiblemente el entrenamiento continuo?
+    \item ¿Estoy obteniendo datos de una instancia de producción en vivo? Si es así, ¿cuál es el impacto de mi proceso de ingesta en este sistema de origen?
+\end{itemize}
+
 \subsubsection{Push vs. Pull}
-In the push model of data ingestion, a source system writes data out to a
-target, whether a database, object store, or filesystem. In the pull model,
-data is retrieved from the source system.
+En el modelo de ingesta de datos de \textit{push} un sistema de origen envía datos hacia un destino; ya sea una base de datos, un almacén de objetos o un sistema de archivos.
+En el modelo de \textit{pull} los datos se recuperan del sistema de origen.
 
-Consider, for example, the extract, transform, load (ETL) process,
-commonly used in batch-oriented ingestion workflows. ETL’s extract (E)
-part clarifies that we're dealing with a pull ingestion model. In traditional
-ETL, the ingestion system queries a current source table snapshot on a fixed
-schedule.
+El proceso de extracción, transformación y carga (ETL) comúnmente utilizado en flujos de trabajo de ingesta orientados a lotes, La parte de extracción (E) de ETL aclara que estamos lidiando con un modelo de ingesta de tipo \textit{pull}.
 
-Some versions of batch CDC use the pull pattern
+Con la ingesta de \textit{streaming}, los datos evitan una base de datos \textit{backend} y se envían (\textit{push}) directamente a un punto final, típicamente con datos almacenados en búfer por una plataforma de \textit{event-streaming}. Este patrón es útil con flotas de sensores IoT que emiten datos de sensores. En lugar de depender de una base de datos para mantener el estado actual, simplemente pensamos en cada lectura registrada como un evento.
+Este patrón también está creciendo en popularidad en aplicaciones de software, ya que simplifica el procesamiento en tiempo real, permite a los desarrolladores de aplicaciones adaptar sus mensajes para análisis posteriores, y simplifica enormemente la vida de los ingenieros de datos.
 
-With streaming ingestion, data bypasses a backend database and is pushed
-directly to an endpoint, typically with data buffered by an event-streaming
-platform. This pattern is useful with fleets of IoT sensors emitting sensor
-data. Rather than relying on a database to maintain the current state, we
-simply think of each recorded reading as an event.
+\subsection{Transformación}
+La siguiente etapa en el ciclo de vida de la ingeniería de datos es la transformación, lo que significa que los datos deben ser modificados desde su forma original a algo útil para los casos de uso posteriores.\\
+Típicamente, la etapa de transformación es donde los datos comienzan a crear valor para el consumo por parte de los usuarios posteriores.\\
+Inmediatamente después de la ingesta, las transformaciones básicas mapean los datos a los tipos correctos (cambiando los datos de tipo cadena ingeridos a tipos numéricos y de fecha, por ejemplo), colocando los registros en formatos estándar y eliminando los incorrectos.\\
+Las etapas posteriores de la transformación pueden transformar el esquema de datos y aplicar normalización. \\
+En etapas posteriores, podemos aplicar agregaciones a gran escala para la elaboración de informes o la \textit{featurización} de datos para los procesos de aprendizaje automático (ML).\\
 
-This pattern is also growing in popularity in software applications as it simplifies real-time
-processing, allows app developers to tailor their messages for downstream
-analytics, and greatly simplifies the lives of data engineers.
+Consideraciones clave:
+\begin{itemize}
+    \item ¿Cuál es el costo y el retorno de la inversión (ROI) de la transformación? ¿Cuál es el valor comercial asociado?
+    \item ¿Es la transformación tan simple y auto-aislada como sea posible?
+    \item ¿Qué reglas de negocio las transformaciones soportan?
+\end{itemize}
+Se pueden transformar los datos en lotes o en \textit{streaming} en tiempo real.
+Las transformaciones por lotes son abrumadoramente populares, pero dada la creciente popularidad de las soluciones de procesamiento en \textit{streaming} y el aumento general en la cantidad de datos en \textit{streaming}, se espera que la popularidad de las transformaciones en \textit{streaming} continúe creciendo.
 
-\subsection{Transformation}
-After you’ve ingested and stored data, you need to do something with it.
-The next stage of the data engineering lifecycle is transformation, meaning
-data needs to be changed from its original form into something useful for
-downstream use cases.
-Typically, the transformation stage is where data begins to create value for downstream
-user consumption.
+La transformación a menudo está entrelazada con otras fases del ciclo de vida. Típicamente, los datos se transforman en los sistemas de origen o en tiempo real durante la ingesta. 
+Por ejemplo, un sistema de origen puede agregar una marca de tiempo de evento a un registro antes de reenviarlo a un proceso de ingesta. O un registro dentro de un \texit{pipeline} de \textit{streaming} puede ser "enriquecido" con campos y cálculos adicionales antes de ser enviado a un data warehouse.
 
-Immediately after ingestion, basic transformations map data into correct
-types (changing ingested string data into numeric and date types, for
-example), putting records into standard formats, and removing bad ones.
+\textbf{Lógica de Negocio}
+La lógica de negocio es un importante impulsor de la transformación de datos, a menudo en el modelado de datos. Los datos traducen la lógica de negocio en elementos reutilizables.
 
-Later stages of transformation may transform the data schema and apply
-normalization. Downstream, we can apply large-scale aggregation for
-reporting or featurize data for ML processes.
+El \textit{featuring} de datos para ML es otro proceso de transformación de datos. Tiene como objetivo extraer y mejorar las características de los datos que son útiles para el entrenamiento de modelos de ML. Puede ser un arte oscuro, que combina el conocimiento del dominio (para identificar qué características podrían ser importantes para la predicción) con una amplia experiencia en ciencia de datos.\\
+El punto principal es que una vez que los científicos de datos determinan cómo \textit{featurize} los datos, los procesos de \textit{featuring} pueden ser automatizados por los ingenieros de datos en la etapa de transformación de un \texit{pipeline} de datos.
 
-Key consideration:\\
-What’s the cost and return on investment (ROI) of the transformation? What is the associated business value?
-Is the transformation as simple and self-isolated as possible?
-What business rules do the transformations support?
+Algunos de los elementos fundamentales de la etapa de transformación son: Preparación de datos, manipulación y limpieza de datos; consultas, modelado de datos.
 
-You can transform data in batch or while streaming in flight.
+Puede ocurrir en lotes o en stream.
 
-Batch transformations are overwhelmingly popular, but given the growing popularity of streamprocessing
-solutions and the general increase in the amount of streaming
-data, we expect the popularity of streaming transformations to continue
-growing, perhaps entirely replacing batch processing in certain domains
-soon.
+\textbf{Transformaciones por Lotes (Batch)} se ejecutan en fragmentos discretos de datos, y pueden programarse a intervalos fijos (e.g., diario, por hora, o cada 15 minutos) para soportar informes, análisis y modelos de ML. \\
+Un patrón de transformación extendido desde los inicios de las bases de datos relacionales es el ETL por lotes. El ETL tradicional se basa en un sistema de transformación externo para extraer, transformar y limpiar los datos, preparándolos para un esquema objetivo; como un almacén de datos, donde se pueden realizar análisis de negocio. La fase de extracción solía ser un cuello de botella importante, limitando la velocidad a la que se podían extraer los datos.\\
+Una evolución popular del ETL es el ELT. A medida que los almacenes de datos han crecido en rendimiento y capacidad de almacenamiento, se ha vuelto común simplemente extraer los datos en bruto de un sistema fuente, importarlos al almacén de datos con una transformación mínima, y luego limpiarlos y transformarlos directamente en el sistema del almacén. Una segunda noción de ELT, ligeramente diferente, se popularizó con la aparición de los data lakes. En esta versión, los datos no se transforman al cargarlos. De hecho, se pueden cargar cantidades masivas de datos sin preparación ni plan alguno. La suposición es que el paso de transformación ocurrirá en un momento futuro indeterminado.\\
+La data wrangling toma datos desordenados y mal formados y los convierte en datos útiles y limpios. Generalmente, este es un proceso de transformación por lotes.\\
 
-Transformation is often entangled in other phases
-of the lifecycle. Typically, data is transformed in source systems or in flight
-during ingestion. For example, a source system may add an event
-timestamp to a record before forwarding it to an ingestion process. Or a
-record within a streaming pipeline may be “enriched” with additional fields
-and calculations before it’s sent to a data warehouse
-
-\textbf{Business logic}\\
-Business logic is a major driver of data transformation, often in data
-modeling. Data translates business logic into reusable elements.
-
-Data featurization for ML is another data transformation process.
-Featurization intends to extract and enhance data features useful for training
-ML models. Featurization can be a dark art, combining domain expertise (to
-identify which features might be important for prediction) with extensive
-experience in data science.
-
-The main point is that once data
-scientists determine how to featurize data, featurization processes can be
-automated by data engineers in the transformation stage of a data pipeline.
-
-items: Data preparation, data wrangling, and cleaning; queries, data modeling
+\textbf{Transformaciones en Streaming} los datos se procesan continuamente a medida que llegan.\\
+Change Data Capture (CDC): La captura de datos modificados (CDC) es un método para extraer cada evento de cambio (inserción, actualización, eliminación) que ocurre en una base de datos. La CDC se utiliza con frecuencia para replicar entre bases de datos casi en tiempo real o para crear un flujo de eventos para procesamientos posteriores.\\
+El enfoque del fast-follower: Las bases de datos de producción generalmente no están equipadas para manejar cargas de trabajo de producción y ejecutar simultáneamente grandes escaneos analíticos sobre cantidades significativas de datos. Ejecutar tales consultas puede ralentizar la aplicación de producción o incluso provocar que se bloquee. Uno de los patrones de consulta de streaming más antiguos consiste simplemente en consultar la base de datos de análisis, recuperando resultados estadísticos y agregaciones con un ligero retraso con respecto a la base de datos de producción.\\
 
 \subsection{Serving}
-Now that the data has been ingested, stored, and transformed into coherent and useful
-structures, it’s time to get value from your data. “Getting value” from data
-means different things to different users.
+Ahora que los datos han sido ingeridos, almacenados y transformados en estructuras coherentes y útiles, es hora de obtener valor de los datos. "Obtener valor" de los datos significa diferentes cosas para diferentes usuarios.
 
-\subsubsection{Analytics}
-Analytics is the core of most data endeavors. Once your data is stored and
-transformed, you’re ready to generate reports or dashboards and do ad hoc
-analysis on the data. Whereas the bulk of analytics used to encompass BI, it
-now includes other facets such as operational analytics and embedded
-analytics.
+\subsubsection{Analítica}
+La analítica es el núcleo de la mayoría de los esfuerzos de datos. Una vez que sus datos están almacenados y transformados, está listo para generar informes o *dashboards* y realizar análisis *ad hoc* sobre los datos. Mientras que la mayor parte de la analítica solía abarcar la inteligencia empresarial (BI), ahora incluye otras facetas como la analítica operativa y la analítica integrada.
 
-Firstly, Business Intelligence (BI) harnesses collected data to understand a business's past and present performance. This involves applying specific business logic to raw data to generate reports and dashboards. Remember the importance of the data engineering lifecycle. We often apply business logic during the transformation stage, however there's a growing trend to use a logic-on-read approach. Here, data is stored in a clean, relatively raw form and business logic is applied when querying. Furthermore, as companies mature in their data practices, they tend to move towards self-service analytics, which democratizes data access, enabling business users to derive insights independently. However, achieving successful self-service analytics is challenging, often hindered by poor data quality, organizational silos, and a lack of necessary data skills.
-
-Secondly, Operational Analytics focuses on real-time insights into business operations, driving immediate action. Think of live inventory views or real-time dashboards monitoring website or application health. Unlike BI, operational analytics emphasizes the present, focusing less on historical trends, with data often consumed directly from source systems or streaming data pipelines.
-
-Thirdly, Embedded Analytics, or customer-facing analytics, is the practice of integrating analytical capabilities directly into a software product or platform. While seemingly similar to BI, embedded analytics presents unique challenges. Serving analytics to a large customer base necessitates significantly higher request rates, demanding scalable and robust analytics systems. Most critically, access control becomes paramount. Each customer must see only their data, and any data leakage between tenants is a serious breach of trust with potentially catastrophic consequences. Therefore, implementing robust tenant- or data-level security throughout your storage and data serving architecture is a non-negotiable aspect of embedded analytics. Pay attention to this, because it´s a common mistake that will be heavily penalized during professional practice.
+La Inteligencia Empresarial (BI) aprovecha los datos recopilados para comprender el rendimiento pasado y presente de una empresa.\\
+La Analítica Operativa se centra en la información en tiempo real sobre las operaciones de negocio, impulsando la acción inmediata. Piense en vistas de inventario en vivo o *dashboards* en tiempo real que monitorean la salud del sitio web o de la aplicación. A diferencia de la BI, la analítica operativa enfatiza el presente, enfocándose menos en las tendencias históricas.\\
+La Analítica Integrada (\texit{Embedded Analytics}), o analítica orientada al cliente, es la práctica de integrar capacidades analíticas directamente en un producto o plataforma de *software*.
+Si bien aparentemente similar a la BI, la analítica integrada presenta desafíos únicos. Servir analítica a una gran base de clientes requiere tasas de solicitud significativamente mayores, lo que exige sistemas analíticos escalables y robustos. Lo más crítico es que el control de acceso se vuelve primordial. Cada cliente debe ver solo sus datos, y cualquier fuga de datos es una grave violación de la confianza con consecuencias potencialmente catastróficas.\\
 
 \subsubsection{Machine Learning}
-
-
-The following are some considerations for the serving data phase specific to
-ML:
-Is the data of sufficient quality to perform reliable feature engineering?
-Quality requirements and assessments are developed in close
-collaboration with teams consuming the data.
-Is the data discoverable? Can data scientists and ML engineers easily
-find valuable data?
-Where are the technical and organizational boundaries between data
-engineering and ML engineering? This organizational question has
-significant architectural implications.
-Does the dataset properly represent ground truth? Is it unfairly biased?
-
-\subsubsection{Reverse ETL}
-Reverse ETL takes processed data from the output side of the data engineering lifecycle and feeds it back into source systems. Reverse ETL allows us to take analytics, scored models, etc., and feed these back into production systems or SaaS platforms.
-
-
-\subsection{Major Undercurrents Across the Data Engineering Lifecycle}
-
-\subsubsection{Security}
-Security must be top of mind for data engineers. Data engineers must understand both data and access security, exercising the principle of least privilege. The principle of least privilege means giving a user or system access to only the essential data and resources to perform an intended function.
-Data security is also about timing—providing data access to exactly the people and systems that need to access it and only for the duration necessary to perform their work.
-
-\subsubsection{Data Management}
-Data engineers manage the data lifecycle, and data management encompasses the set of best practices that data engineers will use to accomplish this task, both technically and strategically.
-
-Data management has quite a few facets, including the following:\\
+Algunas consideraciones para la fase de servicio de datos específicas para ML:
 \begin{itemize}
-    \item Data governance, including discoverability and accountability
-    \item Data modeling and design
-    \item Data lineage
-    \item Storage and operations
-    \item Data integration and interoperability
-    \item Data lifecycle management
-    \item Data systems for advanced analytics and ML
-    \item Ethics and privacy
+    \item ¿Son los datos de calidad suficiente para realizar una ingeniería de features fiable? Los requisitos y las evaluaciones de calidad se desarrollan en estrecha colaboración con los equipos que consumen los datos.
+    \item ¿Son los datos localizables? ¿Pueden los científicos de datos y los ingenieros de ML encontrar fácilmente datos valiosos?
+    \item ¿Dónde están los límites técnicos y organizacionales entre la ingeniería de datos y la ingeniería de ML? Esta cuestión organizativa tiene importantes implicaciones arquitectónicas.
+    \item ¿El conjunto de datos representa adecuadamente el \texit{ground truth}? ¿Está sesgado injustamente?
 \end{itemize}
+
+\subsubsection{ETL Inversa} % TODO research
+El ETL inverso toma los datos procesados del lado de salida del ciclo de vida de la ingeniería de datos y los devuelve a los sistemas de origen. El ETL inverso nos permite tomar analíticas, modelos puntuados, etc., y devolverlos a los sistemas de producción o plataformas SaaS.
+
+\subsection{Principales Corrientes Subyacentes en el Ciclo de Vida de la Ingeniería de Datos}
+
+\subsubsection{Seguridad}
+La seguridad debe ser una prioridad para los ingenieros de datos. Deben comprender tanto la seguridad de los datos como la seguridad del acceso, ejerciendo el principio de privilegio mínimo. El principio de privilegio mínimo significa dar a un usuario o sistema acceso solo a los datos y recursos esenciales para realizar una función prevista.
+
+La seguridad de los datos también se trata de sincronización: proporcionar acceso a los datos exactamente a las personas y sistemas que necesitan acceder a ellos y solo durante el tiempo necesario para realizar su trabajo.
+
+\subsubsection{Gestión de Datos}
+Los ingenieros de datos gestionan el ciclo de vida de los datos, y la gestión de datos abarca el conjunto de mejores prácticas que los ingenieros de datos utilizarán para llevar a cabo esta tarea, tanto técnica como estratégicamente.
+
+% La gestión de datos tiene bastantes facetas, incluyendo las siguientes:
+% \begin{itemize}
+%     \item Data governance, including discoverability and accountability
+%     \item Modelado y diseño de datos
+%     \item Data lineage
+%     \item Almacenamiento y operaciones
+%     \item Data integration and interoperability
+%     \item Data lifecycle management
+%     \item Data systems for advanced analytics and ML
+%     \item Ethics and privacy
+% \end{itemize}
 
 
 \subsubsection{DataOps}
-DataOps maps the best practices of Agile methodology, DevOps, and statistical process control (SPC) to data. Whereas DevOps aims to improve the release and quality of software products, DataOps does the same thing for data products.
-Like DevOps, DataOps borrows much from lean manufacturing and supply chain management, mixing people, processes, and technology to reduce time to value.
+DataOps mapea las mejores prácticas de la metodología Agile, DevOps y el control estadístico de procesos (SPC) a los datos. Mientras que DevOps tiene como objetivo mejorar la publicación y la calidad de los productos de *software*, DataOps hace lo mismo para los productos de datos.
 
-DataOps is a collection of technical practices, workflows, cultural norms, and architectural patterns that enable:
-\begin{itemize}
-    \item Rapid innovation and experimentation delivering new insights to     customers with increasing velocity
-    \item Extremely high data quality and very low error rates
-    \item Collaboration across complex arrays of people, technology, and
-    \item environments
-    \item Clear measurement, monitoring, and transparency of results
-\end{itemize}
+DataOps tiene tres elementos técnicos centrales: automatización, monitorización y observabilidad, y respuesta a incidentes.
 
-DataOps has three core technical elements: automation, monitoring and observability, and incident response.
-
-Automation enables reliability and consistency in the DataOps process and allows data engineers to quickly deploy new product features and improvements to existing workflows. DataOps automation has a similar framework and workflow to DevOps, consisting of change management (environment, code, and data version control), continuous integration/continuous deployment (CI/CD), and configuration as code.
-
-Observability, monitoring, logging, alerting, and tracing are all critical to getting ahead of any problems along the data engineering lifecycle. 
-
-Mistakes will inevitably happen. Incident response is about using the automation and observability capabilities mentioned previously to rapidly identify root causes of an incident and resolve it as reliably and quickly as possible.
+La automatización de DataOps tiene un marco de trabajo y un flujo de trabajo similares a los de DevOps, que consisten en la gestión de cambios (control de versiones de entorno, código y datos), integración continua/despliegue continuo (CI/CD) y configuración como código.\\
 
 \subsubsection{Data Architecture}
-A data architecture reflects the current and future state of data systems that support an organization’s long-term data needs and strategy. Because an organization’s data requirements will likely change rapidly, and new tools and practices seem to arrive on a near-daily basis.
+Una arquitectura de datos define los planos del sistema de datos de una organización. Es usualmente trabajo para el arquitecto de datos. 
+Típicamente es un rol separado del ingeniero de datos, pero este debe implementar los diseños y proveer feedback
 
-This doesn’t imply that a data engineer is a data architect, as these are typically two separate roles. If a data engineer works alongside a data architect, the data engineer should be able to deliver on the data architect’s designs and provide architectural feedback.
-\subsubsection{Orchestration }
-Orchestration is the process of coordinating many jobs to run as quickly and efficiently as possible on a scheduled cadence. An orchestration engine builds in metadata on job dependencies, generally in the form of a directed acyclic graph (DAG). The DAG can be run once or scheduled to run at a fixed interval of daily, weekly, every hour, every five minutes, etc. 
+\subsubsection{Orquestación}
+La orquestación es el proceso de coordinar muchos trabajos para que se ejecuten de la manera más rápida y eficiente posible en una cadencia programada. Un motor de orquestación construye metadatos sobre las dependencias de los trabajos, generalmente en la forma de un grafo acíclico dirigido (DAG). El DAG se puede ejecutar una vez o programarse para que se ejecute a un intervalo fijo de diariamente, semanalmente, cada hora, cada cinco minutos, etc.
+% TODO research
+\subsubsection{Ingeniería de Software}
+Algunas áreas comunes de la ingeniería de software que se aplican al ciclo de vida de la ingeniería de datos.
 
-\subsubsection{Software Engineering}
-A few common areas of software engineering that apply to the data engineering lifecycle.
+\textbf{Código de Procesamiento de Datos Central (Core Data Processing Code)}: Escribir código eficiente y comprobable (Spark, SQL, etc.) para la ingesta, transformación y servicio de datos es fundamental para todas las etapas del ciclo de vida de la ingeniería de datos. Las metodologías de prueba adecuadas (pruebas unitarias, de regresión, de integración, de extremo a extremo y de humo) garantizan la calidad y confiabilidad de los datos.
 
-\textbf{Core data processing code} Though it has become more abstract and easier to manage, core data
-processing code still needs to be written, and it appears throughout the data
-engineering lifecycle. Whether in ingestion, transformation, or data serving,
-data engineers need to be highly proficient and productive in frameworks
-and languages such as Spark, SQL, or Beam. It’s also imperative that a data engineer understand proper code-testing
-methodologies, such as unit, regression, integration, end-to-end, and smoke.
+\textbf{Desarrollo de Frameworks de Código Abierto (Open Source Frameworks)}: Los ingenieros de datos a menudo contribuyen y aprovechan las herramientas de código abierto, por lo que comprender su desarrollo y contribuir con mejoras es valioso.
 
-\textbf{Development of open source frameworks} 
+\textbf{Streaming (Procesamiento en Flujo Continuo)}: El procesamiento de datos en tiempo real requiere habilidades y herramientas especializadas. Las tecnologías de streaming son cada vez más importantes en todas las etapas del ciclo de vida de la ingeniería de datos.
 
-\textbf{Streaming} Streaming data processing is inherently more complicated than batch, and
-the tools and paradigms are arguably less mature. As streaming data
-becomes more pervasive in every stage of the data engineering lifecycle,
-data engineers face interesting software engineering problems.
+\textbf{Infraestructura como Código (IaC - Infrastructure as Code)}: La gestión de la infraestructura (servidores, bases de datos, etc.) a través de código garantiza implementaciones coherentes y repetibles, lo cual es fundamental para las prácticas de DataOps en todo el ciclo de vida de la ingeniería de datos.
 
-\textbf{Infrastructure as code} (IaC) applies software engineering practices to the
-configuration and management of infrastructure. These practices are a vital part of DevOps, allowing version control and
-repeatability of deployments. Naturally, these capabilities are vital
-throughout the data engineering lifecycle, especially as we adopt DataOps
-practices.
+\textbf{Pipelines como Código (Pipelines as Code)}: Definir flujos de trabajo de datos y dependencias mediante código permite la orquestación automatizada. Los ingenieros de datos usan código (típicamente Python) para declarar las tareas de datos y las dependencias entre ellas. El motor de orquestación interpreta estas instrucciones para ejecutar los pasos utilizando los recursos disponibles.
 
-\textbf{Pipelines as code} Pipelines as code is the core concept of present-day orchestration systems,
-which touch every stage of the data engineering lifecycle. Data engineers
-use code (typically Python) to declare data tasks and dependencies among
-them. The orchestration engine interprets these instructions to run steps
-using available resources
+\textbf{Desarrollo de Código Personalizado}: Los ingenieros de datos a menudo necesitan escribir código personalizado para manejar escenarios específicos, integrar sistemas y resolver problemas más allá de las capacidades de las herramientas estándar. Son esenciales las sólidas habilidades de ingeniería de software (uso de API, transformación de datos, manejo de excepciones, etc).
 
-\textbf{Pipelines as code} In practice, regardless of which high-level tools they adopt, data engineers
-will run into corner cases throughout the data engineering lifecycle that
-require them to solve problems outside the boundaries of their chosen tools
-and to write custom code. They should be proficient in software engineering to understand APIs, pull and transform data, handle
-exceptions, and so forth.
-% Very often, data scientists struggled with basic problems that their background and training did not address—data collection, data cleansing, data access, data transformation, and data infrastructure. These are problems that data engineering aims to solve. 
+\chapter{Conferencia 3}
+\normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos}
+\normalfont\small\\
 
-% We suggest that aspiring data engineers set up accounts with cloud services such as AWS, Azure, Google Cloud Platform, Snowflake, Databricks, etc. Note that many of these platforms have free tier options,but readers should keep a close eye on costs and work with small quantities of data and single node clusters as they study.
+- Airflow
+- Prefect
 
-% Data engineering is the development, implementation, and maintenance of systems and processes that take in raw data and produce high-quality, consistent information that supports downstream use cases, such as analysis and machine learning. Data engineering is the intersection of security, data management, DataOps, data architecture, orchestration, and software engineering. A data engineer manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases, such as analysis or machine learning.
+\section{Generación}
+\section{Almacenamiento}
+Containerization Tools:
+- Docker
+- Kubernetes
+Data Warehouse Tools:
+- Snowflake
+- PostgreSQL
+- Big Query
+- Amazon Redshift
 
-% The data engineering lifecycle also has a notion of undercurrents—critical ideas across the entire lifecycle. These include security, data management, DataOps, data architecture, orchestration, and software engineering.
+- Apache Kafka
+Data Lakes:
+- Amazon S3
+- Azure Data Lake
+- Hadoop Distributed File System (HDFS)
+
+\section{Ingesta}
+- Segment
+- Fivetran: is a comprehensive ETL tool
+- Stitch
+- Apache Kafka
+- Airbyte 
+\section{Transformación}
+
+- dbt (data build tool)
+
+Batch:
+- Apache Spark
+- Apache Hadoop
+
+Streaming:
+- Apache Kafka
+- Apache Flink
+
+\section{Serving}
+Analytics Engineering Tools
+- Metabase
+- Power BI
+Visualization:
+- Tableau
+- Looker
+
 
 Bibliografía: 
 
