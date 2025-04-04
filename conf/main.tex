@@ -479,11 +479,214 @@ Algunas áreas comunes de la ingeniería de software que se aplican al ciclo de 
 \textbf{Desarrollo de Código Personalizado}: Los ingenieros de datos a menudo necesitan escribir código personalizado para manejar escenarios específicos, integrar sistemas y resolver problemas más allá de las capacidades de las herramientas estándar. Son esenciales las sólidas habilidades de ingeniería de software (uso de API, transformación de datos, manejo de excepciones, etc).
 
 \chapter{Conferencia 3}
-\normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos}
+\normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Almacenamiento e Ingestión}
+\normalfont\small\\
+% Architecture is the high-level design, roadmap, and blueprint of data systems that satisfy the strategic aims for the business. Architecture is the what, why, and when. Tools are used to make the architecture a reality; tools are the how.
+% Data engineers play a key role in embedding compliance measures into pipelines. These measures include encryption, data lineage, and automated checks, ensuring regulatory compliance at every step.
+% Engineers must ensure that systems are scalable, maintainable, and cost-efficient while meeting both business and regulatory requirements.
+
+Abordaremos conceptos generales y haremos un recorrido por las principales tecnologías y herramientas utilizadas en la industria.
+El objetivo es que comprendan el panorama general, se familiaricen con los casos de uso clave y, sobre todo, identifiquen qué tecnologías merecen su atención.
+
+\section{Almacenamiento}
+\subsection{Tipos de almacenamiento de datos:}
+\subsubsection{Bases de Datos Relacionales}
+Una base de datos relacional es una colección de información que organiza los datos en tablas (o relaciones). Los datos se almacenan en filas y columnascon una clave única que identifica cada fila. 
+Generalmente, cada tabla/relación representa un "tipo de entidad" (como cliente o producto). Las filas representan instancias de ese tipo de entidad (como "Lee" o "silla") y las columnas representan valores atribuidos a esa instancia (como dirección o precio).
+Se representan relaciones como conexiones lógicas entre tablas, establecidas en función de sus interacciones.
+Cada tabla tiene un esquema predefinido que fuerza a todos los elementos de la tabla a cumplirlos. Utilizan SQL, o variaciones de SQL como lenguaje estándar, que permite crear consultas complejas que abarquen varias tablas.\\
+
+Escalan verticalmente, o sea, para mejorar el rendimiento hay que añadir más recursos (CPU/RAM) al servidor. El enfoque de escalado vertical aumenta la capacidad de una sola máquina incrementando los recursos en el mismo servidor lógico. Esto implica añadir recursos como memoria, almacenamiento y potencia de procesamiento al software existente, mejorando así su rendimiento.
+
+Garantizan el cumplimiento del modelo relacional mediante el concepto de ACID.\\
+En los sistemas de bases de datos, ACID (Atomicidad, Consistencia, Aislamiento(isolation), Durabilidad) se refiere a un conjunto estándar de propiedades que garantizan que las transacciones de la base de datos se procesen de forma fiable.
+ACID se preocupa especialmente de cómo una base de datos se recupera de cualquier fallo que pueda ocurrir durante el procesamiento de una transacción. Un DBMS compatible con ACID asegura que los datos en la base de datos permanezcan precisos y consistentes a pesar de cualquier fallo de este tipo.
+
+\textbf{Atomicidad} significa que se garantiza que o bien toda la transacción tiene éxito, o bien ninguna parte de ella lo tiene. No se obtiene una parte exitosa y otra que no lo es. Si una parte de la transacción falla, toda la transacción falla. Con la atomicidad, es "todo o nada".\\
+\textbf{Consistencia} asegura que se garantiza que todos los datos serán consistentes. Todos los datos serán válidos de acuerdo con todas las reglas definidas, incluyendo cualquier restricción, cascada y disparador (trigger) que se haya aplicado en la base de datos.\\
+\textbf{Aislamiento} garantiza que todas las transacciones ocurrirán de forma aislada. Ninguna transacción se verá afectada por ninguna otra transacción. Por lo tanto, una transacción no puede leer datos de ninguna otra transacción que aún no se haya completado.\\
+\textbf{Durabilidad} significa que, una vez que una transacción se ha confirmado (committed), permanecerá en el sistema, incluso si hay una caída del sistema inmediatamente después de la transacción. Cualquier cambio de la transacción debe almacenarse permanentemente. Si el sistema le dice al usuario que la transacción ha tenido éxito, la transacción debe, de hecho, haber tenido éxito.\\
+
+RDBMS (Relational Database Management System)=SGBD(R)
+
+\begin{itemize}  % imagenes de los ejemplos de relacionales
+    \item Oracle Database: Su primera versión data a 1979. Fue el primer RDBMS SQL disponible comercialmente.
+    \item MySQL: MySQL se ofrece en dos ediciones diferentes: MySQL Community Server, de código abierto, y Enterprise Server, de propietario.  
+Aunque comenzó como una alternativa de gama baja a bases de datos propietarias más potentes, ha evolucionado gradualmente para dar soporte a necesidades de mayor escala. Todavía se utiliza más comúnmente en implementaciones de un solo servidor, de pequeña a mediana escala. P o como un servidor de bases de datos independiente. Gran parte del atractivo de MySQL se origina en su relativa simplicidad y facilidad de uso, que se ve facilitada por un ecosistema de herramientas de código abierto.
+En el rango medio, MySQL se puede escalar desplegándolo en hardware más potente, como un servidor multiprocesador con gigabytes de memoria. 
+    \item SQLite: motor de base de datos relacional gratuito y de código abierto. No es una aplicación independiente; más bien, es una biblioteca que los desarrolladores de software incrustan en sus aplicaciones. SQLite fue diseñado para permitir que el programa se opere sin instalar un sistema de gestión de bases de datos o requerir un administrador de bases de datos. Viene instalado default en la mayoría de los sistemas operativos y navegadores (browsers). 
+Debido al diseño server-less, las aplicaciones SQLite requieren menos configuración que las bases de datos cliente-servidor. SQLite se conoce como de "zero-configuration"("configuración cero") porque las tareas de configuración, como la gestión de servicios, los scripts de inicio y el control de acceso basado en contraseñas o GRANT, son innecesarias. 
+SQLite almacena toda la base de datos, que consta de definiciones, tablas, índices y datos, como un único archivo multiplataforma, lo que permite que varios procesos o subprocesos accedan a la misma base de datos simultáneamente. 
+    \item PostgreSQL: es uno de los sistemas de gestión de bases de datos objeto-relacionales de propósito general más avanzados y es de código abierto. Sus características más destacadas incluyen: Herencia de tablas, Replicación asíncrona, Capacidad definir nuevos tipos, así como soporte de muchos tipos que incluyen: 
+Numéricos de precisión arbitraria, Arrays (de longitud variable y de cualquier tipo de datos hasta 1 GB de tamaño), Direcciones IPv4 e IPv6,  Identificador único universal (UUID), JSON y un JSONB binario más rápido.\\
+Se pueden crear e instalar extensiones o plugins que funcionan como características integradas. A lo largo de los años, se ha desarrollado un rico ecosistema de extensiones que cubren desde la optimización del rendimiento hasta tipos de datos especializados. Ejemplos son:\\
+PostGIS: introduce tipos de datos adicionales para la gestión geo-espacial.\\
+pgcrypto: agrega funciones criptográficas para el cifrado, el hashing y más.\\
+pgvector: Agrega soporte para operaciones vectoriales en Postgres, lo que permite la búsqueda de similitud, la búsqueda del vecino más cercano y más.\\
+\end{itemize}
+
+\subsubsection{Bases de Datos No Relacionale (NoSQL)} % imagenes de los ejemplos de NoSQL
+NoSQL es un enfoque al diseño de bases de datos que se centra en proporcionar un mecanismo para el almacenamiento y la recuperación de datos que se modelan utilizando medios distintos a las relaciones tabulares empleadas en las bases de datos relacionales.\\
+Las motivaciones para este enfoque incluyen la simplicidad del diseño, un escalado "horizontal" más sencillo a clústeres de máquinas, un control más preciso sobre la disponibilidad y la limitación del desajuste de impedancia objeto-relacional. Las estructuras de datos utilizadas por las bases de datos NoSQL permiten que algunas operaciones sean más rápidas y se consideran "más flexibles" que las tablas de las bases de datos relacionales.\\
+Se clasifican en cuatro categorías principales:
+\begin{itemize}
+    \item Key-value stores(clave-valor): utilizan el array asociativo (también llamado mapa o diccionario) como su modelo de datos fundamental. En este modelo, los datos se representan como una colección de pares clave-valor, de tal manera que cada clave posible aparece como máximo una vez en la colección. Ejemplos: Redis, Couchbase, DynamoDB.
+    \item Column-family stores(de columnas): Utiliza tablas, filas y columnas, pero a diferencia de una base de datos relacional, los nombres y el formato de las columnas pueden variar de fila a fila en la misma tabla. Un almacén de columnas anchas se puede interpretar como un store clave-valor bidimensional. Ejemplo: Cassandra.
+    \item Document databases (de documentos): El concepto central de un almacén de documentos es el de un "documento". Las codificaciones en uso incluyen XML, YAML y JSON, y formas binarias como BSON. Se accede a los documentos en la base de datos a través de una clave única que representa ese documento. Las colecciones podrían considerarse análogas a las tablas y los documentos análogos a los registros(filas). Pero son diferentes: cada registro en una tabla tiene la misma secuencia de campos, mientras que los documentos en una colección pueden tener campos que son completamente diferentes. Ejemplo: MongoDB.
+    \item Graph databases (de grafos): Las bases de datos de grafos están diseñadas para datos cuyas relaciones están bien representadas como un grafo, que consiste en elementos conectados por un número finito de relaciones. Ejemplos de datos incluyen relaciones sociales, enlaces de transporte público, mapas de carreteras, topologías de redes, etc. Ejemplo: Neo4j.
+\end{itemize}
+
+Actualmente, existen dos tipos principales de sistemas de procesamiento de datos críticos: el Procesamiento de Transacciones en Línea (OLTP) y el Procesamiento Analítico en Línea (OLAP). Cada uno tiene un propósito diferente y, técnicamente, deberían estar separados en cualquier organización.\\
+OLTP es prácticamente lo que su nombre indica: una base de datos responsable del procesamiento de transacciones operativas. Debe ser rápido, dinámico y tener capacidad de respuesta ante fallos en la base de datos con un plan de respaldo.\\
+OLAP es diferente: su propósito es guardar datos históricos y mantener los procesos de Extracción, Transformación y Carga (ETL) que se utilizan para el análisis de datos. El sistema OLAP es fundamental para las decisiones comerciales críticas, ya que ofrece datos relacionados con el rendimiento diario y la estabilidad organizacional a largo plazo.\\
+
+\subsubsection{Data Warehouse} % imagenes de los ejemplos de warehouse
+Los Data Warehouse son almacenes de datos son repositorios centrales de datos integrados, provenientes de fuentes diversas. Almacenan datos actuales e históricos organizados para optimizar el análisis de datos, la generación de informes y, sobre todo, la obtención de información clave a partir de la integración de datos.
+Son bases de datos especializadas diseñadas para almacenar y analizar grandes volúmenes de datos estructurados y semiestructurados para fines de inteligencia empresarial (BI) y analítica.
+\begin{itemize}
+    \item PostgreSQL: Una característica excelente de PostgreSQL es su capacidad para ser utilizado tanto para OLTP como para OLAP. Esto facilita que las bases de datos que utilizan OLAP para almacenar los datos se comuniquen con las bases de datos que utilizan OLTP para crear los datos más recientes. Esta puede ser la razón principal por la que PostgreSQL es tan popular.
+    \item Snowflake: Fundada en 2012, Snowflake es un Data Warehouse basado en la nube, conocido por su escalabilidad y flexibilidad. La arquitectura nativa de la nube de Snowflake aprovecha los beneficios de proveedores como AWS, Azure y Google Cloud. La plataforma ofrece funciones de seguridad integradas, incluyendo cifrado y control de acceso, lo que la hace adecuada para organizaciones con necesidades estrictas de seguridad y cumplimiento normativo. En general, Snowflake proporciona una solución robusta para almacenar, gestionar y analizar grandes conjuntos de datos en la nube.
+    \item Amazon Redshift: Amazon Redshift es un servicio de almacenamiento de datos rápido y totalmente administrado en la nube, que permite a las empresas ejecutar consultas analíticas complejas sobre grandes volúmenes de datos, minimizando así los retrasos y garantizando un sólido apoyo para la toma de decisiones en todas las organizaciones. Fue lanzado en 2013, creado para solucionar los problemas asociados con el almacenamiento de datos tradicional en las instalaciones, como la escalabilidad, el costo y la complejidad. Redshift se integra perfectamente con Amazon S3, Amazon RDS, AWS Glue y mucho más para crear un ecosistema de datos.
+    \item Google BigQuery: Google BigQuery es un Data Warehouse nativo de la nube. Es un almacén de datos en la nube sin servidor, altamente escalable y rentable que permite realizar consultas súper rápidas a escala de petabytes utilizando la potencia de procesamiento de la infraestructura de Google. Su arquitectura sin servidor le permite operar a escala y velocidad para proporcionar análisis SQL increíblemente rápidos sobre grandes conjuntos de datos.
+\end{itemize}
+
+\subsubsection{Data Lake}
+Repositorios centralizados que almacenan grandes cantidades de datos sin procesar en su formato nativo, lo que permite a las organizaciones realizar análisis avanzados, aprendizaje automático y exploración de datos. 
+Tecnologías como Apache Hadoop, Apache Spark y AWS Glue se utilizan comúnmente para construir y administrar lagos de datos.
+
+\subsection{Tipos de almacenamiento de datos:} % imagen con los 3 tipos
+\subsubsection{Almacenamiento en Archivos(File Storage)}
+Dada la siguiente información como punto de partida, y manteniendo el estilo de escritura, profundiza en la explicación de los tipos de almacenamiento.
+\subsubsection{Almacenamiento en Bloques(Block Storage)}
+Divide los datos en bloques de tamaño fijo y los almacena sin metadatos adicionales. Cada bloque tiene una dirección única y puede ser gestionado independientemente, lo que lo hace ideal para bases de datos y aplicaciones de alto rendimiento que requieren baja latencia.
+
+Características clave:
+
+Bajo nivel: Los bloques son manejados directamente por el sistema de almacenamiento.
+
+Alto rendimiento: Ideal para bases de datos (ej. Oracle, SQL Server) y máquinas virtuales.
+
+Flexibilidad: Permite configuraciones avanzadas como RAID y snapshots.
+
+\subsubsection{Almacenamiento de Objetos(Object Storage)}
+El almacenamiento de objetos es una arquitectura de almacenamiento de datos en la que los datos se almacenan y gestionan como unidades autocontenidas llamadas objetos. Cada objeto contiene una clave, datos y metadatos opcionales. Dado que el almacenamiento de archivos y bloques utiliza jerarquías, el acceso a los datos se ralentiza a medida que los almacenes de datos crecen desde gigabytes y terabytes hasta petabytes e incluso más.\\
+Cada objeto se almacena con sus metadatos, que pueden ser bastante detallados. Pueden incluir información como políticas específicas de privacidad y seguridad, reglas de acceso e incluso especificaciones, por ejemplo, sobre dónde se grabó un videoclip o quién creó los datos.\\    
+Cada unidad tiene un identificador único o clave, que permite encontrarlas sin importar dónde estén almacenadas en un sistema distribuido. Los objetos se almacenan en un único pool sin una jerarquía de carpetas o directorios.\\
+
+Ejemplos:
+\begin{itemize}
+    \item Amazon S3
+    \item Azure Blob
+    \item Google Cloud Storage
+\end{itemize}
+
+Los sistemas de archivos distribuidos como Hadoop Distributed File System (HDFS) y Google File System (GFS) proporcionan soluciones de almacenamiento escalables y tolerantes a fallos para entornos de computación distribuida. Están optimizados para almacenar y procesar grandes conjuntos de datos a través de múltiples nodos en un clúster de computación distribuida, soportando el procesamiento de datos en paralelo y la tolerancia a fallos.
+
+\section{Ingesta}
+La ingesta de datos es el proceso de mover datos (especialmente datos no estructurados) desde una o más fuentes a un sistema de almacenamiento para su posterior procesamiento y análisis.\\
+Es la primera etapa en un pipeline de ingeniería de datos donde los datos provenientes de varias fuentes comienzan su recorrido.
+
+\subsection{APIs}
+Una de las formas más frecuentes de ingestión de datos es a través de Application Programming Interface. 
+En general, se accede a las APIs a través de la web utilizando una URL. Dentro de la dirección web, se especifica la información que se desea. Para saber cómo formatear la dirección web, es necesario leer la documentación de la API. Algunas APIs también requieren que envíes credenciales de inicio de sesión como parte de tu solicitud.
+La biblioteca 'requests' de Python hace que trabajar con APIs sea relativamente sencillo.
+
+A menudo se considera que las ingestas de datos mediante APIs son más rápidas y escalables en ciertas situaciones, y pueden soportar cambios variables en los atributos. Esta funcionalidad puede funcionar con procesamiento en tiempo real o por lotes, lo que la convierte en una herramienta valiosa para muchas industrias diferentes.
+
+Postman 
+
+Herramientas de ingesta de datos
+\begin{itemize}
+    \item Airbyte: Es una herramienta de ingesta de datos de código abierto que se centra en la extracción y carga de datos, desarrollada para le proceso de ETL. Facilita la configuración de pipelines y mantiene un flujo seguro a lo largo de todo el pipeline. Puede proporcionar acceso tanto a datos brutos como normalizados e integra más de 120 conectores de datos.
+    \item Amazon Kinesis: Ayuda en la ingesta de datos en tiempo real de diversas fuentes, y a procesar y analizar los datos a medida que llegan. Además, ofrece diferentes capacidades, como Kinesis Data Streams, Kinesis Data Firehose y más, para la ingesta de datos en streaming a cualquier escala de forma rentable.
+    \item Apache Kafka: Es una plataforma de streaming de eventos distribuida de código abierto. El streaming de eventos captura datos en tiempo real de fuentes de eventos como dispositivos móviles, sensores, bases de datos, servicios en la nube y aplicaciones de software. Kafka almacena los datos de forma duradera para su posterior recuperación para procesamiento y análisis. Sus otras capacidades principales incluyen alto rendimiento, escalabilidad y alta disponibilidad.
+    \item Apache NiFi:  Herramienta visual para automatizar los flujos de datos entre sistemas.
+\end{itemize}
+
+% \chapter{Integración de Datos}
+% Data integration refers to the process of combining data from multiple sources into a unified, coherent format that can be used for various analytical, operational, and decision-making purposes
+% This process is essential in today's digital landscape, where organizations gather data from a wide range of sources, including databases, apps, spreadsheets, cloud services, APIs, and more
+
+% Solutions for combining data from disparate sources into a unified view, often involving middleware or virtual data layers.
+
+
+\chapter{Conferencia 4}
+\normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Transformación y Servicio}
 \normalfont\small\\
 
-- Airflow
+\section{Transformación}
+Data transformation involves converting raw data into a format suitable for analysis and consumption. This stage is crucial for adding value to data and making it useful for downstream processes.
+
+Key Operations in Data Transformation
+
+Normalization: Modifying data scales, such as scaling values from 0 to 1, to enable comparisons.
+
+Standardization: Transforming data to have a unit variance and zero mean, often required before using machine learning methods.
+
+Encoding: Transforming categorical data into numerical representations using label or one-hot encoding.
+
+Discretization: Converting continuous data into discrete bins, facilitating analysis and enhancing model performance.
+
+Attribute Generation: Creating new variables from existing data, such as deriving an 'age' variable from a date of birth.
+
+Revising: Ensuring that the data supports its intended usage by deleting duplicates, standardizing the data collection, and purifying it.
+
+Manipulation: Creating new values from existing ones or changing the state of data through
+
+Techniques and Tools
+
+Programmatic Transformation: Automating transformation operations using scripts or programming languages such as Python, R, or SQL.
+
+ETL Tools: Tools for extracting, transforming, and loading data (ETL) are designed to handle complex data transformation requirements in large-scale environments.
+
+Normalization/Standardization: Scikit-learn in Python provides functions for normalization and standardization such as MinMaxScaler and StandardScaler.
+
+Encoding Categorical Variables: Pandas library in Python provides the get_dummies function for one-hot encoding. For label encoding, LabelEncoder is provided by Scikit-learn.
+
+Imputation: Missing values in the dataset are filled using statistical methods like the fillna method in the Pandas Library. Additionally, missing data can be imputed using mean, median, or mode using Scikit-learn’s SimpleImputer.
+
+Feature Engineering: New features are developed by combining old ones. Pandas functions such as apply, map, and transform are used to generate new features
+
+Tools:
+\begin{itemize}
+    \item dbt (data build tool)
+    \item Talend: ETL/ELT platform for integrating and transforming data.
+    % \item Informatica: Enterprise-grade data integration and governance suite.
+    % \item Apache Camel: Middleware for routing and mediating data between systems.
+    % \item Microsoft SQL Server Integration Services (SSIS): ETL tool for data migration and transformation.
+    % \item Denodo: Data virtualization platform for unified access to distributed sources.
+\end{itemize}
+
+Stream Processing
+\begin{itemize}
+    \item Apache Flink: Framework for stateful computations over unbounded/bounded data streams.
+    \item Apache Kafka Streams: Library for building real-time stream processing applications.
+    % \item Apache Spark Streaming: Micro-batch processing engine for streams.
+    % \item Google Cloud Dataflow: Fully managed service for stream and batch processing.
+    % \item Confluent KSQL: Streaming SQL engine for Apache Kafka.
+\end{itemize}
+
+Batch Processing
+\begin{itemize}
+    \item Apache Spark: Engine for large-scale batch data processing and analytics.
+    \item Apache Hadoop : Framework for distributed processing of big datasets.
+    % \item AWS Batch: Managed service for running batch workloads at scale.
+    % \item Airflow (with batch operators): Orchestration tool for scheduling batch jobs.
+    % \item IBM DataStage: ETL tool for designing and executing batch data jobs.
+\end{itemize}
+
+Transformation tools:
+
+
+Data Processing, Data Transformation, Data Serialization & Formatting, API Management
+
+--  YAML engineering 
+- Airflow (orchestration)
 - Prefect
+- Terraform and Pulumi are IaC tools
+- Docker and Kubernetes are popular containerization tools.
+- Prefect and Luigi are used for automating and managing complex data workflows.
+- dbt (data build tool) and Metabase are used for data transformation and analytics.
 
 \section{Generación}
 \section{Almacenamiento}
@@ -493,7 +696,7 @@ Containerization Tools:
 Data Warehouse Tools:
 - Snowflake
 - PostgreSQL
-- Big Query
+- BigQuery
 - Amazon Redshift
 
 - Apache Kafka
