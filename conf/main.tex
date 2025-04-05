@@ -1,6 +1,13 @@
 \documentclass[12pt]{book}
 
 % Packages
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
 \usepackage{amsmath}  % For math equations
 \usepackage{hyperref} % For hyperlinks
 \usepackage{titlesec} % For customizing section titles
@@ -636,7 +643,7 @@ es necesario, a diferencia de otras operaciones que veremos a continuación.
     ANTES:                          DESPUÉS:
     ID  Producto  Valor             ID  Producto  Valor
     1   Laptop    $1000             1   Laptop    $1000
-    1   Laptop    $1000  →          2   Mouse     $20
+    1   Laptop    $1000        →    2   Mouse     $20
     2   Mouse     $20
     \end{verbatim}
 
@@ -649,19 +656,19 @@ es necesario, a diferencia de otras operaciones que veremos a continuación.
     \item Valores inválidos para el tipo: Ejemplo: Fechas con formato incorrecto o fuera de rango lógico.
     \begin{verbatim}
     ANTES:                             DESPUÉS:
-    Paciente  Fecha_Nacimiento         Paciente  Fecha_Nacimiento
-    A         1990-05-15               A         1990-05-15
-    B         2025-13-02          →    B         NaN (fecha futura/mes inválido)
-    C         15/07/1985               C         1985-07-15 (formato apropiado)
+Paciente  Fecha_Nacimiento         Paciente  Fecha_Nacimiento
+A         1990-05-15               A         1990-05-15
+B         2025-13-02          →    B         NaN (fecha futura/mes inválido)
+C         15/07/1985               C         1985-07-15 (formato apropiado)
     \end{verbatim}
     
     \item Atributo con valores de tipo incorrecto: Símbolos mezclados en campos numéricos.
     \begin{verbatim}
-        ANTES:                          DESPUÉS:
-        Producto  Precio                Producto  Precio
-        X         $120.50               X         120.50
-        Y         95,99€         →      Y         95.99 (o mejor aún, convertirlos todos a la misma unidad).
-        Z         "1,200"               Z         1200.00
+    ANTES:                          DESPUÉS:
+    Producto  Precio                Producto  Precio
+    X         $120.50               X         120.50
+    Y         95,99€         →      Y         95.99 
+    Z         "1,200"               Z         1200.00
     \end{verbatim}
 \end{itemize}
 Algunas herramientas que ayudan a la visualización y limpieza de datos incluyen pandas(Python), 
@@ -672,34 +679,37 @@ relevante cuando los datos serán utilizados por algún algoritmo sensible a la 
 la misma escala y no se induce un sesgo en ese sentido (KNN, Redes Neuronales).\\
 
 Min-Max Normalization: transforms the original data linearly.
-$$ \( X_{\text{norm}} = \frac{X - \min(X)}{\max(X) - \min(X)} \) $$
+$$ X_{\text{norm}} = \frac{X - \min(X)}{\max(X) - \min(X)} $$
 
-\textbf{Ejemplos:} \\
+\textbf{Ejemplos:} 
+
 Unificación de lecturas de sensores con diferentes rangos:
-\begin{verbatim}
-    ANTES (Raw values):               DESPUÉS (Normalizado):
-    Sensor_A: [200, 400, 600]         Sensor_A: [0.0, 0.5, 1.0]  
-    Sensor_B: [10, 20, 30]      →     Sensor_B: [0.0, 0.5, 1.0]
-    (Rango A: 200-600)                (Ambos en [0,1])
-    (Rango B: 10-30)
-\end{verbatim}
+
+    \begin{verbatim}
+        ANTES (Raw values):               DESPUÉS (Normalizado):
+        Sensor_A: [200, 400, 600]         Sensor_A: [0.0, 0.5, 1.0]  
+        Sensor_B: [10, 20, 30]      →     Sensor_B: [0.0, 0.5, 1.0]
+        (Rango A: 200-600)                (Ambos en [0,1])
+        (Rango B: 10-30)
+    \end{verbatim}
 
 La biblioteca Scikit-learn proveé herramientas para el escalado/normalización automático.
 
 \subsubsection{Estandarización}
 Transformación similiar a la Normalización, que ajusta los datos para tener media 0 y desviación estándar 1 (Z-score).\\
 Z-Score Normalization: zero-mean normalization.
-$$ \( Z = \frac{X - \mu}{\sigma} \) $$
+$$ Z = \frac{X - \mu}{\sigma} $$
 
-\textbf{Ejemplos:} \\
+\textbf{Ejemplos:} 
+
 Comparar puntuaciones en distintas escalas:
-\begin{verbatim}
-    ANTES (Puntajes crudos):       DESPUÉS (Z-scores):
-    FICO: [650, 720, 580]         FICO: [0.23, 1.12, -1.35]
-    Vantage: [550, 600, 450] →    Vantage: [0.23, 1.12, -1.35]
-    (μ_FICO=650, σ=62.5)          (Comparables directamente)
-    (μ_Vantage=550, σ=44.7)
-\end{verbatim} 
+    \begin{verbatim}
+        ANTES (Puntajes crudos):         DESPUÉS (Z-scores):
+        FICO: [650, 720, 580]           FICO: [0.23, 1.12, -1.35]
+        Vantage: [550, 600, 450]   →    Vantage: [0.23, 1.12, -1.35]
+        (mu=650, sigma=62.5)            (Comparables directamente)
+        (mu=550, sigma=44.7)
+    \end{verbatim} 
 
 \textbf{Herramientas:} Scikit-learn (StandardScaler), TensorFlow Transform.
 
@@ -718,21 +728,21 @@ Hay otros encoding techniques como Binary Encoding, Hash Encoding, Mean/Target E
 Las herramientas usuales incluyen Pandas, Scikit-learn
 
 One-Hot Encoding: Para categorías sin orden. Ejemplo colores:
-\begin{verbatim}
-ANTES:           DESPUÉS (One-Hot):
-Color            Rojo  Verde  Azul
-Rojo     →       1     0      0
-Verde            0     1      0
-Azul             0     0      1
-\end{verbatim}
+    \begin{verbatim}
+        ANTES:           DESPUÉS (One-Hot):
+        Color            Rojo  Verde  Azul
+        Rojo     →       1     0      0
+        Verde            0     1      0
+        Azul             0     0      1
+    \end{verbatim}
 Label Encoding: Para categorías ordinales. Ejemplo tallas:
-\begin{verbatim}
-ANTES:           DESPUÉS:
-Talla            Talla_Encoded
-S        →       0
-M                1
-L                2
-\end{verbatim}
+    \begin{verbatim}
+        ANTES:           DESPUÉS:
+        Talla            Talla_Encoded
+        S        →       0
+        M                1
+        L                2
+    \end{verbatim}
 
 \subsubsection{Discretizar}
 Transformación de variables continuas en intervalos discretos.\\
@@ -747,13 +757,13 @@ Algunos de los métodos comunes son:
 
 \textbf{Ejemplo:} 
 Agrupar edades para segmentación demográfica:
-\begin{verbatim}
-ANTES (Edad):        DESPUÉS (Bins):
-[15,                 ["0-18",
- 25,            →     "19-35",
- 70,                  "60+",
- 32]                  "19-35"]
-\end{verbatim}
+    \begin{verbatim}
+        ANTES (Edad):        DESPUÉS (Bins):
+        [15,                 ["0-18",
+         25,            →     "19-35",
+         70,                  "60+",
+         32]                  "19-35"]
+    \end{verbatim}
 
 \textbf{Herramientas:} Pandas (cut/qcut), KNIME, RapidMiner.
 
@@ -774,7 +784,9 @@ del tipo de datos y los casos de uso finales.\\
 
 \subsubsection{Procesamiento de texto}
 Transformación de texto no estructurado a formato analizable. Puede incluir procesos como Tokenización, lematización y vectorización ya sea con TF-IDF o con embeddings.\\
+
 \textbf{Ejemplo:} Tokenización, lematización y vectorización (TF-IDF) de reseñas de clientes.\\
+
 \textbf{Herramientas:} NLTK, SpaCy, Transformers, TensorFlow Text.
 % tokenizar, stemming, lemma
 
@@ -963,24 +975,6 @@ Metabase es una plataforma de inteligencia empresarial de código abierto. Puede
 \normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Tecnologías complementarias}
 \normalfont\small\\
 
-Batch:
-- Apache Spark
-- Apache Hadoop
-
-Streaming:
-- Apache Kafka
-- Apache Flink
-
-Tools:
-\begin{itemize}
-    \item dbt (data build tool)
-    \item Talend: ETL/ELT platform for integrating and transforming data.
-    % \item Informatica: Enterprise-grade data integration and governance suite.
-    % \item Apache Camel: Middleware for routing and mediating data between systems.
-    % \item Microsoft SQL Server Integration Services (SSIS): ETL tool for data migration and transformation.
-    % \item Denodo: Data virtualization platform for unified access to distributed sources.
-\end{itemize}
-
 Stream Processing
 \begin{itemize}
     \item Apache Flink: Framework for stateful computations over unbounded/bounded data streams.
@@ -1010,7 +1004,6 @@ Data Processing, Data Transformation, Data Serialization & Formatting, API Manag
 - Terraform and Pulumi are IaC tools
 - Docker and Kubernetes are popular containerization tools.
 - Prefect and Luigi are used for automating and managing complex data workflows.
-- dbt (data build tool) and Metabase are used for data transformation and analytics.
 
 
 Containerization Tools:
@@ -1029,8 +1022,6 @@ Containerization Tools:
 - Airbyte 
 \section{Transformación}
 
-- dbt (data build tool)
-
 Batch:
 - Apache Spark
 - Apache Hadoop
@@ -1039,13 +1030,6 @@ Streaming:
 - Apache Kafka
 - Apache Flink
 
-\section{Serving}
-Analytics Engineering Tools
-- Metabase
-- Power BI
-Visualization:
-- Tableau
-- Looker
 
 
 Bibliografía: 
