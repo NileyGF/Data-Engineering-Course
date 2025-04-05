@@ -477,7 +477,6 @@ Algunas áreas comunes de la ingeniería de software que se aplican al ciclo de 
 \textbf{Pipelines como Código (Pipelines as Code)}: Definir flujos de trabajo de datos y dependencias mediante código permite la orquestación automatizada. Los ingenieros de datos usan código (típicamente Python) para declarar las tareas de datos y las dependencias entre ellas. El motor de orquestación interpreta estas instrucciones para ejecutar los pasos utilizando los recursos disponibles.
 
 \textbf{Desarrollo de Código Personalizado}: Los ingenieros de datos a menudo necesitan escribir código personalizado para manejar escenarios específicos, integrar sistemas y resolver problemas más allá de las capacidades de las herramientas estándar. Son esenciales las sólidas habilidades de ingeniería de software (uso de API, transformación de datos, manejo de excepciones, etc).
-
 \chapter{Conferencia 3}
 \normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Almacenamiento e Ingestión}
 \normalfont\small\\
@@ -609,43 +608,301 @@ Herramientas de ingesta de datos
 
 % Solutions for combining data from disparate sources into a unified view, often involving middleware or virtual data layers.
 
-
 \chapter{Conferencia 4}
 \normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Transformación y Servicio}
 \normalfont\small\\
 
 \section{Transformación}
-Data transformation involves converting raw data into a format suitable for analysis and consumption. This stage is crucial for adding value to data and making it useful for downstream processes.
+% Descripción de transformación de datos
+La transformación de datos es el proceso de convertir, limpiar y estructurar los datos 
+brutos en un formato adecuado para análisis y modelado. Esta etapa es crucial en los 
+pipelines de datos ya que mejora la calidad, consistencia y utilidad de los datos. Preparándolos 
+para su consumo en aplicaciones de business intelligence y machine learning.
 
-Key Operations in Data Transformation
+Resaltar que ninguna simplemente se modifican los datos originales, sino que se crea un nuevo espacio para contener los datos "limpios y procesados".
 
-Normalization: Modifying data scales, such as scaling values from 0 to 1, to enable comparisons.
+\subsection{Ejemplos de operaciones de transformación de datos:}
 
-Standardization: Transforming data to have a unit variance and zero mean, often required before using machine learning methods.
+\subsubsection{Limpieza}
+La limpieza de datos es el proceso de detectar y rectificar errores e inconsistencias en 
+los datos. Es parte esencial del procesamiento de los datos, y casi en el 100\% de los casos 
+es necesario, a diferencia de otras operaciones que veremos a continuación. 
+% Para visualizar los datos y detectar los errores
 
-Encoding: Transforming categorical data into numerical representations using label or one-hot encoding.
+\textbf{Ejemplos:} 
+\begin{itemize}
+    \item Remover datos duplicados: Registros idénticos (por fallas en la generación o ingestión)
+    \begin{verbatim}
+    ANTES:                          DESPUÉS:
+    ID  Producto  Valor             ID  Producto  Valor
+    1   Laptop    $1000             1   Laptop    $1000
+    1   Laptop    $1000  →          2   Mouse     $20
+    2   Mouse     $20
+    \end{verbatim}
 
-Discretization: Converting continuous data into discrete bins, facilitating analysis and enhancing model performance.
+    \item Detectar valores atípicos: Ejemplo en temperaturas (℃):
+    \begin{verbatim}
+    Datos: [22, 23, 21, 25, 19, 28, 31, -273, 24]
+    Outlier: -273 (posiblemente error de sensor) 
+    \end{verbatim} % → Se puede imputar con la mediana (23)
+    
+    \item Valores inválidos para el tipo: Ejemplo: Fechas con formato incorrecto o fuera de rango lógico.
+    \begin{verbatim}
+    ANTES:                             DESPUÉS:
+    Paciente  Fecha_Nacimiento         Paciente  Fecha_Nacimiento
+    A         1990-05-15               A         1990-05-15
+    B         2025-13-02          →    B         NaN (fecha futura/mes inválido)
+    C         15/07/1985               C         1985-07-15 (formato apropiado)
+    \end{verbatim}
+    
+    \item Atributo con valores de tipo incorrecto: Símbolos mezclados en campos numéricos.
+    \begin{verbatim}
+        ANTES:                          DESPUÉS:
+        Producto  Precio                Producto  Precio
+        X         $120.50               X         120.50
+        Y         95,99€         →      Y         95.99 (o mejor aún, convertirlos todos a la misma unidad).
+        Z         "1,200"               Z         1200.00
+    \end{verbatim}
+\end{itemize}
+Algunas herramientas que ayudan a la visualización y limpieza de datos incluyen pandas(Python), 
 
-Attribute Generation: Creating new variables from existing data, such as deriving an 'age' variable from a date of birth.
+\subsubsection{Normalización}
+Proceso de escalar valores numéricos a un rango común (generalmente [0,1]) sin distorsionar las diferencias. Es 
+relevante cuando los datos serán utilizados por algún algoritmo sensible a la escala; así todos los features tienen 
+la misma escala y no se induce un sesgo en ese sentido (KNN, Redes Neuronales).\\
 
-Revising: Ensuring that the data supports its intended usage by deleting duplicates, standardizing the data collection, and purifying it.
+Min-Max Normalization: transforms the original data linearly.
+$$ \( X_{\text{norm}} = \frac{X - \min(X)}{\max(X) - \min(X)} \) $$
 
-Manipulation: Creating new values from existing ones or changing the state of data through
+\textbf{Ejemplos:} \\
+Unificación de lecturas de sensores con diferentes rangos:
+\begin{verbatim}
+    ANTES (Raw values):               DESPUÉS (Normalizado):
+    Sensor_A: [200, 400, 600]         Sensor_A: [0.0, 0.5, 1.0]  
+    Sensor_B: [10, 20, 30]      →     Sensor_B: [0.0, 0.5, 1.0]
+    (Rango A: 200-600)                (Ambos en [0,1])
+    (Rango B: 10-30)
+\end{verbatim}
 
-Techniques and Tools
+La biblioteca Scikit-learn proveé herramientas para el escalado/normalización automático.
 
-Programmatic Transformation: Automating transformation operations using scripts or programming languages such as Python, R, or SQL.
+\subsubsection{Estandarización}
+Transformación similiar a la Normalización, que ajusta los datos para tener media 0 y desviación estándar 1 (Z-score).\\
+Z-Score Normalization: zero-mean normalization.
+$$ \( Z = \frac{X - \mu}{\sigma} \) $$
 
-ETL Tools: Tools for extracting, transforming, and loading data (ETL) are designed to handle complex data transformation requirements in large-scale environments.
+\textbf{Ejemplos:} \\
+Comparar puntuaciones en distintas escalas:
+\begin{verbatim}
+    ANTES (Puntajes crudos):       DESPUÉS (Z-scores):
+    FICO: [650, 720, 580]         FICO: [0.23, 1.12, -1.35]
+    Vantage: [550, 600, 450] →    Vantage: [0.23, 1.12, -1.35]
+    (μ_FICO=650, σ=62.5)          (Comparables directamente)
+    (μ_Vantage=550, σ=44.7)
+\end{verbatim} 
 
-Normalization/Standardization: Scikit-learn in Python provides functions for normalization and standardization such as MinMaxScaler and StandardScaler.
+\textbf{Herramientas:} Scikit-learn (StandardScaler), TensorFlow Transform.
 
-Encoding Categorical Variables: Pandas library in Python provides the get_dummies function for one-hot encoding. For label encoding, LabelEncoder is provided by Scikit-learn.
+\subsubsection{Encoding}
+Conversión de datos categóricos a formato numérico para procesamiento algorítmico.\\
+Los datos pueden ser binarios excluyentes, ordinales o nominales (sin orden).\\
+Los datos binarios pueden pasar por un encoding que los transforma en 0 y 1.\\
+Para los datos ordinales usualmente se utiliza Label Encoding o Ordinal Encoding. 
+Sin embargo los datos categóricos nominales, no se puede asumir que tienen algún orden y forzar uno
+inevitablemente introducirá un sesgo. En ese caso se sugiere utilizar One-Hot Encoding; que consiste 
+en poner cada valor posible como una columna y asignar 0 o 1 indicando si el registro tenía esa clasificación.\\
+Otra forma de codificar es Frequency Encoding. Que transforma el valor que era string en una fracción que indica 
+la frecuencia de la categoría en la columna.
+Hay otros encoding techniques como Binary Encoding, Hash Encoding, Mean/Target Encoding, 
 
-Imputation: Missing values in the dataset are filled using statistical methods like the fillna method in the Pandas Library. Additionally, missing data can be imputed using mean, median, or mode using Scikit-learn’s SimpleImputer.
+Las herramientas usuales incluyen Pandas, Scikit-learn
 
-Feature Engineering: New features are developed by combining old ones. Pandas functions such as apply, map, and transform are used to generate new features
+One-Hot Encoding: Para categorías sin orden. Ejemplo colores:
+\begin{verbatim}
+ANTES:           DESPUÉS (One-Hot):
+Color            Rojo  Verde  Azul
+Rojo     →       1     0      0
+Verde            0     1      0
+Azul             0     0      1
+\end{verbatim}
+Label Encoding: Para categorías ordinales. Ejemplo tallas:
+\begin{verbatim}
+ANTES:           DESPUÉS:
+Talla            Talla_Encoded
+S        →       0
+M                1
+L                2
+\end{verbatim}
+
+\subsubsection{Discretizar}
+Transformación de variables continuas en intervalos discretos.\\
+Esto puede ser relevante al trabajar con tiempo, temperatura, mediciones, etc.
+Algunos de los métodos comunes son:
+\begin{itemize}
+    \item Equal Width Binning: divide el rango en $n$ intervalos de igual tamaño.
+    \item Equal Frequency Binning: divide los datos de forma que cada intervalo tenga la misma cantidad de data points.
+    \item Clusters: Dividir en clusters que implican similitud con algoritmos como K-Means. Todos los datos de un cluster se tratan como una única categoría.
+    \item etc
+\end{itemize}
+
+\textbf{Ejemplo:} 
+Agrupar edades para segmentación demográfica:
+\begin{verbatim}
+ANTES (Edad):        DESPUÉS (Bins):
+[15,                 ["0-18",
+ 25,            →     "19-35",
+ 70,                  "60+",
+ 32]                  "19-35"]
+\end{verbatim}
+
+\textbf{Herramientas:} Pandas (cut/qcut), KNIME, RapidMiner.
+
+\subsubsection{Generación de nuevos atributos}
+Creación de características derivadas mediante operaciones matemáticas o lógicas. \\
+\textbf{Ejemplo:} Calcular el Índice de Masa Corporal (IMC) a partir de peso y altura.
+Derivar la edad de la fecha de nacimiento.\\
+
+\subsubsection{Imputación}
+Técnicas para manejar valores faltantes mediante estimación o sustitución. Eso incluye técnicas 
+estadísticas como remplazar por la media, mediana o moda; algoritmos de ML de regresión, KNN, u 
+otros más específicos; utilizar distribuciones probabilísticas; entre muchos otros que dependen 
+del tipo de datos y los casos de uso finales.\\
+
+\textbf{Ejemplo:} Rellenar valores nulos en ingresos con la mediana del grupo demográfico.\\
+
+\textbf{Herramientas:} Scikit-learn (SimpleImputer), DataWrangler, IBM SPSS.
+
+\subsubsection{Procesamiento de texto}
+Transformación de texto no estructurado a formato analizable. Puede incluir procesos como Tokenización, lematización y vectorización ya sea con TF-IDF o con embeddings.\\
+\textbf{Ejemplo:} Tokenización, lematización y vectorización (TF-IDF) de reseñas de clientes.\\
+\textbf{Herramientas:} NLTK, SpaCy, Transformers, TensorFlow Text.
+% tokenizar, stemming, lemma
+
+% ETL, ELT, and data pipelines
+
+\subsection{ETL y ELT en el Procesamiento de Datos}
+\textbf{ETL (Extract-Transform-Load):} Nace en los 70s con sistemas mainframe y consolida 
+su modelo en los 90s con data warehouses. Diseñado para hardware limitado: transformación 
+\textit{antes} de cargar para reducir la carga en los sistemas destino. \\
+\textbf{ELT (Extract-Load-Transform):} Emerge en 2010s con Big Data y tecnologías 
+cloud (Snowflake, BigQuery, Redshift). Habilitado por escalamiento elástico y procesamiento 
+distribuido (Spark, columnar storage). Respuesta a necesidades de data lakes y análisis 
+exploratorio con datos crudos.
+
+\subsubsection{ETL: Transformación en Tránsito}
+Transformación en \textbf{staging area} externa (servidores ETL). Caso de uso: Datos 
+estructurados con reglas de negocio complejas (ej. consolidación financiera)
+
+\textbf{Usar ETL cuando:} Requieres validación estricta pre-carga (ej. datos regulados: HIPAA, PCI-DSS). 
+Los sistemas destino tienen capacidad computacional limitada. Existen transformaciones complejas independientes 
+del almacenamiento.
+
+\subsubsection{ELT: Transformación en Destino}
+Transformación dentro del \textbf{sistema destino} (data warehouse/lake). Caso de uso: Análisis 
+ad-hoc sobre datos semi-estructurados (ej. logs de apps móviles).
+
+\textbf{Usar ELT cuando:} 
+Necesitas retener datos crudos (ej. auditorías forenses). Trabajas con datos no 
+estructurados/semi-estructurados. Requieres escalamiento horizontal (Big Data > 1TB).
+
+% Views
+\subsection{Views}
+Las vistas son representaciones virtuales de datos que se  definen mediante consultas 
+SQL almacenadas. No almacenan datos físicamente. Proporcionan una capa de abstracción 
+sobre tablas base. Y no necesitan actualizarse ante nuevos registros.
+
+Usar vistas para: Capas de presentación (BI tools), Transformaciones ligeras (filtros, 
+joins simples), Control de acceso granular. 
+
+This stored query can target both tables and other views (you can create a view that queries other views). This stored query (view definition) represents part of the database, but it doesn’t store any physical data! This is the first important difference to a “regular” table – views don’t store the data, which means that every time you need the data from the view, the underlying stored query will be executed against the database. Since views are being run each time you “call” them, they will always pick the relevant data from the underlying tables. That means you don’t need to worry if something changed in the underlying table (deleted/updated rows), as you will always get the actual data from the tables.
+
+%  dbt (data build tool)
+\subsection{dbt (data build tool)}
+Es un framework open-source que permite ejecutar transformaciones de datos \textbf{dentro 
+del data warehouse} mediante SQL, gestionar pipelines como código versionado (Git), automatizar 
+testing, documentación y despliegues.\\
+Promueve el principio de "Analytics engineering as software development".\\
+dbt es la T en ELT. No extrae o carga datos, sino que transforma los datos en el Data Warehouse 
+para ser consumidos por herramientas de BI.\\
+dbt transforma mediante views/materialized views\\
+
+Tiene integraciones nativas con:
+\begin{itemize}
+    \item Warehouses: Snowflake, BigQuery, Redshift, Databricks
+    \item Ingestion: Airbyte, Fivetran, Meltano
+    \item BI: Metabase, Mode, Preset
+\end{itemize}
+
+The utility of dbt that makes it superior to other approaches originates from the combination of Jinja templates with SQL, and re-usable components or models.
+
+Se puede utilizar dbt combinado con spark
+% Spark 
+\subsection{Spark(https://spark.apache.org)}
+% https://medium.com/@atnofordatascience/data-engineering-with-apache-spark-a-beginners-guide-d3190be2b6a4
+% https://medium.com/@DataEngineeer/introduction-to-apache-spark-for-data-engineering-d2060166165a
+Se ha convertido en uno de los frameworks de procesamiento de grandes volúmenes de 
+datos más destacados de la industria. Spark está diseñado para trabajar con una amplia 
+gama de fuentes de datos, como HDFS, Apache Cassandra, Apache HBase y Amazon S3.
+
+Unifica el procesamiento de tus datos en lotes y en tiempo real (streaming), utilizando 
+tu lenguaje preferido: Python, SQL, Scala, Java o R.
+
+Realiza Análisis Exploratorio de Datos (EDA) en datos a escala de petabytes sin 
+tener que recurrir al submuestreo(downsampling) gracias a su escalamiento 
+horizontal. Se ejecuta más rápido que la mayoría de los almacenes de datos.
+Tiene MLlib, biblioteca integrada de machine learning para tareas como 
+clasificación, regresión y clustering.
+
+- Pyspark
+
+\section{Serving}
+% Descripción de serving de datos
+Fase final del pipeline donde los datos transformados se ponen a disposición de los usuarios 
+finales, ya sea BI, dashboards, APIs, microservicios, ML o sistemas externos. Idealmente el 
+servicio es con acceso seguro, baja latencia y formatos consumibles.
+
+\subsection{Desplegar un API}
+
+\subsection{Herramientas de Análisis y Visualización}
+
+\subsubsection{Tableau}
+Plataforma líder de visualización empresarial con capacidades drag-and-drop y soporte para big data.
+Tableau es una herramienta de Inteligencia de Negocios (BI) para analizar datos visualmente. Los usuarios 
+pueden crear y distribuir dashboards interactivos y compartibles que representan tendencias, 
+variaciones y densidad en los datos en forma de gráficos y diagramas. Tableau puede conectarse a 
+archivos, fuentes relacionales y de Big Data para adquirir y procesar datos.
+
+Soporta, con Tableau Embedding API, añadir (embed) visualizaciones a una página web.
+
+% https://www.ask.com/news/comprehensive-guide-using-tableau-free-version-data-visualization#:~:text=Known%20for%20its%20intuitive%20interface%20and%20powerful%20features%2C,explore%20and%20visualize%20their%20data%20without%20any%20cost.
+
+\subsubsection{Power BI} (free tier on desktop)
+Microsoft Power BI es una plataforma de visualización de datos e informes. Un dashboard de Power BI permite reportar y visualizar 
+datos en una amplia gama de estilos, incluyendo gráficos, mapas, diagramas, diagramas de dispersión y más.
+
+Power BI en sí está compuesto por varias aplicaciones interrelacionadas: Power BI Desktop, Power BI Pro, Power BI Premium, Power BI Mobile,\\
+Power BI Embedded: Power BI White-label para proporcionar paneles y analíticas orientadas al cliente en tus propias aplicaciones.\\
+Power BI Report Server: Solución local incluida en Premium; puede ser migrada a la nube.\\
+
+\subsubsection{Looker}
+Looker es una plataforma de computación en la nube que proporciona inteligencia empresarial (BI) y análisis de datos.
+Integración de datos: Looker tiene la capacidad de establecer conexiones con varias fuentes de datos basadas en la nube, como los data warehouse Snowflake, Amazon Redshift y Google BigQuery. Debido a esto, los usuarios pueden examinar los datos almacenados en estas plataformas sin tener que copiarlos o reubicarlos.
+Visualización: Looker ofrece una variedad de opciones de visualización para transmitir eficazmente información valiosa de los datos. Para comunicar mediciones, tendencias y patrones, los usuarios pueden crear paneles, gráficos y diagramas.
+
+\subsubsection{Metabase}
+Metabase es una plataforma de inteligencia empresarial de código abierto. Puede usar Metabase para hacer preguntas sobre sus datos, o incrustar Metabase en su aplicación para permitir que sus clientes exploren sus propios datos.
+
+\chapter{Conferencia 5}
+\normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Tecnologías complementarias}
+\normalfont\small\\
+
+Batch:
+- Apache Spark
+- Apache Hadoop
+
+Streaming:
+- Apache Kafka
+- Apache Flink
 
 Tools:
 \begin{itemize}
@@ -688,22 +945,14 @@ Data Processing, Data Transformation, Data Serialization & Formatting, API Manag
 - Prefect and Luigi are used for automating and managing complex data workflows.
 - dbt (data build tool) and Metabase are used for data transformation and analytics.
 
-\section{Generación}
-\section{Almacenamiento}
+
 Containerization Tools:
 - Docker
 - Kubernetes
-Data Warehouse Tools:
-- Snowflake
-- PostgreSQL
-- BigQuery
-- Amazon Redshift
+
 
 - Apache Kafka
-Data Lakes:
-- Amazon S3
-- Azure Data Lake
-- Hadoop Distributed File System (HDFS)
+
 
 \section{Ingesta}
 - Segment
