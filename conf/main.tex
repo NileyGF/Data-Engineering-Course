@@ -862,6 +862,73 @@ finales, ya sea BI, dashboards, APIs, microservicios, ML o sistemas externos. Id
 servicio es con acceso seguro, baja latencia y formatos consumibles.
 
 \subsection{Desplegar un API}
+Esto permite entregar datos a clientes en varias modalidades: web, móvil, IoT, otro servicio de 
+analítica. Permite consultar datos en formato streaming en tiempo real. Además de permitir un control 
+preciso y granular sobre qué datos exponer, a cada tipo de usuario.
+
+\textbf{Retos comunes:}\\
+Si el volumen de datos(+100) es grande es necesario implementar paginación, straming, etc. \\
+Establecer protocolos de seguridad con JWT, OAuth2, Rate limiting.
+
+\subsubsection{Frameworks Principales}
+\begin{itemize}
+    \item \textbf{FastAPI}: Async, auto-documentación OpenAPI
+        Ejemplo endpoint:
+        \begin{verbatim}
+@app.get("/sales/{region}")
+async def get_sales(region: str, 
+                   start: date, 
+                   end: date):
+    return db.query(Sales)
+        .filter(Sales.region == region)
+        .filter(Sales.date.between(start, end))
+        \end{verbatim}
+    
+    \item \textbf{Flask-RESTful}: Ligero, ideal para prototipos, Extensible con Flask-SQLAlchemy
+    
+    \item \textbf{Django REST Framework}: ORM integrado, autenticación robusta, Ideal para CRUD complejos
+
+\end{itemize}
+
+\subsubsection{Librerías Complementarias}
+\begin{itemize}
+    \item \textbf{Pydantic}: Validación y serialización de modelos.
+    \item \textbf{Celery}: Procesamiento asíncrono de requests pesados.
+    \item \textbf{Authlib}: Implementación OAuth2/JWT.
+    \item \textbf{Redis}: Caché de respuestas frecuentes.
+\end{itemize}
+
+\subsubsection{Patrones de Diseño}
+\begin{itemize}
+    \item \textbf{Modelo de Paginación}:
+    \begin{verbatim}
+{
+  "data": [...],
+  "pagination": {
+    "total": 1000,
+    "page": 2,
+    "per_page": 50,
+    "next": "/api/v1/sales?page=3"
+  }
+}
+    \end{verbatim}
+    
+    \item \textbf{Versionado Semántico}:
+    \begin{itemize}
+        \item \texttt{/api/v1/sales}
+        \item \texttt{/api/v2/sales}
+    \end{itemize}
+    
+    \item \textbf{Circuit Breaker}: Usando Tenacity
+    \begin{verbatim}
+@retry(stop=stop_after_attempt(3), 
+      wait=wait_exponential(multiplier=1))
+def fetch_external_data():
+    ...
+    \end{verbatim}
+\end{itemize}
+
+\textbf{Buenas prácticas:} Documentación Automática, Monitoreo, Pruebas automáticas, Logging.
 
 \subsection{Herramientas de Análisis y Visualización}
 
