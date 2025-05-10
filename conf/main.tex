@@ -243,6 +243,7 @@ El ciclo de vida de la ingeniería de datos es un subconjunto de todo el ciclo d
 Un ingeniero de datos tiene varios objetivos de alto nivel a lo largo del ciclo de vida de los datos: producir un Return on Investment(ROI) y reducir los costos, reducir el riesgo y maximizar el valor y la utilidad de los datos.
 
 \subsection{Generación}
+
 Un \textit{sistema de origen} es el origen de los datos utilizados en el ciclo de vida de la ingeniería de datos. Por ejemplo, un sistema de origen podría ser un dispositivo IoT, una cola de mensajes de aplicación o una base de datos transaccional.
 
 Un ingeniero de datos consume datos de un sistema de origen, pero normalmente no posee ni controla el sistema de origen en sí. El ingeniero de datos necesita tener un entendimiento funcional de cómo funcionan los sistemas de origen, la forma en que generan los datos, la frecuencia y la velocidad de los datos, y la variedad de datos que se generan.\\
@@ -609,12 +610,6 @@ Herramientas de ingesta de datos
     \item Apache NiFi:  Herramienta visual para automatizar los flujos de datos entre sistemas.
 \end{itemize}
 
-% \chapter{Integración de Datos}
-% Data integration refers to the process of combining data from multiple sources into a unified, coherent format that can be used for various analytical, operational, and decision-making purposes
-% This process is essential in today's digital landscape, where organizations gather data from a wide range of sources, including databases, apps, spreadsheets, cloud services, APIs, and more
-
-% Solutions for combining data from disparate sources into a unified view, often involving middleware or virtual data layers.
-
 \chapter{Conferencia 4}
 \normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Transformación y Servicio}
 \normalfont\small\\
@@ -826,7 +821,7 @@ sobre tablas base. Y no necesitan actualizarse ante nuevos registros.
 Usar vistas para: Capas de presentación (BI tools), Transformaciones ligeras (filtros, 
 joins simples), Control de acceso granular. 
 
-This stored query can target both tables and other views (you can create a view that queries other views). This stored query (view definition) represents part of the database, but it doesn’t store any physical data! This is the first important difference to a “regular” table – views don’t store the data, which means that every time you need the data from the view, the underlying stored query will be executed against the database. Since views are being run each time you “call” them, they will always pick the relevant data from the underlying tables. That means you don’t need to worry if something changed in the underlying table (deleted/updated rows), as you will always get the actual data from the tables.
+This stored query can target both tables and other views (you can create a view that queries other views). This stored query (view definition) represents part of the database, but it doesn't store any physical data! This is the first important difference to a “regular” table – views don't store the data, which means that every time you need the data from the view, the underlying stored query will be executed against the database. Since views are being run each time you “call” them, they will always pick the relevant data from the underlying tables. That means you don't need to worry if something changed in the underlying table (deleted/updated rows), as you will always get the actual data from the tables.
 
 %  dbt (data build tool)
 \subsection{dbt (data build tool)}
@@ -958,6 +953,8 @@ Soporta, con Tableau Embedding API, añadir (embed) visualizaciones a una págin
 \subsubsection{Power BI} (free tier on desktop)
 Microsoft Power BI es una plataforma de visualización de datos e informes. Un dashboard de Power BI permite reportar y visualizar 
 datos en una amplia gama de estilos, incluyendo gráficos, mapas, diagramas, diagramas de dispersión y más.
+Allows to also create highly customizable visualizations with R and Python. 
+Gran soporte para mapas.
 
 Power BI en sí está compuesto por varias aplicaciones interrelacionadas: Power BI Desktop, Power BI Pro, Power BI Premium, Power BI Mobile,\\
 Power BI Embedded: Power BI White-label para proporcionar paneles y analíticas orientadas al cliente en tus propias aplicaciones.\\
@@ -975,66 +972,543 @@ Metabase es una plataforma de inteligencia empresarial de código abierto. Puede
 \normalfont\LARGE \textbf{Tecnologías de la Ingeniería de Datos: Tecnologías complementarias}
 \normalfont\small\\
 
-Stream Processing
+\section{Gestión de Datos}
+
+Las herramientas de data governance son soluciones de software diseñadas para ayudar a las empresas a gestionar sus datos de manera más efectiva. Estas herramientas respaldan procesos que aseguran que los datos sean precisos, seguros y estén en línea con los requisitos regulatorios. Pueden incluir capacidades tales como:
+
 \begin{itemize}
-    \item Apache Flink: Framework for stateful computations over unbounded/bounded data streams.
-    \item Apache Kafka Streams: Library for building real-time stream processing applications.
-    % \item Apache Spark Streaming: Micro-batch processing engine for streams.
-    % \item Google Cloud Dataflow: Fully managed service for stream and batch processing.
-    % \item Confluent KSQL: Streaming SQL engine for Apache Kafka.
+    \item \textbf{Catalogación de datos:} el proceso de crear un inventario exhaustivo de sus activos de datos. Una herramienta de gobierno de datos con sólidas capacidades de catalogación facilita la búsqueda, comprensión y uso de datos en toda su organización.
+    \item \textbf{Seguimiento del linaje de datos:} comprender de dónde provienen sus datos, cómo se transforman y a dónde van es crucial. Las funciones de linaje de datos le permiten rastrear el flujo de datos a través de los sistemas, lo que garantiza la transparencia y la confianza.
+    \item \textbf{Gestión del cumplimiento normativo:} muchas industrias están sujetas a regulaciones estrictas como GDPR, HIPAA o CCPA. Las herramientas de gobierno de datos que ofrecen gestión del cumplimiento normativo pueden ayudar a su organización a mantener y demostrar el cumplimiento de estas regulaciones.
+    \item \textbf{Control de calidad de los datos:} las herramientas de gobierno de datos deben tener controles de calidad de datos integrados que garanticen la precisión, integridad y consistencia de sus datos. Estas herramientas deben proporcionar alertas automatizadas cuando surjan problemas de calidad de los datos.
+    \item \textbf{Controles de acceso basados en roles:} la seguridad de los datos es un componente clave del gobierno. Asegúrese de que su herramienta admita controles de acceso basados en roles para que solo el personal autorizado tenga acceso a datos confidenciales.
 \end{itemize}
 
-Batch Processing
+% Data cataloging: the process of creating a comprehensive inventory of your data assets. A data governance tool with strong cataloging capabilities makes it easier to find, understand, and use data across your organization.
+
+% Data lineage tracking: Understanding where your data comes from, how it's transformed, and where it goes is crucial. Data lineage features allow you to trace the flow of data across systems, ensuring transparency and trust.
+
+% Compliance management: Many industries are subject to strict regulations such as GDPR, HIPAA, or CCPA. Data governance tools that offer compliance management can help your organization maintain and demonstrate adherence to these regulations.
+
+% Data quality control: Data governance tools should have built-in data quality controls that ensure the accuracy, completeness, and consistency of your data. These tools should provide automated alerts when data quality issues arise.
+
+% Role-based access controls:  Data security is a key component of governance. Ensure that your tool supports role-based access controls so that only authorized personnel have access to sensitive data.
+% Policy enforcement
+
+% https://rootstack.com/es/blog/dataops-implementacion-herramientas
+
+\section{Orquestación de Datos}
+En el ámbito de la ingeniería de datos, el proceso de transformar datos brutos en información valiosa implica la utilización de pipelines y flujos de trabajo de datos. Estos conceptos forman la columna vertebral de la gestión eficiente de datos y permiten a los ingenieros de datos manejar tareas complejas de procesamiento de datos sin problemas.\\
+Los pipelines de datos sirven como el tejido conectivo dentro del ecosistema de la ingeniería de datos. Son responsables de orquestar el flujo de datos desde su origen hasta su destino, manejando varias etapas del procesamiento de datos a lo largo del camino. Los ingenieros de datos diseñan e implementan pipelines para asegurar el movimiento fluido de los datos, incluyendo tareas como la ingestión, integración, transformación y carga de datos.\\
+
+\textbf{Apache Airflow:} Es una herramienta de código abierto ampliamente utilizada para la creación, programación y monitoreo de flujos de trabajo complejos. Airflow permite a los equipos de DataOps diseñar pipelines de datos de manera flexible y modular, integrando distintas fuentes y destinos de datos. Es ideal para la automatización de tareas y facilita la colaboración entre equipos.
+
+Airflow proporciona un framework de Python flexible y escalable que permite a los ingenieros de datos crear, programar y monitorizar sus pipelines de datos.\\
+Un DAG representa un conjunto de tareas y sus dependencias, donde la dirección de las flechas indica el flujo de datos o ejecución.\\
+La parte "Dirigido" significa que cada tarea tiene una relación definida con una o más tareas, formando una cadena de dependencias. Esto asegura que las tareas se ejecuten en el orden correcto, basándose en sus dependencias.\\
+La parte "Acíclico" significa que no hay bucles o ciclos en el grafo. En otras palabras, las tareas no pueden tener dependencias circulares que conducirían a bucles infinitos. Esto asegura que los flujos de trabajo puedan completarse exitosamente sin bucles infinitos o dependencias no resueltas.\\
+
+\textbf{Prefect:} Similar a Airflow, permite la orquestación y automatización de flujos de trabajo de datos; así como el monitoreo de pipelines con una interfaz intuitiva para equipos de datos. 
+
+Prefect is an open-source orchestration tool for data engineering. It is a Python-based tool that allows you to define, schedule, and monitor your data pipelines. Prefect is a great tool for data engineers and data scientists who want to automate their data pipelines.\\
+
+\section{DataOps}
+
+La creciente complejidad de los datos en las organizaciones modernas ha dado lugar a la necesidad de prácticas más ágiles y eficientes. DataOps surge como una respuesta para mejorar la gestión de datos, optimizar flujos de trabajo y fomentar una mayor colaboración entre equipos de TI y analistas de datos. 
+DataOps es una metodología que combina los principios de DevOps con la gestión de datos. Su objetivo principal es optimizar el ciclo de vida de los datos, desde la integración y almacenamiento hasta su análisis y entrega, asegurando la calidad y confiabilidad. La adopción de herramientas adecuadas es crucial para implementar DataOps con éxito y maximizar los beneficios de esta metodología.
+
+\textbf{Talend:} Plataforma para integración, transformación y migración de datos en tiempo real, con enfoque en automatización y calidad de datos para mantener altos estándares y cumplimiento normativo.
+
+\subsection{Containerization}
+
+La contenerización es una práctica de desarrollo de software que empaqueta una aplicación y sus dependencias en un único contenedor. El contenedor está aislado del sistema host, permitiendo que la aplicación se ejecute en cualquier infraestructura que soporte contenedores, independientemente del sistema operativo subyacente.\\
+Inspirados por la idea de las máquinas virtuales, los contenedores proporcionan entornos ligeros y aislados que empaquetan las aplicaciones con sus dependencias. Esta innovación asegura consistencia, portabilidad y eficiencia. Con el tiempo, herramientas como Docker y Kubernetes se han convertido en estándares de la industria para la gestión de aplicaciones contenerizadas, permitiendo una escalabilidad y orquestación sin problemas.\\
+Los contenedores pueden moverse fácilmente de un host a otro, lo que facilita la migración de una solución de ingeniería de datos a una infraestructura diferente si es necesario.\\
+Los contenedores proporcionan un entorno consistente para que las aplicaciones se ejecuten, asegurando que la solución de ingeniería de datos se comporte de la misma manera independientemente del entorno en el que se despliegue.\\
+
+\textbf{Docker:} Plataforma de código abierto que permite la automatización del despliegue, escalado y gestión de aplicaciones en contenedores. Kubernetes facilita la creación de entornos escalables y resilientes para gestionar grandes volúmenes de datos y flujos de trabajo. Con Kubernetes, los equipos pueden orquestar los recursos necesarios de manera eficiente, garantizando que las aplicaciones de datos operen de manera fluida.
+
+\textbf{Kubernetes:} Plataforma para automatizar despliegue, escalado y gestión de aplicaciones en contenedores, usada para crear entornos escalables y resilientes en proyectos de ingeniería de datos y DataOps
+
+\chapter{Conferencia 6}
+\normalfont\LARGE \textbf{Integración de Sistemas en la Ingeniería de Datos}
+\normalfont\small\\
+
+\section{System Integration}
+
+% v3: https://www.altexsoft.com/blog/system-integration/
+
+Definición:\\
+La Integración de Sistemas es el proceso de ingeniería que consiste en integrar hardware, 
+software, redes y fuentes de datos dispares en un sistema unificado y cohesivo que opera 
+como una sola entidad funcional. Esto implica establecer canales de comunicación y protocolos 
+de intercambio de datos entre sistemas previamente aislados. El objetivo es lograr que estos
+sistemas trabajen juntos sin problemas para que puedan compartir información y procesos de 
+manera más eficiente. La integración de sistemas se centra típicamente en mejorar la 
+funcionalidad, el flujo de datos y la eficiencia operativa.
+
+Con los años, la integración de sistemas ha evolucionado. Si bien antes se trataba principalmente 
+de conectar servidores on-premise (locales), la integración actual a menudo se realiza en la nube. 
+Ya sea a través de APIs o buses de servicio empresarial, la integración moderna ayuda a que diferentes 
+sistemas y herramientas trabajen juntos de manera eficiente en un entorno basado en la nube.
+
+\subsection{Tipos de Integración de Sistemas y Ejemplos}
+\subsubsection{Integración de Datos (Data Integration)}
+La integración de datos es un tipo de integración de sistemas enfocada en consolidar información de diversas fuentes, como plataformas, servicios y bases de datos, en una visión unificada.
+
+\textbf{Ejemplo:} Starbucks utiliza la integración de datos para combinar información de su aplicación móvil, sistemas de punto de venta (POS) y comentarios de clientes. Esta integración permite promociones personalizadas, seguimiento de inventario en tiempo real y una mejor experiencia del cliente mediante análisis integrales.
+
+\subsubsection{Integración de Aplicaciones (Application Integration)}
+La integración de aplicaciones se refiere al proceso de conectar diferentes aplicaciones empresariales para que funcionen de manera eficiente. Esto es crucial para optimizar flujos de trabajo y procesos de negocio, permitiendo que los datos se muevan entre aplicaciones automáticamente sin intervención manual.
+
+\textbf{Ejemplo:} Integrar herramientas como Slack y Jira para que las actualizaciones de proyectos se sincronicen en tiempo real entre plataformas de comunicación y gestión de proyectos.
+
+\subsubsection{Integración de Sistemas Legacy (Legacy System Integration)}
+Este tipo de integración conecta sistemas antiguos (legacy) con tecnologías modernas, permitiendo seguir utilizando datos existentes junto con herramientas nuevas.
+
+\textbf{Ejemplo:} Un hospital que conecta un antiguo sistema de gestión de pacientes con un nuevo sistema de Registro Electrónico de Salud (EHR, por sus siglas en inglés). Esto permite a los médicos acceder a toda la información del paciente desde ambos sistemas sin cambiar su rutina.
+
+\subsubsection{Integración de Aplicaciones Empresariales (Enterprise Application Integration, EAI)}
+La EAI unifica diferentes aplicaciones de software dentro de una empresa para que funcionen de manera cohesionada. Conecta diversas aplicaciones, permitiéndoles compartir e intercambiar datos en tiempo real. Resuelve el problema de aplicaciones empresariales dispares que almacenan datos por separado, integrando todo en un sistema unificado.
+
+\textbf{Ejemplo:} Una empresa utiliza sistemas separados para ventas, servicio al cliente e inventario. La EAI enlaza estos sistemas, permitiéndoles compartir información y comunicarse en tiempo real. Esta integración hace que las operaciones sean más fluidas y eficientes al eliminar la transferencia manual de datos.
+
+\subsubsection{Integración Empresa a Empresa (Business-to-Business, B2B Integration)}
+La integración B2B conecta los sistemas de diferentes empresas para agilizar sus procesos colaborativos. Automatiza el intercambio de transacciones y documentos, como órdenes y facturas, entre negocios.
+
+Este flujo eficiente de información conduce a una cooperación más eficaz, transacciones más rápidas y menos errores, simplificando las interacciones con proveedores, clientes y socios.
+
+\subsubsection{Intercambio de Datos Electrónicos (Electronic Data Interchange, EDI)}
+La integración de documentos electrónicos (EDI) es un tipo específico de integración centrado en el intercambio de documentos comerciales entre sistemas, frecuentemente entre empresas (B2B). El EDI automatiza y protege la transferencia de documentos, reduciendo errores manuales y mejorando la eficiencia. En industrias como la salud y las finanzas, donde la confidencialidad de los datos es crítica, el EDI garantiza un manejo seguro de documentos.
+
+\textbf{Ejemplo:} Imagina una empresa que utiliza sistemas separados para ventas, servicio al cliente e inventario. Cada sistema tiene sus propios datos y procesos, lo que dificulta tener una visión completa de lo que ocurre en el negocio. La EAI integra estos sistemas, permitiéndoles compartir información y comunicarse en tiempo real.
+
+\subsection{Integración de Sistemas. Conectando sistemas}
+\subsubsection{APIs (Interfaces de Programación de Aplicaciones)}
+Las APIs son un mecanismo fundamental para permitir la interoperabilidad entre sistemas de software. Una API define un conjunto de rutinas, protocolos y herramientas para construir aplicaciones. Actúa esencialmente como intermediario, proporcionando una interfaz estandarizada mediante la cual las aplicaciones pueden solicitar servicios e intercambiar datos. Esta capa de abstracción protege a los desarrolladores de la complejidad subyacente de los sistemas que interactúan.
+
+Las APIs especifican formatos de datos (ej. JSON, XML) y protocolos de comunicación (ej. REST, SOAP, gRPC) para la interacción. Las APIs RESTful, en particular, utilizan métodos HTTP (GET, POST, PUT, DELETE) para realizar operaciones sobre recursos identificados por URLs. La seguridad es una consideración crítica, abordada frecuentemente mediante mecanismos de autenticación (ej. claves API, OAuth) y autorización.
+
+Las APIs soportan un enfoque de diseño modular, permitiendo que los sistemas evolucionen independientemente mientras mantienen la interoperabilidad.
+
+\subsubsection{Middleware}
+El middleware abarca una amplia categoría de software que facilita la comunicación y gestión de datos entre aplicaciones distribuidas. Proporciona una capa de abstracción que oculta la heterogeneidad de los sistemas subyacentes, simplificando los esfuerzos de integración.
+
+Las soluciones de middleware ofrecen diversos servicios, incluyendo colas de mensajes (ej. RabbitMQ, Apache Kafka), gestión de transacciones, transformación de datos y seguridad. Las colas de mensajes permiten comunicación asíncrona, desacoplando aplicaciones y mejorando la escalabilidad. Los motores de transformación de datos convierten información entre diferentes formatos y esquemas, asegurando compatibilidad entre sistemas.
+
+El middleware desacopla aplicaciones, permitiéndoles operar independientemente y mejorando la resiliencia del sistema. Las colas de mensajes y otros servicios de middleware mejoran la escalabilidad del sistema distribuyendo cargas de trabajo y gestionando comunicación asíncrona.
+
+\subsubsection{Webhooks}
+Los webhooks son un mecanismo para permitir comunicación en tiempo real entre aplicaciones. En lugar de consultar constantemente (polling) un servidor por actualizaciones, una aplicación puede registrar un webhook para recibir notificaciones cuando ocurren eventos específicos en otro sistema.
+
+Un webhook es básicamente un callback HTTP definido por el usuario. Cuando ocurre un evento predefinido en un sistema fuente, este envía una petición HTTP POST a una URL especificada (el endpoint del webhook) conteniendo datos relacionados con el evento. La aplicación receptora puede entonces procesar los datos y tomar las acciones correspondientes.
+
+Los webhooks proporcionan actualizaciones en tiempo real, permitiendo respuestas inmediatas a eventos. Eliminan la necesidad de polling constante, reduciendo latencia y mejorando la capacidad de respuesta del sistema. Son más eficientes en recursos que el polling, ya que solo transmiten datos cuando ocurren eventos.
+
+\subsubsection{EDI (Intercambio Electrónico de Datos)}
+El EDI es un método estandarizado para intercambiar documentos comerciales electrónicamente entre organizaciones. Reemplaza procesos tradicionales basados en papel con transmisión automatizada de datos, optimizando operaciones comerciales.
+
+Los estándares EDI (ej. ANSI X12, UN/EDIFACT) definen el formato y estructura de documentos comerciales como órdenes de compra, facturas y avisos de envío. Las transacciones EDI típicamente se transmiten sobre redes seguras usando protocolos como AS2 (Applicability Statement 2). Se utiliza software de traducción para convertir datos entre formatos EDI y formatos internos de aplicaciones.
+
+El EDI elimina la entrada manual de datos, reduciendo errores y mejorando la precisión de la información.
+
+\subsubsection{Snaps de SnapLogic}
+Los Snaps de SnapLogic son conectores preconstruidos diseñados para simplificar la integración con aplicaciones comúnmente utilizadas. Estos conectores ofrecen una interfaz amigable, permitiendo a los usuarios establecer conexiones sin necesidad de programación personalizada extensa.
+
+Los Snaps abstraen las complejidades de las APIs subyacentes, proporcionando un enfoque visual y basado en configuración para la integración. Típicamente soportan operaciones comunes para interactuar con aplicaciones objetivo, como recuperación de datos, creación de datos y modificación de datos.
+
+\subsection{Enfoques de Integración de Sistemas}
+Las metodologías de integración de sistemas definen cómo los datos y procesos se interconectan entre subsistemas, donde cada enfoque ofrece ventajas y limitaciones distintas según escalabilidad, complejidad y requisitos funcionales. A continuación analizamos los modelos de integración predominantes:
+
+\subsubsection{Modelo de Integración Vertical (Basado en Silos)}
+Arquitectura jerárquica donde los subsistemas se apilan en capas funcionales, con componentes básicos en la base y procesos de alto nivel en la cima. Esto crea silos aislados optimizados para flujos de trabajo específicos.
+
+\textbf{Ventajas:}
 \begin{itemize}
-    \item Apache Spark: Engine for large-scale batch data processing and analytics.
-    \item Apache Hadoop : Framework for distributed processing of big datasets.
-    % \item AWS Batch: Managed service for running batch workloads at scale.
-    % \item Airflow (with batch operators): Orchestration tool for scheduling batch jobs.
-    % \item IBM DataStage: ETL tool for designing and executing batch data jobs.
+\item \textit{Simplicidad:} Configuración sencilla y directa
+\item \textit{Aislamiento Funcional:} Ideal para procesos específicos y aislados
+\item La integración vertical es más fácil de gestionar y solucionar dentro del silo
 \end{itemize}
 
-Transformation tools:
+\textbf{Desventajas:}
+\begin{itemize}
+\item Difícil escalabilidad debido a su estructura rígida
+\item Cada nueva función requiere su propio silo, generando posibles ineficiencias
+\item Flexibilidad limitada para compartir datos entre funciones
+\end{itemize}
 
+\textbf{Ejemplo:} Procesamiento de pedidos en e-commerce - los subsistemas de ventas, producción y logística se encadenan linealmente sin intercambio lateral de datos.
 
-Data Processing, Data Transformation, Data Serialization & Formatting, API Management
+\subsubsection{Modelo de Integración Horizontal (Hub-and-Spoke)}
+Arquitectura centralizada que emplea una capa intermediaria (ej. Enterprise Service Bus, ESB) para enrutar datos entre subsistemas, desacoplando emisores y receptores.
 
---  YAML engineering 
-- Airflow (orchestration)
-- Prefect
-- Terraform and Pulumi are IaC tools
-- Docker and Kubernetes are popular containerization tools.
-- Prefect and Luigi are used for automating and managing complex data workflows.
+\textbf{Ventajas:}
+\begin{itemize}
+\item \textit{Modularidad:} Alta flexibilidad para reemplazar o actualizar sistemas individuales
+\item \textit{Gestión Unificada:} Administración centralizada que reduce la complejidad de comunicación entre sistemas
+\item Soporta amplia gama de funciones y aplicaciones
+\end{itemize}
 
+\textbf{Desventajas:}
+\begin{itemize}
+\item Configuración y mantenimiento más complejos
+\item Puede ser costoso por requerir una capa adicional de integración
+\item \textit{Punto Único de Falla:} Riesgo de un único punto de falla si la capa central tiene problemas
+\end{itemize}
 
-Containerization Tools:
-- Docker
-- Kubernetes
+\textbf{Ejemplo:} Ecosistemas centrados en CRM (ej. Salesforce) como hubs para subsistemas de marketing, inventario y logística.
 
+\subsubsection{Modelo de Integración Punto a Punto}
+Enfoque más simple de conectividad donde se vinculan dos sistemas directamente entre sí. Conexiones directas por pares entre subsistemas, típicamente para transferencia unidireccional de datos o activación de eventos.
 
-- Apache Kafka
+\textbf{Ventajas:}
+\begin{itemize}
+\item Implementación simple y rápida
+\item Permite comunicación directa entre sistemas con mínima sobrecarga
+\item Bajo costo y esfuerzo inicial
+\end{itemize}
 
+\textbf{Desventajas:}
+\begin{itemize}
+\item Escalabilidad limitada, ya que cada nueva conexión añade complejidad
+\item Se vuelve difícil de gestionar al crecer el número de conexiones
+\item No es adecuado para integraciones a gran escala con muchos sistemas
+\end{itemize}
 
-\section{Ingesta}
-- Segment
-- Fivetran: is a comprehensive ETL tool
-- Stitch
-- Apache Kafka
-- Airbyte 
-\section{Transformación}
+\textbf{Ejemplo:} Formularios de contacto en sitios web que envían datos directamente a un CRM como Salesforce.
 
-Batch:
-- Apache Spark
-- Apache Hadoop
+\subsubsection{Modelo de Integración en Estrella}
+La integración en estrella conecta cada sistema directamente con los demás, creando una red de conexiones punto a punto. Modelo híbrido que combina conexiones punto a punto selectivas entre subsistemas críticos, formando una malla parcial.
 
-Streaming:
-- Apache Kafka
-- Apache Flink
+\textbf{Ventajas:}
+\begin{itemize}
+\item \textit{Eficiencia Dirigida:} Permite rutas de datos prioritarias sin interconectividad completa
+\item \textit{Flexibilidad:} Permite personalizar conexiones según necesidades específicas
+\item Máxima flexibilidad para compartir datos entre sistemas
+\item Mejora funcionalidad al permitir múltiples rutas para flujo de datos
+\end{itemize}
 
+\textbf{Desventajas:}
+\begin{itemize}
+\item Creciente complejidad al añadir más sistemas
+\item Requiere alto esfuerzo de mantenimiento para gestionar todas las conexiones
+\item Difícil escalabilidad, ya que cada nuevo sistema incrementa exponencialmente el número de conexiones necesarias
+\end{itemize}
+
+\textbf{Ejemplo:} Un cliente realiza un pedido en un sitio web. El sitio envía la orden al sistema de ventas, que a su vez envía la información al departamento de envíos y logística. Simultáneamente, el sitio registra al cliente en el sistema CRM de la empresa, que envía una notificación a un representante de ventas en Slack. Múltiples aplicaciones están conectadas y se comunican entre sí, pero no todas están interconectadas entre ellas.
+% \section{System integration vs data integration}
+% System integration is not to be confused with data integration. The former means connecting disparate systems to facilitate access to information, while the latter is about gathering data from different sources into one storage to gain a unified view. Please visit our separate post about data integration to learn more about it.  
+
+\chapter{Conferencia 7}
+\normalfont\LARGE \textbf{Integración de Datos en la Ingeniería de Datos}
+\normalfont\small\\
+Es parte de Data Mangement (o Gestión de Datos), una de las corrientes subyacentes del ciclo de vida de la ingeniería de datos.
+\section{Integración de Datos}
+Data integration is a systematic process that involves the combination of data from heterogeneous sources 
+into a unified, coherent, and standardized format. This process is critical in modern computational and 
+business environments, where data is generated and stored across diverse platforms, including relational 
+databases, applications, spreadsheets, cloud-based services, and application programming interfaces (APIs). 
+The primary objective of data integration is to facilitate efficient analytical processing, operational workflows, 
+and data-driven decision-making.
+
+It involves extracting, transforming, and loading data into a central repository or database to provide 
+a comprehensive view of the data and enable informed decision-making.
+
+Data integration transcends mere aggregation; it requires the reconciliation of structural, semantic, and syntactic differences among source datasets. Advanced middleware solutions or virtual data layers are often employed to orchestrate this process, ensuring seamless interoperability. The resultant unified data ecosystem supports high-precision analytics, real-time operational intelligence, and strategic business insights.
+
+\subsection{Data integration process}
+\subsubsection{1. Initiating with Data Discovery and Profiling}
+This phase implicates a deep dive into the data landscape, identifying the myriad streams that feed into the organization's informational ecosystem. Here, the focus is on understanding the nuances of each data source—its structure, quality, and peculiarities—laying the groundwork for a seamless integration.
+\subsubsection{2. Extracting Data with Precision}
+This critical step requires pulling data from its native repositories, which demands precision and sensitivity to avoid disrupting the source systems' functionality. The challenge lies in efficiently marshaling data from its silos, ensuring it's primed for the subsequent transformation phase.
+\subsubsection{3. Transforming Data for Uniformity}
+The heart of the data integration process lies in data transformation. The diverse data elements are standardized, cleansed, and harmonized in this stage, ensuring they speak a common language. This transformation is pivotal, turning a cacophony of disparate data into a harmonious dataset ready for integration.
+An illustrative example could be an e-commerce giant integrating customer interaction data across multiple channels. Here, data from social media interactions, website visits, and purchase histories undergo normalization and deduplication, making it analyzable as a coherent whole.
+\subsubsection{4. Loading Data into a Unified Repository}
+This phase involves transferring the refined data into a central repository, such as a data warehouse, where it is stored, accessed, and analyzed. The loading must be executed to maintain data integrity and optimize for future access.
+\subsubsection{5. Ensuring Data Integrity through Validation}
+\subsubsection{6. Maintaining Relevance with Data Synchronization}
+Data validation and quality assurance. This step confirms that the integrated data is accurate, consistent, and high-quality. Rigorous validation checks are applied to detect and rectify any anomalies, ensuring the data's reliability for decision-making.
+\subsubsection{7. Facilitating Data Access and Consumption}
+The culmination of the data integration process ensures that the integrated data is readily accessible for analysis and business intelligence. This involves making the data available in formats and through channels that support efficient consumption, analysis, and reporting.
+
+\subsection{Types of Data Integration}
+There are several methods of data integration, each suited to different use cases. The main types are as follows:
+
+\subsubsection{Manual Data Integration}
+
+Manual data integration involves the extraction, transformation, and loading (ETL) of data from disparate 
+sources through human intervention. This approach, while conceptually simple, necessitates a significant 
+investment of human resources.  While resource-intensive, it can be an effective solution for smaller-scale 
+or specialized integration projects where automated tools are not feasible or cost-effective.
+
+The core process involves manually collecting data from various sources (e.g., online forms, customer surveys, 
+social media feeds). Typically, this involves using manual techniques such as copy-pasting data into spreadsheet 
+software. The collected data is then transformed and cleaned, usually using spreadsheet software or similar 
+tools, to ensure consistency and accuracy. Finally, the transformed data is loaded into a central repository 
+or database, potentially using simple ETL scripts or custom-built solutions.
+
+Organizations may employ manual integration when dealing with data complexity or sensitivity necessitates 
+human oversight. Common applications include customer segmentation, fraud detection, and compliance adherence. 
+For instance, manually combining data exported from different databases within a spreadsheet environment 
+represents a typical, albeit potentially error-prone, example.
+
+The fundamental definition of manual data integration is the process of combining data from multiple sources 
+without the use of automated tools or software. This reliance on manual intervention at each step renders the 
+process time-consuming and susceptible to errors.
+
+\textbf{Pros:}
+
+\begin{itemize}
+    \item \textbf{Simplicity and Accessibility:}  No specialized tools or software are required. Widely available spreadsheet software provides a readily accessible platform for manual data integration.
+    \item \textbf{Flexibility and Customization:} Allows for a high degree of customization and flexibility, unconstrained by the limitations of automated tools, enabling tailored transformations and handling of unique data nuances.
+    \item \textbf{Suitability for Small-Scale Projects:}  Effective for small-scale projects with limited data sources and low data volumes where the overhead of automation may not be justified.
+\end{itemize}
+
+\textbf{Cons:}
+
+\begin{itemize}
+    \item \textbf{Time Consumption:}  A labor-intensive process requiring significant manual effort at each stage of the ETL process.
+    \item \textbf{Error Proneness:}  Human involvement introduces the risk of errors during data extraction, transformation, and loading.
+    \item \textbf{Inefficiency at Scale:}  Becomes increasingly impractical and inefficient as data volume, data source complexity, and the required transformations increase.  Scalability is severely limited.
+    \item \textbf{Limited Scalability:} Not suitable for large-scale data integration projects due to inherent limitations in handling large datasets and complex transformations.
+\end{itemize}
+
+In summary, manual data integration presents a viable option for small-scale projects where specialized tools are unnecessary, and data volumes are manageable.  However, the process's inherent limitations regarding scalability, efficiency, and error proneness necessitate careful consideration before employing it for complex or large-scale data integration endeavors. Deciding between automating data integration or continuing with manual methods requires careful consideration of these trade-offs.
+
+\subsubsection{Middleware Data Integration}
+
+Middleware solutions are essential intermediaries in complex integration scenarios, facilitating data communication and transformation between disparate systems. They act as a software layer that bridges the gap between various applications, enabling seamless data exchange and translation without manual intervention. Middleware solutions commonly provide real-time synchronization, automated processing, and guaranteed data delivery. Organizations leverage them to power Enterprise Application Integration (EAI) and system-to-system interactions.
+
+Consider a scenario where one system stores customer data in XML format, while another expects JSON. Middleware enables easy translation between these formats, automating the transformation process instead of requiring manual coding. Tools like ETL (Extract, Transform, Load) further simplify data integration by automating data extraction, transformation, and loading processes.
+
+Data integration using middleware involves utilizing middleware software to integrate data from diverse sources. Middleware extracts data, transforms it into a common format, and loads it into a central repository or database. It manages the data flow between systems, ensuring efficient processing and storage.
+
+Different types of middleware cater to specific data integration needs:
+
+\begin{itemize}
+    \item \textbf{Message-oriented middleware:} Focuses on asynchronous communication using message queues.
+    \item \textbf{Database middleware:} Provides a unified interface for accessing different databases.
+    \item \textbf{Application integration middleware:} Connects and orchestrates applications through APIs and services.
+\end{itemize}
+
+Each type offers unique capabilities suitable for different data integration projects.
+
+\textbf{Pros:}
+
+\begin{itemize}
+    \item \textbf{Improved Efficiency:}  Middleware centralizes data flow management, enhancing the efficiency of the integration process.
+    \item \textbf{Enhanced Scalability:}  Provides a flexible and scalable platform for integrating data from numerous sources, enabling easier scaling.
+    \item \textbf{Simplified Data Integration:}  Offers a common interface for accessing and manipulating data, simplifying the integration process.
+    \item \textbf{Improved Data Quality:}  Offers error handling and data cleansing features, improving the integrated data quality.
+\end{itemize}
+
+\textbf{Cons:}
+
+\begin{itemize}
+    \item \textbf{Complexity:}  Implementing middleware requires integrating additional software, which can be complex.
+    \item \textbf{Cost:}  Purchasing, setting up, and maintaining middleware requires specialized skills and resources, leading to potential expenses.
+    \item \textbf{Dependency:}  Creates a dependency on the middleware platform, potentially limiting the flexibility and agility of the data integration process.
+    \item \textbf{Integration Challenges:} Integrating middleware into existing IT infrastructures necessitates careful coordination and collaboration amongst stakeholders.
+\end{itemize}
+
+In conclusion, middleware can significantly improve the efficiency and scalability of data integration, providing a centralized platform for managing data flow. It reduces complexity by providing a common interface for data access and manipulation. The choice of using middleware depends on a careful evaluation of its advantages against the potential drawbacks, considering the specific requirements and constraints of the integration project.
+
+\subsubsection{Data Warehousing}
+
+Data warehousing involves the extraction, transformation, and loading (ETL) of data from heterogeneous sources into a centralized repository, known as a data warehouse. This process establishes a structured environment optimized for systematic querying, reporting, and advanced analysis.
+
+Specifically, a data warehouse provides a historical and integrated view of organizational data, facilitating trend analysis and informed decision-making. Unlike transactional databases designed for operational efficiency, data warehouses are architected for analytical performance. This is achieved through denormalized schemas, optimized indexing strategies, and columnar storage formats, which enhance query speeds for large datasets.
+
+Data warehouses are crucial for organizations requiring the storage and analysis of substantial data volumes, enabling use cases such as:
+
+\begin{itemize}
+    \item \textbf{Customer Analytics:} Understanding customer behavior, identifying market segments, and personalizing marketing campaigns.
+    \item \textbf{Financial Reporting:} Generating comprehensive financial statements, tracking key performance indicators (KPIs), and ensuring regulatory compliance.
+    \item \textbf{Predictive Modeling:} Developing statistical models to forecast future trends, assess risk, and optimize resource allocation.
+\end{itemize}
+
+Consider a scenario where sales data is fragmented across multiple operational databases. A data warehouse consolidates this data into a unified repository, providing rapid access to historical sales information for comprehensive reporting and analysis. This aggregation enables complex analytical queries that would be inefficient or infeasible within traditional database environments. Furthermore, integrating sales, marketing, and customer relationship management (CRM) data within the data warehouse fosters unified reporting capabilities, delivering a holistic view of the business landscape.
+
+\subsubsection{Application-based Integration}
+
+Application-based data integration is a design paradigm where data integration functionalities are directly embedded within an application, enabling seamless data connectivity and synchronization between different systems in real-time. This approach fosters inherent data integration capabilities, eliminating the need for separate data integration tools or layers.
+
+Unlike traditional methods relying on external integration mechanisms, application-based integration grants applications intrinsic control over data connectivity and harmonization. By incorporating data integration logic directly into the application fabric, organizations achieve enhanced agility, efficiency, and data interoperability. This tighter integration allows for customized workflows and fine-grained control over data transformations.
+
+For instance, a Customer Relationship Management (CRM) system integrating directly with email marketing tools exemplifies application-based integration. Synchronizing customer data in real-time improves data accuracy and streamlines marketing efforts.
+
+Furthermore, application-based integration facilitates the incorporation of various data integration patterns, such as batch processing or real-time streaming, directly within the application's architecture. This unlocks the potential to derive deeper insights from data, fostering innovation and maximizing the value extracted from organizational systems. Cloud data integration, specifically, exemplifies this approach by unifying data from multiple cloud sources, facilitating enhanced decision-making and analytics.
+
+\textbf{Pros:}
+
+\begin{itemize}
+    \item \textbf{Simplicity:} Users interact directly with the application, abstracting away the complexities of data integration tools and interfaces, simplifying system usage and understanding, particularly for those unfamiliar with data integration concepts.
+    \item \textbf{Performance:} Embedding integration capabilities directly into the application can yield greater efficiency than separate data integration layers, potentially leading to faster performance, especially when processing large data volumes. Tighter coupling and reduced overhead can improve data access speeds.
+    \item \textbf{Customization:} Application-based integration allows for tailoring data integration logic to meet the specific requirements of the application, enabling greater flexibility and customization based on specific data sources and integration needs.
+\end{itemize}
+
+\textbf{Cons:}
+
+\begin{itemize}
+    \item \textbf{Complexity:} Implementing data integration within an application can be intricate, particularly with diverse or technologically disparate data sources. This necessitates considerable resources and technical expertise.
+    \item \textbf{Interoperability:} Application-based integration might not be as effective in facilitating data exchange and interoperability across diverse systems compared to standalone integration layers. Integration is confined to the specific application, limiting broad data sharing.
+    \item \textbf{Maintenance:} Maintaining and updating data integration logic embedded within an application can be challenging as the application evolves, leading to increased maintenance costs. Architectural changes may necessitate modifications to the data integration code.
+\end{itemize}
+
+In summary, application-based data integration embodies building data integration capabilities directly into an application rather than employing separate tools. While offering potential simplicity and performance benefits, this approach poses challenges in terms of implementation complexity and maintainability.
+
+\subsubsection{Data Federation}
+Data federation, also referred to as virtual data integration, facilitates real-time data access and querying across heterogeneous data sources without requiring physical data migration or replication.  Instead of consolidating data into a centralized repository, data federation establishes a virtual data layer that presents a unified, logical view of data residing in disparate systems, databases, or applications. This approach avoids the complexities and overhead associated with ETL (Extract, Transform, Load) processes.
+
+The virtual data layer abstracts the underlying data sources, enabling users to interact with a single, integrated representation.  For instance, consider a scenario where customer data is stored in a CRM system, sales data in an ERP system, and inventory data in a separate database. Data federation allows access to this information through a unified interface, providing a holistic view of the data landscape. Common applications of data federation include advanced customer analytics, personalized product recommendation engines, and sophisticated fraud detection systems. As an illustrative example, federating access to multiple databases allows querying data as though it resided within a single, unified database, thereby streamlining data management and analysis.
+
+\subsection{Data Integration Approaches}
+\subsubsection{Batch Integration}
+Batch integration is a foundational element of the data integration process, tailored for scenarios where real-time data is not paramount. This approach, integral to the data integration process, involves aggregating data at predetermined intervals, thus optimizing for efficiency and minimizing the load on source systems. Despite its simplicity, the batch integration method within the data integration process may introduce delays in data availability, posing challenges for time-sensitive decision-making.
+
+\subsubsection{Real-time Integration}
+The data integration process is significantly enhanced by real-time integration, which ensures immediate data availability, a critical requirement for operations demanding up-to-the-minute data. This facet of the data integration process is essential for enabling dynamic decision-making and operational responsiveness. However, the complexity and resource intensity of real-time integration within the data integration process must be considered.
+
+\subsubsection{Hybrid Integration}
+Hybrid integration represents a strategic blend within the data integration process, combining the strengths of batch and real-time methods to offer a versatile solution tailored to diverse business needs. This approach enriches the data integration process by providing flexibility, allowing organizations to balance immediacy and efficiency based on specific data integration conditions.
+
+\subsubsection{Cloud-based Integration}
+Cloud computing has introduced cloud-based integration into the data integration process, offering scalability, cost-efficiency, and remote accessibility. This approach has become increasingly relevant in data integration, especially for organizations with geographically dispersed teams requiring access to integrated data. Data security and internet dependence are inherent challenges within this data integration approach.
+
+\subsection{Data Integration Techniques}
+
+Effective data integration is crucial for consolidating information from disparate sources. Several techniques are available, each with its own strengths and weaknesses.
+
+\subsubsection{ETL (Extract, Transform, Load)}
+
+ETL is a well-established data integration process consisting of three primary phases:
+
+\begin{itemize}
+    \item \textbf{Extract:} Data is retrieved from various source systems.
+    \item \textbf{Transform:} The extracted data undergoes cleaning, formatting, and transformation to ensure consistency and suitability for the target system.  This may include standardization, deduplication, and enrichment.
+    \item \textbf{Load:} The transformed data is loaded into the designated target system, such as a data warehouse.
+\end{itemize}
+
+ETL tools facilitate the movement and transformation of data between systems. Examples include Rivery Data Integration, Talend Data Integration, Informatica PowerCenter, and Oracle Data Integrator. A practical example involves extracting customer information from an e-commerce platform, standardizing the address formats, and loading it into a centralized data warehouse. This process ensures data accuracy and consistency for reporting and analysis.
+
+\subsubsection{ELT (Extract, Load, Transform)}
+
+ELT represents a more modern approach to data integration. Unlike ETL, ELT reverses the order of the transformation and loading steps:
+
+\begin{itemize}
+    \item \textbf{Extract:} Data is retrieved from various source systems.
+    \item \textbf{Load:} Raw data is loaded directly into the target system, often a data lake or data warehouse that offers significant computational resources.
+    \item \textbf{Transform:} Data transformation is performed within the target system using its processing capabilities. This often leverages technologies like SQL or other data processing frameworks.
+\end{itemize}
+
+An example of ELT involves loading raw log data into a data lake and then using SQL queries to transform and analyze the data. This approach leverages the processing power of the data lake for efficient data manipulation.
+
+\subsubsection{Comparison of Integration Strategies}
+
+The selection of a suitable integration strategy depends on specific requirements, including data volume, latency tolerance, and data complexity. Table \ref{tab:integration_strategies} summarizes several data integration strategies and their characteristics.
+
+\begin{table}[h!]
+\centering
+\caption{Comparison of Data Integration Strategies}
+\label{tab:integration_strategies}
+\begin{tabular}{|p{4cm}|p{3cm}|p{5cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Integration Strategy} & \textbf{Suitable for} & \textbf{How it Works} & \textbf{Pros} & \textbf{Cons} \\
+\hline
+Batch ETL & Non-real-time integration & Extract, Transform, Load in batches & Cost-effective, suitable for large data volumes & Non-real-time, potential data latency \\
+\hline
+Real-time ETL & Near real-time integration & Continuous extraction, transformation, loading & Up-to-the-minute data, critical for real-time decision-making & More complex and potentially expensive \\
+\hline
+Change Data Capture (CDC) & Real-time data synchronization & Captures and replicates source system changes & Real-time updates, minimizes data latency & Complex setup, resource-intensive \\
+\hline
+Data Federation/Virtualization & Heterogeneous data sources & Provides a unified view without physically integrating data & Minimizes data duplication, simplifies access & Performance challenges for complex queries, depends on underlying system performance\\
+\hline
+Data Replication & Distributed data synchronization & Copies data between systems, maintains synchronization & Ensures data consistency across locations & Resource-intensive, potential data conflicts \\
+\hline
+API-Based Integration & Third-party services/cloud apps & Connects systems via APIs for data exchange & Efficient for cloud services and external partners & Limited control over third-party APIs, custom development may be required, relies on API availability and stability \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent \textbf{Batch ETL} is suitable for scenarios where data latency is not critical. It processes data in batches, making it cost-effective for large volumes.
+
+\noindent \textbf{Real-time ETL} provides near real-time data integration, crucial for applications requiring up-to-the-minute information. However, it is more complex and potentially expensive to implement.
+
+\noindent \textbf{Change Data Capture (CDC)} focuses on real-time data synchronization by capturing and replicating changes in source systems. It minimizes data latency but requires a complex and resource-intensive setup.
+
+\noindent \textbf{Data Federation/Virtualization} offers a unified view of data from heterogeneous sources without physical integration. While it minimizes data duplication and simplifies access, performance can be a challenge for complex queries. Its performance largely depends on the capabilities of underlying systems.
+
+\noindent \textbf{Data Replication} ensures data consistency across different locations by copying data between systems.  While providing data consistency, it is resource-intensive and can lead to data conflicts if not managed carefully.
+
+\noindent \textbf{API-Based Integration} utilizes APIs for data exchange, particularly useful for integrating with third-party services and cloud applications. While efficient for such services, control over third-party APIs is limited, and custom development may be necessary. The reliance on API availability and stability introduces potential vulnerabilities.
+
+\subsection{Tools and Technologies for Data Integration}
+We can simplify the data integration process using various tools and technologies, they are −
+
+\subsubsection{ETL Tools}
+ETL tools automate the extract, transform, and load processes, making data integration more efficient.
+
+For example, Talend, Apache NiFi, and Informatica are popular ETL tools used to streamline data integration.
+
+\subsubsection{Data Warehousing Solutions}
+Data warehousing solutions provide a central repository for integrated data, which enables for an organized querying and analysis.
+
+Amazon Redshift, Google BigQuery, and Snowflake are widely used data warehousing solutions.
+
+\subsubsection{Data Virtualization Tools}
+virtualization tools create a virtual data layer, allowing real-time access to integrated data.
+
+For instance, Denodo, IBM Data Virtualization, and Red Hat JBoss Data Virtualization are examples of data virtualization tools.
+
+\subsubsection{Enterprise Information Integration(EII)}
+EII tools provide a unified view of data from disparate sources. They allow users to access and query data without having to move or copy the data. Popular EII solutions include IBM’s WebSphere Information Integrator, TIBCO ActiveMatrix BusinessWorks, and Microsoft SQL Server Integration Services
+
+\subsection{Best Practices for Data Integration}
+To ensure successful data integration, follow these best practices −
+
+\subsubsection{Define Clear Objectives}
+Clearly define your data integration objectives, such as improving data accuracy, enhancing decision-making, or streamlining operations.
+
+Setting a goal to integrate sales and customer data for better customer insights is an example of a clear objective.
+
+\subsubsection{Choose the Right Tools}
+Select tools that fit your integration needs, considering factors like data volume, complexity, and real-time requirements.
+
+For example, using an ETL tool for batch processing large datasets and a data virtualization tool for real-time data access can optimize data integration.
+
+\subsubsection{Ensure Data Quality}
+Implement data quality checks to ensure the accuracy and consistency of integrated data.
+
+For example, using data validation rules to check for duplicates and missing values ensures high data quality.
+
+\subsubsection{Maintain Data Security}
+Ensure that data integration processes act in accordance with data security and privacy regulations, protecting sensitive information.
+
+For example, encrypting data during transfer and ensuring compliance with GDPR are critical for maintaining data security.
+
+\subsubsection{Monitor and Optimize}
+Regularly monitor data integration processes and optimize them for performance and efficiency.
+
+For example, using performance monitoring tools to identify bottlenecks and improve data processing speed can enhance efficiency.
+
+\subsection{Challenges in Data Integration}
+Data integration can present several challenges, including:
+
+\begin{itemize}
+    \item Data Silos: Data stored in isolated systems can be difficult to integrate, leading to incomplete or inconsistent data views.\\
+    Example: Different departments using separate databases without a unified data integration strategy can create data silos. 
+    \item Data Quality Issues: Poor data quality can lead to inaccurate analysis and decision-making, undermining the value of integrated data.\\
+    Example: Inconsistent data formats and duplicate records can cause errors in reporting.
+    \item Complex Data Transformation: Complex data transformation processes can be time-consuming and require specialized skills.\\
+    Example: Converting data from various formats and structures to a common format for integration can be challenging.
+    \item Scalability: Integrating large volumes of data from multiple sources can be challenging, requiring scalable solutions.\\
+    Example: Handling the integration of high-frequency transactional data from e-commerce and financial systems demands scalable data integration solutions.
+\end{itemize}
 
 
 Bibliografía: 
 
 - El libro "Fundamentals of Data Engineering" va de : the data engineering lifecycle: data generation, storage, ingestion, transformation, and serving. Since the dawn of data, we've seen the rise and fall of innumerable specific technologies and vendor products, but the data engineering lifecycle stages have remained essentially unchanged. 
-
 
 \end{document}
