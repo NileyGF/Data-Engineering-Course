@@ -1698,63 +1698,268 @@ Herramientas Populares:
     \item ELK Stack (Elasticsearch, Logstash, Kibana): El ELK Stack, ahora comúnmente conocido como Elastic Stack, es una poderosa combinación de herramientas de código abierto para la gestión y el análisis de logs. Consta de Elasticsearch, un motor de búsqueda y análisis distribuido; Logstash, un pipeline versátil de procesamiento de datos; y Kibana, una plataforma de visualización basada en web. El Elastic Stack permite la recopilación, el almacenamiento y el análisis centralizados de logs de diversas fuentes. Logstash permite la ingestión, el análisis sintáctico y la transformación de logs antes de enviar los datos a Elasticsearch para su indexación y almacenamiento.
 \end{itemize}
 
-
-% DevOps Model Defined: DevOps is the combination of cultural philosophies, practices, and tools that increases an organization's ability to deliver applications and services at high velocity: evolving and improving products at a faster pace than organizations using traditional software development and infrastructure management processes. This speed enables organizations to better serve their customers and compete more effectively in the market.
-
-% DevOps is a combination of two words, "Development" and "Operations". It represents a cultural approach that emphasizes collaboration between Development(Dev) and Operations(Ops) teams to increase the efficiency, speed, and security of the entire software development and delivery compared to traditional processes. The reason why DevOps is booming is that most of the companies are moving to the cloud, and they need to hire DevOps Engineers to manage systems efficiently.
-
-% DevOps combines development (Dev) and operations (Ops) to increase the efficiency, speed, and security of software development and delivery compared to traditional processes. A more nimble software development lifecycle results in a competitive advantage for businesses and their customers.
-
-% DevOps is a software development approach emphasizing collaboration, automation, and continuous delivery to provide high-quality products to customers quickly and efficiently. DevOps breaks down silos between development and operations teams to enable seamless communication, faster time-to-market, and improved customer satisfaction.
-
-% It allows a team to handle the complete application lifecycle, from development to testing, operations, and deployment. It shows cooperation between Development and Operations groups to deploy code to production quickly in an automated and repeatable manner.
-
-% Every phase of the software development lifecycle, including planning, coding, testing, deployment, and monitoring, is heavily automated in DevOps. This improves productivity, ensures consistency, and lowers error rates in the development process. A culture of continuous improvement is also promoted by DevOps, where feedback loops are incorporated into the procedure to facilitate quicker iteration and better decision-making. Organizations can increase their agility, lower costs, and speed up innovation by adopting DevOps. 
-
-% DevOps aims to improve the release and quality of software products.
-
-% The framework and workflow consist of change management (environment, code, and data version control), continuous integration/continuous deployment (CI/CD), and configuration as code.
-
-% DevOps is the integration and automation of the software development and information technology operations. DevOps encompasses necessary tasks of software development and can lead to shortening development time and improving the development life cycle. According to Neal Ford, DevOps, particularly through continuous delivery, employs the "Bring the pain forward" principle, tackling tough tasks early, fostering automation and swift issue detection. Software programmers and architects should use fitness functions to keep their software in check.
-
-% Although debated, DevOps is characterized by key principles: shared ownership, workflow automation, and rapid feedback. From an academic perspective, Len Bass, Ingo Weber, and Liming Zhu—three computer science researchers from the CSIRO and the Software Engineering Institute—suggested defining DevOps as "a set of practices intended to reduce the time between committing a change to a system and the change being placed into normal production, while ensuring high quality". However, the term is used in multiple contexts. At its most successful, DevOps is a combination of specific practices, culture change, and tools.
-
-% DevOps can be best explained as people working together to conceive, build and deliver secure software at top speed. DevOps practices enable software development (dev) and operations (ops) teams to accelerate delivery through automation, collaboration, fast feedback, and iterative improvement. Stemming from an Agile approach to software development, a DevOps process expands on the cross-functional approach of building and shipping applications in a faster and more iterative manner.
-
-% In adopting a DevOps development process, you are making a decision to improve the flow and value delivery of your application by encouraging a more collaborative environment at all stages of the development cycle.DevOps represents a change in mindset for IT culture. In building on top of Agile, lean practices, and systems theory, DevOps focuses on incremental development and rapid delivery of software. Success relies on the ability to create a culture of accountability, improved collaboration, empathy, and joint responsibility for business outcomes.
-
-
 \chapter{Conferencia 9}
-\normalfont\LARGE \textbf{DevOps: Advanced DevOps Practices for Scalable Systems}
+\normalfont\LARGE \textbf{DevOps: Prácticas avanzadas de DevOps}
 \normalfont\small\\
 
-Microservices:
-The microservices architecture is a design approach to build a single application as a set of small services. Each service runs in its own process and communicates with other services through a well-defined interface using a lightweight mechanism, typically an HTTP-based application programming interface (API). Microservices are built around business capabilities; each service is scoped to a single purpose. You can use different frameworks or programming languages to write microservices and deploy them independently, as a single service, or as a group of services.
+\section{Prácticas DevOps. Parte 2}
+\subsection{Microservicios}
 
-Learn more about AWS Lambda
+Microservices es un estilo arquitectónico y un enfoque de diseño para desarrollar aplicaciones de software como una colección de servicios pequeños e independientes que trabajan juntos para formar un sistema completo. A diferencia de las aplicaciones monolíticas tradicionales, donde todos los componentes y funcionalidades están integrados de manera estrecha en una única base de código unificada, los microservicios dividen la aplicación en múltiples servicios desacoplados. Cada uno de estos servicios se enfoca en una capacidad o función específica del negocio, lo que hace que el sistema sea más modular, flexible y fácil de gestionar.
 
-Configuration Management
+En su esencia, un microservicio es una unidad pequeña y autónoma de software que se ejecuta en su propio proceso. Esta independencia significa que cada microservicio puede ser desarrollado, desplegado, actualizado y escalado de forma separada respecto a los demás. La comunicación entre microservicios generalmente ocurre a través de protocolos ligeros, siendo los más comunes las APIs basadas en HTTP, que proporcionan interfaces bien definidas para la interacción. Este enfoque permite que diferentes microservicios sean escritos en distintos lenguajes de programación o frameworks, según lo que mejor se adapte a los requisitos particulares de cada servicio, además de permitir el reemplazo de microservicios sin causar interrupciones.
 
-Developers and system administrators use code to automate operating system and host configuration, operational tasks, and more. The use of code makes configuration changes repeatable and standardized. It frees developers and systems administrators from manually configuring operating systems, system applications, or server software.
+Uno de los principios clave de los microservicios es que cada servicio está limitado a un único propósito o capacidad del negocio. Por ejemplo, en una aplicación de comercio electrónico, microservicios separados podrían encargarse de la autenticación de usuarios, la gestión del catálogo de productos, el procesamiento de pedidos y la gestión de pagos. Esta clara separación de responsabilidades ayuda a los equipos a enfocarse en funcionalidades específicas, mejorando la velocidad y calidad del desarrollo.
 
-Learn how you can configure and manage Amazon EC2 and on-premises systems with Amazon EC2 Systems Manager
+Cada microservicio opera de manera autónoma con su propia lógica de negocio, base de datos y API. La arquitectura de microservicios ofrece flexibilidad para actualizaciones plug-and-play, lo que simplifica la escalabilidad de componentes específicos dentro de una aplicación sin afectar al sistema completo. Los contenedores son el medio principal para desplegar microservicios. Herramientas de DevOps como Kubernetes y Docker distribuyen de manera eficiente la potencia de procesamiento y otros recursos entre los microservicios.
 
-Learn to use configuration management with AWS OpsWorks
-Policy as Code
+Los microservicios aplican un ejemplo del principio open/closed: están abiertos para la extensión (usando las interfaces que exponen) y están cerrados para la modificación (cada uno se implementa y versiona de manera independiente).
 
-With infrastructure and its configuration codified with the cloud, organizations can monitor and enforce compliance dynamically and at scale. Infrastructure that is described by code can thus be tracked, validated, and reconfigured in an automated way. This makes it easier for organizations to govern changes over resources and ensure that security measures are properly enforced in a distributed manner (e.g. information security or compliance with PCI-DSS or HIPAA). This allows teams within an organization to move at higher velocity since non-compliant resources can be automatically flagged for further investigation or even automatically brought back into compliance.
+Microservices ofrecen muchas \textbf{ventajas} sobre las arquitecturas monolíticas:
+\begin{enumerate}
+    \item Aceleran la escalabilidad
 
-Learn how you can use AWS Config and Config Rules to monitor and enforce compliance for your infrastructure
+Los equipos de DevOps pueden introducir nuevos componentes sin causar tiempo de inactividad, gracias a la operación independiente de cada servicio dentro de la arquitectura de microservicios. Pueden elegir el mejor lenguaje o tecnología para cada servicio sin preocuparse por problemas de compatibilidad. 
+El despliegue de servicios en múltiples servidores puede mitigar el impacto en el rendimiento de componentes individuales y ayudar a las empresas a evitar el vendor lock-in (dependencia de un proveedor). 
+Cada servicio es escalable de forma independiente según la demanda. Esto significa que cada servicio puede manejar una carga incrementada sin afectar negativamente el rendimiento de los otros servicios o de la aplicación en general.
+
+    \item Mejoran el aislamiento de fallos
+
+La arquitectura de microservicios está compartimentada: si un servicio encuentra una falla o error, este no se propaga a todo el sistema. 
+Los microservicios son autónomos, por lo que la falla de un servicio no afecta significativamente a toda la aplicación.
+
+    \item Aumentan la productividad del equipo
+
+La arquitectura de microservicios permite que equipos pequeños y enfocados se concentren en el desarrollo, despliegue y mantenimiento de un servicio específico sin verse abrumados por las complejidades de todo el sistema. 
+Fomenta un sentido de propiedad y especialización dentro de los equipos, permitiendo que los miembros especializados tomen decisiones informadas, iterando rápidamente y manteniendo una alta calidad del servicio en su dominio.
+
+    \item Reducción del tiempo de despliegue
+
+En arquitecturas monolíticas, cualquier cambio requiere redeplegar toda la aplicación. La arquitectura de microservicios permite lanzamientos más rápidos porque cada servicio evoluciona y se despliega de forma independiente, reduciendo el riesgo y el tiempo asociados a coordinar cambios en toda la aplicación. 
+Este desacoplamiento mejora la agilidad, permitiendo implementar actualizaciones o correcciones rápidamente con mínima interrupción al sistema completo. 
+Con este estilo arquitectónico, es posible lograr integración y despliegue continuo (CI/CD) en aplicaciones grandes y complejas, lo que mejora la velocidad de llegada al mercado.
+
+    \item Incrementan la eficiencia en costos
+
+La arquitectura de microservicios optimiza la asignación de recursos y el mantenimiento porque los equipos trabajan sobre servicios pequeños y bien definidos. Los esfuerzos se localizan en servicios específicos, reduciendo costos totales de desarrollo y mantenimiento. 
+Los equipos se enfocan en funcionalidades concretas, asegurando que los recursos se utilicen eficientemente sin redundancias ni capacidad innecesaria.
+
+- Modularidad: Cada servicio representa una funcionalidad específica del negocio (por ejemplo, productos, usuarios, checkout, carrito de compras), haciendo el sistema modular. Los equipos autónomos pueden iterar cambios rápidamente y mantener y desarrollar cada servicio independientemente. 
+- Eliminación de puntos únicos de fallo (SPOFs): Se asegura que los problemas en un servicio no colapsen ni afecten otras partes de la aplicación. 
+- Escalabilidad independiente: Los microservicios individuales pueden escalarse por separado para proveer mayor disponibilidad y capacidad. En una aplicación monolítica, si se modifica una parte, es necesario redeplegar toda la aplicación. 
+- Extensión de funcionalidades: Los equipos de DevOps pueden agregar nuevos microservicios sin afectar innecesariamente otras partes de la aplicación. Esto permite que distintos desarrolladores trabajen simultáneamente en diferentes partes sin interferencias, y que los cambios en una parte no afecten al resto.
+
+\end{enumerate}
+
+\textbf{Desventajas} de los microservicios:
+\begin{itemize}
+    \item \textbf{Complejidad aumentada:} Debido a que los microservicios están distribuidos, gestionar la comunicación entre servicios puede ser un desafío. Los desarrolladores pueden tener que escribir código adicional para asegurar una comunicación fluida entre los módulos. Al descomponer la aplicación en microservicios más pequeños e independientes, se crea un sistema distribuido que debe funcionar correctamente con los demás servicios y manejar los datos de manera consistente. Gestionar esta dispersión de software se vuelve complicado sin las herramientas adecuadas.
+    \item \textbf{Retos en despliegue y versionado:} Coordinar los despliegues y gestionar el control de versiones entre múltiples servicios puede ser complejo, lo que puede provocar problemas de compatibilidad. El despliegue de microservicios a menudo requiere el uso de herramientas como Open DevOps o Compass, así como técnicas de orquestación para automatizar los despliegues y garantizar la tolerancia a fallos.
+    \item \textbf{Complejidad en las pruebas:} Probar microservicios implica escenarios complejos, especialmente al realizar pruebas de integración entre varios servicios. Orquestar estas pruebas puede ser complicado. La naturaleza distribuida y las interdependencias entre servicios hacen que las pruebas unitarias, de integración y end-to-end sean mucho más intrincadas. Se necesitarán herramientas y técnicas especializadas en microservicios para llevar a cabo las pruebas adecuadamente.
+    \item \textbf{Dificultades en el Debug:} Debugging una aplicación que contiene múltiples microservicios, cada uno con su propio conjunto de logs, puede ser exigente. Un solo proceso de negocio puede ejecutarse simultáneamente en varias máquinas, lo que aumenta la complejidad.
+    \item \textbf{Retos en la gestión de datos:} La consistencia de datos y las transacciones a través de múltiples servicios pueden ser complejas. La arquitectura de microservicios requiere una gestión y coordinación cuidadosa de los datos para mantener la integridad.
+    \item \textbf{Seguridad:} La naturaleza distribuida y las interdependencias entre servicios también impactan en la seguridad. Es fundamental implementar mecanismos robustos para proteger la comunicación, autenticar y autorizar cada servicio, y asegurar los datos en tránsito y en reposo. Además, la complejidad del sistema exige herramientas especializadas para monitorear y responder a posibles vulnerabilidades o ataques.
+\end{itemize}
+\subsubsection*{Patrones de Diseño de Microservicios}
+
+Los microservicios cuentan con algunos patrones de diseño fundamentales, y comprender DevOps es una excelente manera de captar las ventajas inherentes a estos patrones. Estos métodos probados ofrecen soluciones a desafíos comunes, como dirigir el tráfico a través de un API gateway o evitar sobrecargas con un circuit breaker. Cada patrón tiene su propio método para resolver problemas específicos de los microservicios. 
+Algunos de los patrones de diseño de microservicios más comunes incluyen los siguientes:
+
+\textbf{API gateway}
+
+Un API gateway funciona como la puerta principal para todas las interacciones de los clientes con los microservicios. Agrega las solicitudes provenientes de distintos clientes, las dirige a los microservicios correspondientes y compila las respuestas. Este patrón simplifica la experiencia del cliente, ofreciendo una interfaz unificada que integra los servicios individuales.
+
+\textbf{Circuit breaker}
+
+El patrón circuit breaker actúa como un interruptor de seguridad para la red. Cuando una llamada a un servicio falla repetidamente, el circuit breaker se activa, previniendo una mayor carga y posibles fallos en todo el sistema. Posteriormente, realiza verificaciones periódicas para detectar si el problema se ha resuelto, permitiendo una recuperación controlada. Este patrón mejora la resiliencia del sistema al manejar las interrupciones de servicio de manera elegante.
+
+\textbf{Event sourcing}
+
+El event sourcing registra los cambios en el estado de un sistema como una serie de eventos. En lugar de almacenar únicamente el estado actual, este patrón guarda la secuencia completa de acciones que llevaron a dicho estado. Este enfoque proporciona una auditoría confiable y puede simplificar transacciones complejas y la recuperación de errores. Además, permite reproducir los eventos para reconstruir estados pasados.
+
+\textbf{CQRS (Command Query Responsibility Segregation)}
+
+CQRS consiste en dividir las operaciones de la base de datos en comandos (que modifican datos) y consultas (que leen datos). 
+
+Esta separación optimiza el almacenamiento y el rendimiento de datos al escalar de forma independiente las cargas de trabajo de lectura y escritura. Es especialmente útil en sistemas donde la naturaleza y el volumen de lecturas y escrituras varían significativamente.
+
+\textbf{Saga}
+
+El patrón saga aborda transacciones complejas que involucran múltiples microservicios dividiéndolas en operaciones más pequeñas y manejables. Cada servicio se encarga de su parte de la transacción. Si un paso falla, la saga inicia acciones compensatorias para mitigar el impacto del fallo en las operaciones previas. 
+
+Este método permite realizar transacciones distribuidas manteniendo la autonomía de cada microservicio, lo que ayuda a la consistencia de datos sin un acoplamiento estricto.
+
+\textbf{Bulkhead}
+
+Nombrado en referencia a los compartimentos estancos de un barco, el patrón bulkhead limita los fallos a un solo servicio o a un grupo de servicios. Aísla partes de la aplicación de modo que si una sección se sobrecarga o falla, las demás continúan funcionando. Este aislamiento mejora la tolerancia a fallos y la resiliencia del sistema.
+
+\textbf{Database-per-service}
+
+Con el patrón database-per-service, cada microservicio tiene una base de datos dedicada. Esto evita que las llamadas a la base de datos de un servicio afecten a otros. Garantiza un acoplamiento débil y una alta cohesión, haciendo que los servicios sean más resilientes a cambios y más fáciles de escalar y mantener.
+
+\subsection{Gestión de Configuración(Configuration Management)}
+
+Los datos de configuración históricamente han sido difíciles de manejar y con facilidad pueden convertirse en un aspecto secundario. No son realmente código, por lo que no se incluyen inmediatamente en un sistema de control de versiones, y tampoco son datos de primera clase, por lo que no se almacenan en una base de datos principal. La administración tradicional y a pequeña escala de sistemas generalmente se realiza mediante una colección de scripts y procesos ad-hoc.
+
+En los primeros años del desarrollo de aplicaciones en internet, los recursos de hardware y la administración de sistemas se realizaban principalmente de forma manual. Los administradores de sistemas gestionaban los datos de configuración mientras aprovisionaban y administraban manualmente los recursos de hardware basándose en dichos datos.
+
+Un sistema de gestión de configuración consta de varios componentes. Los sistemas gestionados pueden incluir servidores, almacenamiento, redes y software. Estos son los objetivos del sistema de gestión de configuración. El objetivo es mantener estos sistemas en estados conocidos y determinados. Otro aspecto de un sistema de gestión de configuración es la descripción del estado deseado para los sistemas. El tercer aspecto principal es el software de automatización, responsable de asegurar que los sistemas y software objetivo se mantengan en el estado deseado.
+
+Los desarrolladores y administradores de sistemas utilizan código para automatizar la configuración del sistema operativo y del host, tareas operativas y más. El uso de código hace que los cambios de configuración sean repetibles y estandarizados. Esto libera a los desarrolladores y administradores de sistemas de configurar manualmente los sistemas operativos, aplicaciones del sistema o software de servidor.
+
+La práctica de manejar metódicamente los ajustes en la infraestructura, los componentes vinculados y las configuraciones de una aplicación se conoce como gestión de configuración. Desde variables de entorno y conexiones a bases de datos hasta configuraciones de servidores y parámetros de aplicaciones, estas opciones lo abarcan todo. Para preservar la estabilidad y prevenir problemas causados por configuraciones incorrectas en un entorno DevOps, donde los despliegues rápidos y frecuentes son la norma, la gestión de configuración se vuelve esencial.
+
+La \textit{Configuración como código} (\textit{Configuration-as-a-Code}, CaaC), al igual que \textit{Infrastructure as Code} (IaaC), define la configuración de servidores o cualquier recurso computacional. Nuevamente, como en IaaC, este código se envía a un sistema de control de versiones como parte de la canalización de despliegue de software. Esto configura automáticamente la infraestructura relevante para que esté lista para desarrollar y probar el software en cuestión.
+
+Para definir la configuración, se obtienen los parámetros que establecen los ajustes que permitirán que el software funcione según lo esperado.
+
+Herramientas relevantes: Ansible, Chef, Puppet
+
+Una función importante de la gestión de configuración es definir el estado de cada sistema. Al orquestar estos procesos con una plataforma, las organizaciones pueden asegurar la consistencia a través de sistemas integrados y aumentar la eficiencia. El resultado es que las empresas pueden escalar más fácilmente sin contratar personal adicional de gestión de TI. Las compañías que de otro modo no tendrían los recursos pueden crecer implementando un enfoque DevOps.
+
+La gestión de configuración está estrechamente asociada con la gestión de cambios, y como resultado, a veces se confunden ambos términos. La gestión de configuración se describe más fácilmente como la automatización, gestión y mantenimiento de las configuraciones en cada estado, mientras que la gestión de cambios es el proceso mediante el cual las configuraciones se redefinen y modifican para satisfacer las condiciones de nuevas necesidades y circunstancias dinámicas.
+
+
+\subsubsection*{La Importancia de la Gestión de Configuración en DevOps}
+
+\textbf{Consistencia}: DevOps hace especial hincapié en mantener la consistencia entre distintos entornos, como desarrollo, pruebas y producción. Al garantizar que estos entornos sean idénticos, una adecuada gestión de configuración reduce la posibilidad de comportamientos inesperados causados por inconsistencias en la configuración.
+
+\textbf{Reproducibilidad}: Con una buena gestión de configuración, los desarrolladores pueden replicar fácilmente entornos específicos o instancias de aplicaciones. Esto es esencial para pruebas, depuración y resolución de problemas.
+
+\textbf{Escalabilidad}: La gestión de configuración es fundamental para escalar recursos según sea necesario a medida que las aplicaciones crecen. Permite aprovisionar nuevas instancias con configuraciones estandarizadas de manera eficiente.
+
+\textbf{Control de Versiones}: Los equipos pueden rastrear cambios y volver a configuraciones anteriores cuando sea necesario gracias al control de versiones, una funcionalidad que suelen ofrecer las herramientas de gestión de configuración.
+
+\textbf{Reducción de Errores}: Los errores humanos en la configuración pueden provocar fallos en el sistema o vulnerabilidades de seguridad. La automatización y las herramientas de gestión de configuración mitigan estos riesgos.
+
+\subsubsection*{Mejores Prácticas para la Gestión de Configuración en DevOps}
+
+\textbf{Utilizar herramientas de gestión de configuración}: Herramientas como Ansible, Puppet y Chef ofrecen capacidades de automatización para gestionar configuraciones en servidores y servicios. Ayudan a garantizar consistencia y reducir errores manuales.
+
+\textbf{Infraestructura Inmutable}: Considere emplear infraestructura inmutable, donde los componentes se reemplazan en lugar de actualizarse. Esto reduce la deriva de configuración y garantiza consistencia.
+
+\textbf{Control de Versiones}: Almacene archivos de configuración en sistemas como Git que ofrezcan control de versiones. Esto permite colaboración entre equipos y proporciona un historial de cambios.
+
+\textbf{Variables Específicas por Entorno}: Utilice variables de entorno para almacenar valores de configuración que varíen entre entornos. Esto facilita adaptar despliegues a distintas etapas.
+
+\textbf{Integración en CI/CD}: Incorpore la gestión de configuración en sus pipelines de integración y entrega continua (CI/CD). Pruebas automatizadas pueden verificar la exactitud de las configuraciones antes del despliegue.
+
+\textbf{Auditorías Regulares}: Realice auditorías periódicas de configuración para identificar ajustes obsoletos o inseguros. Esto fomenta el cumplimiento y la seguridad.
+
+\textbf{Gestión Segura de Secretos}: Emplee herramientas seguras de gestión de secretos para manejar datos sensibles, como API keys y contraseñas. Evite codificar secretos directamente en archivos de configuración.
+\subsection{Políticas como Código (Policy as Code)}
+Policy as Code (PaC) es un enfoque para definir y gestionar políticas de seguridad, cumplimiento y desarrollo mediante código, almacenado y administrado en un motor de políticas centralizado. Estas políticas se aplican programáticamente dentro de un pipeline de CI/CD (Integración/Entrega/Despliegue Continuo), permitiendo la automatización de flujos de trabajo de seguridad.
+
+
+\textbf{Ejemplos de Políticas}
+\begin{itemize}
+    \item \textbf{Seguridad}: 
+    \begin{itemize}
+        \item Requisitos de complejidad de contraseñas
+        \item Estándares de cifrado para datos en reposo y en tránsito
+        \item Listas de control de acceso a redes (ACLs)
+    \end{itemize}
+    \item \textbf{Cumplimiento}: 
+    \begin{itemize}
+        \item Requisitos de registro y auditoría de accesos
+        \item Restricciones geográficas de almacenamiento de datos
+        \item Programas de retención y eliminación de datos
+    \end{itemize}
+    \item \textbf{Desarrollo}: 
+    \begin{itemize}
+        \item Requisitos de revisión de código (code review)
+        \item Restricciones de commits directos en ramas principales
+        \item Escaneo de vulnerabilidades
+        \item Convenciones de nomenclatura
+    \end{itemize}
+\end{itemize}
+
+\textbf{Implementación Técnica}:\\
+
+Las políticas se escriben en lenguajes de alto nivel (YAML, Python) compatibles con las herramientas de la organización.
+
+Un \textit{motor de políticas} (policy engine) procesa estas reglas mediante consultas y devuelve decisiones en tiempo real.
+
+La ejecución se realiza mediante llamadas API al pipeline de CI, permitiendo pruebas de seguridad sin interrumpir builds existentes.
+
+
+\textbf{Consideraciones Clave}:\\
+
+Dependencias: 
+\begin{itemize}
+    \item ¿Pueden las pruebas de seguridad interrumpir el \textit{build} o despliegue?
+    \item ¿Qué tipos de hallazgos deben escalarse a sistemas de seguimiento de incidencias?
+\end{itemize}
+
+Cambios en el código:
+\begin{itemize}
+    \item When was the change committed? 
+    \item What is the magnitude of the change? 
+    \item Does this warrant additional testing or manual code review?
+\end{itemize}
+
+Business criticality of application being tested:
+\begin{itemize}
+    \item ¿La aplicación maneja datos sensibles?
+    \item Riesgos asociados a tiempo de inactividad
+    \item Superficie de ataque de la aplicación
+\end{itemize}
+
+\textbf{Beneficios}:\\
+
+En el contexto de pruebas de seguridad de aplicaciones, las organizaciones pueden aprovechar las políticas como código para definir las condiciones de cuándo probar, qué herramienta de prueba debe usarse y si es necesario realizar pruebas. Al codificar estos parámetros, los equipos de seguridad pueden simplificar la coordinación de múltiples herramientas AST y lograr precisión en sus flujos de trabajo de pruebas. Esto permite la aplicación consistente y automatizada de políticas de seguridad, y en última instancia, la capacidad de lograr mejor calidad de software sin comprometer la velocidad de desarrollo.
+
+Más específicamente, la aplicación de políticas como código ayuda de estas formas importantes:
+\begin{itemize}
+    \item Acelera las pruebas de seguridad. Con la aplicación automatizada de políticas, las pruebas de seguridad pueden activarse sin intervención manual y solo cuando sea necesario.
+    \item Aumenta la eficiencia. Al eliminar la aplicación manual de políticas de la ecuación, las políticas pueden actualizarse y compartirse dinámicamente, eliminando elementos humanos innecesarios que ralentizan el proceso.
+    \item Ayuda con el control de versiones y mejora la visibilidad. Las partes interesadas pueden ver fácilmente lo que está sucediendo en sus operaciones, y el control de versiones automatizado permite actualizaciones perfectas o la eliminación de actualizaciones en caso de problemas asociados con nuevas versiones.
+    \item Minimiza errores y permite la validación. Con políticas automatizadas implementadas, se evitan errores causados por la participación humana. Adicionalmente, cuando las políticas se escriben en código, es fácil ejecutar actividades de validación y garantizar precisión.
+\end{itemize}
+
+\section{Seguridad en DevOps (DevSecOps)}
+
+DevSecOps es una evolución de DevOps que incorpora la seguridad en todos los aspectos del proceso. El objetivo es abordar los problemas de seguridad desde el inicio mismo del proyecto. En este marco, no solo todo el equipo asume responsabilidad sobre el aseguramiento de calidad e integración del código, sino también sobre la seguridad. En la práctica, esto significa que los equipos discuten las implicaciones de seguridad durante la planificación y comienzan a probar vulnerabilidades en entornos de desarrollo, en lugar de esperar hasta el final. Este enfoque también se conoce como "shift left security".
+
+DevSecOps es una práctica de seguridad de aplicaciones (AppSec) que introduce la seguridad temprano en el ciclo de vida del desarrollo de software (SDLC). Al integrar equipos de seguridad en el ciclo de entrega de software, DevSecOps amplía la colaboración entre los equipos de desarrollo y operaciones. Esto convierte la seguridad en una responsabilidad compartida y requiere cambios en la cultura, procesos y herramientas entre estos grupos funcionales. Todos los involucrados en el SDLC tienen un rol que desempeñar para incorporar seguridad en el flujo de trabajo CI/CD (Integración Continua/Entrega Continua) de DevOps.
+
+La incorporación continua de seguridad a lo largo del SDLC ayuda a los equipos DevOps a entregar aplicaciones seguras con velocidad y calidad. Cuanto antes se incluya la seguridad en el flujo de trabajo, más rápido se podrán identificar y remediar debilidades y vulnerabilidades de seguridad. Este concepto a veces se denomina "shift left" porque traslada las pruebas de seguridad hacia los desarrolladores, permitiéndoles corregir problemas de seguridad en su código mientras desarrollan, en lugar de esperar hasta el final del ciclo, como tradicionalmente se hacía. Por el contrario, DevSecOps abarca todo el SDLC, desde planificación y diseño hasta codificación, construcción, pruebas y lanzamiento, con bucles de retroalimentación continua e insights en tiempo real.
+
+La seguridad es una parte clave de DevOps. Pero, ¿cómo sabe un equipo si un sistema es seguro? ¿Es realmente posible entregar un servicio completamente seguro?
+
+Lamentablemente, la respuesta es no. DevSecOps es un esfuerzo continuo y permanente que requiere la atención de todos, tanto en desarrollo como en operaciones de TI. Si bien el trabajo nunca está realmente terminado, las prácticas que los equipos emplean para prevenir y manejar brechas pueden ayudar a producir sistemas lo más seguros y resilientes posible.
+
+Policy-as-code ayuda a superar estos obstáculos para DevSecOps mediante:
+\begin{itemize}
+    \item Proporcionar bucles de retroalimentación continua para desarrolladores. Las políticas pueden aplicarse mediante integración API para comunicar directamente actividades críticas de seguridad a los desarrolladores a través de tickets de Jira o notificaciones de Slack.
+    \item Automatizar la toma de decisiones. Codificar las condiciones que activan eventos de seguridad basados en umbrales predefinidos para riesgo de aplicación, cambios de código y dependencias ayuda enormemente a reducir la fricción en la estandarización de AppSec para entornos ágiles. Las políticas como código eliminan la intervención manual que normalmente se requeriría para determinar si se debe probar y qué prueba aplicar.
+\end{itemize}
 
 \chapter{Conferencia 10}
 \normalfont\LARGE \textbf{DataOps: DevOps for Data-Centric Workflows}
 \normalfont\small\\
-DataOps is still a work in progress. Practitioners have done a
-good job of adapting DevOps principles to the data domain and mapping
-out an initial vision through the DataOps Manifesto and other resources.
-Data engineers would do well to make DataOps practices a high priority in
-all of their work. The up-front effort will see a significant long-term payoff
-through faster delivery of products, better rel
+DevOps focuses on continuous delivery by leveraging on-demand IT resources and by automating test and deployment of software. This merging of software development and IT operations has improved velocity, quality, predictability and scale of software engineering and deployment. Borrowing methods from DevOps, DataOps seeks to bring these same improvements to data analytics.
+
+DataOps is a discipline that merges data engineering and data science teams to support an organization's data needs, similar to how DevOps helps organizations scale software engineering.
+
+While DataOps draws many parallels from DevOps, there are important distinctions between the two. 
+The key difference is DevOps is a methodology that brings development and operations teams together to make software development and delivery more efficient, while DataOps focuses on breaking down silos between data producers and data consumers to make data more reliable and valuable. 
+
+To facilitate faster and more reliable insight from data, DataOps teams apply a continuous feedback loop, also referred to as the DataOps lifecycle.
+The DataOps lifecycle takes inspiration from the DevOps lifecycle, but incorporates different technologies and processes given the ever-changing nature of data.
+The DataOps lifecycle allows both data teams and business stakeholders to work together in tandem to deliver more reliable data and analytics to the organization.
+Here is what the DataOps lifecycle looks like in practice:
+
+    Planning: Partnering with product, engineering, and business teams to set KPIs, SLAs, and SLIs for the quality and availability of data (more on this in the next section).
+    Development: Building the data products and machine learning models that will power your data application.
+    Integration: Integrating the code and/or data product within your existing tech and or data stack. (For example, you might integrate a dbt model with Airflow so the dbt module can automatically run.)
+    Testing: Testing your data to make sure it matches business logic and meets basic  operational thresholds (such as uniqueness of your data or no null values).
+    Release: Releasing your data into a test environment.
+    Deployment: Merging your data into production.
+    Operate: Running your data into applications such as Looker or Tableau dashboards and data loaders that feed machine learning models.
+    Monitor: Continuously monitoring and alerting for any anomalies in the data.
+
+This cycle will repeat itself over and over again. However, by applying similar principles of DevOps to data pipelines, data teams can better collaborate to identify, resolve, and even prevent data quality issues from occurring in the first place.
 
 A few DataOps considerations are as follows:
 Automation
